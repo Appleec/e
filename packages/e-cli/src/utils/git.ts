@@ -216,6 +216,17 @@ export async function getRemoteByBranch(branch: string) {
 }
 
 /**
+ * Get remote origin url
+ * git config --get remote.origin.url
+ * @param branch
+ */
+export async function getRemoteOriginUrl(branch: string = 'origin') {
+  const { stdout } = await execCommand('git', ['config', '--get', `remote.${branch}.url`])
+
+  return stdout
+}
+
+/**
  * Get current branch
  *
  * command:

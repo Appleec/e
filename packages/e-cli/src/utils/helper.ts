@@ -1,5 +1,4 @@
 import { resolve } from 'node:path'
-import { cwd } from 'node:process'
 
 import fse from 'fs-extra'
 import { execa, Options } from 'execa'
@@ -22,20 +21,25 @@ export async function execCommand(
   args: any[],
   options?: CommandOptions,
 ): Promise<any> {
-  const { logger = false, throwOnError = true } = options || {}
-  try {
-    if (logger) console.log(c.green(`> ${[cmd, ...args].join(' ')}`))
+  // const { logger = false, throwOnError = true } = options || {}
+  if (options?.logger) console.log(c.green(`> ${[cmd, ...args].join(' ')}`))
 
-    return await execa(cmd, args, {
-      ...options,
-    })
-  } catch (e: any) {
-    if (throwOnError)
-      throw new Error(
-        c.red(`Running ${c.bold([cmd, ...args].join(' '))} in ${c.underline(options?.cwd ?? cwd())}:`) + (e.stderr || e.stack || e.message)
-      )
-    return void 0
-  }
+  return new Promise(async (resolve, reject) => {
+    try {
+      const p = await execa(cmd ?? '', args ?? [], options ?? {})
+
+      resolve(p)
+    } catch (e: any) {
+      if (options?.throwOnError)
+        reject(
+            new Error(
+                c.red(`Running ${c.bold([cmd, ...args].join(' '))} in ${c.underline(options?.cwd ?? process.cwd())}:`) + (e.stderr || e.stack || e.message)
+            )
+        )
+
+      resolve(void 0)
+    }
+  })
 }
 
 /**
@@ -65,7 +69,7 @@ export async function checkRemoteVersion(version?: string) {
  * eg. package.json package-lock.json
  */
 export function getManifestConfig() {
-  const filePath = resolve(cwd(), 'package.json')
+  const filePath = resolve(process.cwd(), 'package.json')
 
   return {
     config: fse.readJSONSync(filePath) as {

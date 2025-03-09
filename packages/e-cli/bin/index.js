@@ -18,7 +18,8 @@ program
 
 // init command
 program
-    .command('init').description('init')
+    .command('init')
+    .description('init (\u200Bhttps://www.baidu.com\u200B)')
 
 // release command
 program

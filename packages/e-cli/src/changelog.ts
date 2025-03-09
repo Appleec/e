@@ -28,7 +28,7 @@ export interface ChangelogOptions {
  * @param preset
  */
 export function changelog({
-  releaseCount = 0,
+  releaseCount = 1,
   file = 'CHANGELOG.md',
   preset = 'angular',
 }: ChangelogOptions = {}): Promise<void> {
@@ -41,7 +41,8 @@ export function changelog({
     })
       .pipe(fse.createWriteStream(resolvePath(cwd(), file)))
       .on('close', () => {
-        s.success('Changelog generated success')
+        s.success(`Changelog generated success`)
+
         resolve(void 0)
       })
       .on('error', (err) => {
