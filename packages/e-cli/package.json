@@ -1,0 +1,60 @@
+{
+  "name": "@elinzy/e-cli",
+  "version": "0.1.1",
+  "description": "e CLI, a collection of common scripts and commands",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsup --watch",
+    "build": "tsup"
+  },
+  "bin": {
+    "e": "./bin/index.js"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Appleec/e.git",
+    "directory": "packages/e-cli"
+  },
+  "keywords": [
+    "e",
+    "cli",
+    "e-cli"
+  ],
+  "author": "Appleec <771992522@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Appleec/e/issues"
+  },
+  "homepage": "https://github.com/Appleec/e#readme",
+  "dependencies": {
+    "ansis": "^3.17.0",
+    "commander": "^13.1.0",
+    "conventional-changelog": "^6.0.0",
+    "execa": "^9.5.2",
+    "fs-extra": "^11.3.0",
+    "nanospinner": "^1.2.2",
+    "prompts": "^2.4.2",
+    "semver": "^7.7.1"
+  },
+  "devDependencies": {
+    "tsup": "^8.4.0"
+  }
+}

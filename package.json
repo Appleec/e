@@ -1,0 +1,54 @@
+{
+  "name": "@elinzy/e",
+  "version": "0.1.1",
+  "description": "The collection of e modules",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:report": "vitest --ui --coverage",
+    "build": "pnpm -r --filter=./packages/* build",
+    "lint": "eslint . --ext \"**/*.{js,jsx,mjs,cjs,ts,tsx}\"",
+    "format": "prettier --list-different \"**/*.{js,ts,tsx,md}\"",
+    "format:fix": "prettier --write \"**/*.{js,ts,tsx,md}\"",
+    "release": "e changelog && e release -b main -r origin",
+    "docs:dev": "pnpm --dir ./docs docs:dev",
+    "docs:build": "pnpm -r --filter=./docs run docs:build",
+    "docs:preview": "pnpm -r --filter=./docs run docs:preview"
+  },
+  "keywords": [
+    "e",
+    "e-utils",
+    "e-cli"
+  ],
+  "author": "Appleec <771992522@qq.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Appleec/e.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Appleec/e/issues"
+  },
+  "homepage": "https://github.com/Appleec/e#readme",
+  "devDependencies": {
+    "@elinzy/e-cli": "workspace:^0.1.1",
+    "@types/node": "^22.13.10",
+    "@vitest/coverage-istanbul": "^3.0.8",
+    "@vitest/ui": "^3.0.8",
+    "ansis": "^3.17.0",
+    "eslint": "^9.22.0",
+    "execa": "^9.5.2",
+    "globals": "^16.0.0",
+    "nanospinner": "^1.2.2",
+    "prettier": "^3.5.3",
+    "prompts": "^2.4.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.1",
+    "vitest": "^3.0.8"
+  },
+  "dependencies": {
+    "semver": "^7.7.1"
+  }
+}
