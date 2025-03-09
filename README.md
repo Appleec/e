@@ -9,6 +9,12 @@
 
 A tool to manage scripts and commands with a focus on multi-package repositories
 
+## Packages
+
+| Package                          | Version                                                                                                   | Dependencies                                                                                                                        |
+|----------------------------------|-----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| [`e-cli`](packages/e-cli#readme) | [![NPM version](https://img.shields.io/npm/v/@elinzy/e-cli.svg)](https://npmjs.org/package/@elinzy/e-cli) | [![Dependencies status](https://img.shields.io/librariesio/release/npm/@elinzy/e-cli)](https://libraries.io/npm/@elinzy/e-cli/tree) |
+
 ## License
 
 [MIT](https://github.com/Appleec/e/blob/main/LICENSE)
