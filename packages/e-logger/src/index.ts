@@ -28,9 +28,9 @@ export function error(...args: any[]) {
   console.error(format(args, symbols.error))
 }
 
-/** warn */
-export function warn(...args: any[]) {
-  console.warn(format(args, symbols.warn))
+/** warning */
+export function warning(...args: any[]) {
+  console.warn(format(args, symbols.warning))
 }
 
 /** info */
