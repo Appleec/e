@@ -11,7 +11,6 @@
     "lint": "eslint . --ext \"**/*.{js,jsx,mjs,cjs,ts,tsx}\"",
     "format": "prettier --list-different \"**/*.{js,ts,tsx,md}\"",
     "format:fix": "prettier --write \"**/*.{js,ts,tsx,md}\"",
-    "release": "e changelog && e release -b main -r origin",
     "docs:dev": "pnpm --dir ./docs docs:dev",
     "docs:build": "pnpm -r --filter=./docs run docs:build",
     "docs:preview": "pnpm -r --filter=./docs run docs:preview"
@@ -45,6 +44,8 @@
     "prompts": "^2.4.2",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.0",
+    "unbuild": "^3.5.0",
     "vite": "^6.2.1",
     "vitest": "^3.0.8"
   }
