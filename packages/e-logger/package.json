@@ -1,0 +1,46 @@
+{
+  "name": "@elinzy/e-logger",
+  "version": "0.1.0",
+  "description": "Console log alias",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "unbuild --stub",
+    "build": "unbuild",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Appleec/e.git",
+    "directory": "packages/e-logger"
+  },
+  "keywords": [
+    "e",
+    "cli",
+    "e-cli"
+  ],
+  "author": "Appleec <771992522@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Appleec/e/issues"
+  },
+  "homepage": "https://github.com/Appleec/e#readme",
+  "dependencies": {
+    "ansis": "^3.17.0",
+    "is-unicode-supported": "^2.1.0"
+  },
+  "devDependencies": {
+    "unbuild": "^3.5.0"
+  }
+}
