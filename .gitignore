@@ -1,7 +1,5 @@
 node_modules/
 coverage
-build
-out
 dist
 
 .idea
@@ -11,14 +9,10 @@ dist
 .npm
 .yarn
 .cache
-.temp
-.next
-.nuxt
+
 package-lock.json
 pnpm-lock.yaml
-
-.eslintcache
-.stylelintcache
+pnpm-publish-*
 
 .vuepress/dist
 .vuepress/cache

@@ -6,12 +6,21 @@
  * prettier.config.js, .prettierrc.js, prettier.config.mjs, or .prettierrc.mjs
  */
 export default {
-    "trailingComma": "es5", // none
-    "tabWidth": 4,
-    "semi": false,
-    "singleQuote": true,
-    "jsxSingleQuote": true,
-    "printWidth": 120,
-    "bracketSpacing": true,
-    "htmlWhitespaceSensitivity": "ignore",
+    trailingComma: 'es5', // none
+    tabWidth: 4,
+    semi: false,
+    singleQuote: true,
+    jsxSingleQuote: true,
+    printWidth: 120,
+    bracketSpacing: true,
+    htmlWhitespaceSensitivity: 'ignore',
+    overrides: [
+        {
+            files: '**/*.{yml,yaml}',
+            options: {
+                singleQuote: false,
+                requirePragma: true,
+            },
+        },
+    ],
 }

@@ -1,4 +1,5 @@
+# https://www.pnpm.cn/pnpm-workspace_yaml
 packages:
   - "packages/*"
   - "docs"
-  - '!**/tests/**'
+  - "!**/tests/**"

@@ -7,7 +7,7 @@ import * as logger from './utils/logger'
 import { releaseTypes, isPrerelease } from './utils/release-type'
 import { getManifestConfig, execCommand } from './utils/helper'
 import { checkGitStatus, getLastCommits, getLocalChanges, getRefsBranch } from './utils/git'
-import { printCommits, printAssets } from './utils/print-log'
+import { printCommits } from './utils/print-log'
 
 export interface ReleaseOptions {
     remote?: string
@@ -151,8 +151,16 @@ async function confirmMerge(options?: any) {
             choices: [
                 { title: 'none', description: 'Do nothing', value: null },
                 { title: 'custom', description: 'Custom', value: 'custom' },
-                { title: 'master', description: 'Default branch', value: 'master' },
-                { title: 'main', description: 'Default branch (version > 2.28)', value: 'main' },
+                {
+                    title: 'master',
+                    description: 'Default branch',
+                    value: 'master',
+                },
+                {
+                    title: 'main',
+                    description: 'Default branch (version > 2.28)',
+                    value: 'main',
+                },
             ],
             initial: 0,
         },
@@ -224,15 +232,42 @@ async function getNewVersion(currentVersion: string) {
             name: 'release',
             message: `Current version ${c.green(currentVersion)}`,
             choices: [
-                { value: 'major', title: `${'major'.padStart(PADDING, ' ')} ${c.bold(next['major'])}` },
-                { value: 'minor', title: `${'minor'.padStart(PADDING, ' ')} ${c.bold(next['minor'])}` },
-                { value: 'patch', title: `${'patch'.padStart(PADDING, ' ')} ${c.bold(next['patch'])}` },
-                { value: 'next', title: `${'next'.padStart(PADDING, ' ')} ${c.bold(next['next'])}` },
-                { value: 'prepatch', title: `${'pre-patch'.padStart(PADDING, ' ')} ${c.bold(next['prepatch'])}` },
-                { value: 'preminor', title: `${'pre-minor'.padStart(PADDING, ' ')} ${c.bold(next['preminor'])}` },
-                { value: 'premajor', title: `${'pre-major'.padStart(PADDING, ' ')} ${c.bold(next['premajor'])}` },
-                { value: 'none', title: `${'as-is'.padStart(PADDING, ' ')} ${c.bold(currentVersion)}` },
-                { value: 'custom', title: 'custom ...'.padStart(PADDING + 4, ' ') },
+                {
+                    value: 'major',
+                    title: `${'major'.padStart(PADDING, ' ')} ${c.bold(next['major'])}`,
+                },
+                {
+                    value: 'minor',
+                    title: `${'minor'.padStart(PADDING, ' ')} ${c.bold(next['minor'])}`,
+                },
+                {
+                    value: 'patch',
+                    title: `${'patch'.padStart(PADDING, ' ')} ${c.bold(next['patch'])}`,
+                },
+                {
+                    value: 'next',
+                    title: `${'next'.padStart(PADDING, ' ')} ${c.bold(next['next'])}`,
+                },
+                {
+                    value: 'prepatch',
+                    title: `${'pre-patch'.padStart(PADDING, ' ')} ${c.bold(next['prepatch'])}`,
+                },
+                {
+                    value: 'preminor',
+                    title: `${'pre-minor'.padStart(PADDING, ' ')} ${c.bold(next['preminor'])}`,
+                },
+                {
+                    value: 'premajor',
+                    title: `${'pre-major'.padStart(PADDING, ' ')} ${c.bold(next['premajor'])}`,
+                },
+                {
+                    value: 'none',
+                    title: `${'as-is'.padStart(PADDING, ' ')} ${c.bold(currentVersion)}`,
+                },
+                {
+                    value: 'custom',
+                    title: 'custom ...'.padStart(PADDING + 4, ' '),
+                },
             ],
         },
         {
