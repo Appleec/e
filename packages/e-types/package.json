@@ -1,0 +1,28 @@
+{
+  "name": "@elinzy/e-types",
+  "version": "0.1.0",
+  "description": "Common types shared between e modules",
+  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Appleec/e.git",
+    "directory": "packages/e-types"
+  },
+  "keywords": [
+    "e",
+    "cli",
+    "e-cli"
+  ],
+  "author": "Appleec <771992522@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Appleec/e/issues"
+  },
+  "homepage": "https://github.com/Appleec/e#readme"
+}
