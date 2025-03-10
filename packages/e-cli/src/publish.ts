@@ -5,9 +5,9 @@ import { checkRemoteVersion, execCommand } from './utils/helper'
 
 // Types
 export interface PublishOptions {
-  checkRemoteVersion?: boolean
-  tag?: string
-  registry?: string // https://registry.npmjs.org/
+    checkRemoteVersion?: boolean
+    tag?: string
+    registry?: string // https://registry.npmjs.org/
 }
 
 /**
@@ -15,37 +15,39 @@ export interface PublishOptions {
  * @param options
  */
 export async function publish(options?: PublishOptions): Promise<void> {
-  const { yes: isOk } = await prompts({
-    type: 'confirm',
-    name: 'yes',
-    message: `Publishing the package. Confirm?`
-  })
+    const { yes: isOk } = await prompts({
+        type: 'confirm',
+        name: 'yes',
+        message: `Publishing the package. Confirm?`,
+    })
 
-  if (!isOk)
-    return
+    if (!isOk) return
 
-  const s = createSpinner('Publishing the package...').start()
+    const s = createSpinner('Publishing the package...').start()
 
-  // Whether to enable version detection
-  if (options?.checkRemoteVersion && (await checkRemoteVersion())) {
-    logger.error('Publishing automatically skipped.')
-    return
-  }
+    // Whether to enable version detection
+    if (options?.checkRemoteVersion && (await checkRemoteVersion())) {
+        logger.error('Publishing automatically skipped.')
+        return
+    }
 
-  try {
-    await execCommand('npm', [
-      'publish',
-      '-r',
-      '--access',
-      'public',
-      '--ignore-scripts',
-      '--no-git-checks',
-      options?.tag && `--tag ${options.tag}`,
-      options?.registry && `--registry ${options.registry}`,
-    ].filter(Boolean))
+    try {
+        await execCommand(
+            'npm',
+            [
+                'publish',
+                '-r',
+                '--access',
+                'public',
+                '--ignore-scripts',
+                '--no-git-checks',
+                options?.tag && `--tag ${options.tag}`,
+                options?.registry && `--registry ${options.registry}`,
+            ].filter(Boolean)
+        )
 
-    s.success({ text: 'Publish the package successfully' })
-  } catch (e: any) {
-    logger.error(e)
-  }
+        s.success({ text: 'Publish the package successfully' })
+    } catch (e: any) {
+        logger.error(e)
+    }
 }

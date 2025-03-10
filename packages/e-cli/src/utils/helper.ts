@@ -6,8 +6,8 @@ import c from 'ansis'
 import { createSpinner } from 'nanospinner'
 
 export interface CommandOptions extends Options {
-  logger?: boolean
-  throwOnError?: boolean
+    logger?: boolean
+    throwOnError?: boolean
 }
 
 /**
@@ -16,52 +16,50 @@ export interface CommandOptions extends Options {
  * @param args
  * @param options
  */
-export async function execCommand(
-  cmd: string,
-  args: any[],
-  options?: CommandOptions,
-): Promise<any> {
-  // const { logger = false, throwOnError = true } = options || {}
-  if (options?.logger) console.log(c.green(`> ${[cmd, ...args].join(' ')}`))
+export async function execCommand(cmd: string, args: any[], options?: CommandOptions): Promise<any> {
+    // const { logger = false, throwOnError = true } = options || {}
+    if (options?.logger) console.log(c.green(`> ${[cmd, ...args].join(' ')}`))
 
-  return new Promise(async (resolve, reject) => {
-    try {
-      const p = await execa(cmd ?? '', args ?? [], options ?? {})
+    return new Promise(async (resolve, reject) => {
+        try {
+            const p = await execa(cmd ?? '', args ?? [], options ?? {})
 
-      resolve(p)
-    } catch (e: any) {
-      if (options?.throwOnError)
-        reject(
-            new Error(
-                c.red(`Running ${c.bold([cmd, ...args].join(' '))} in ${c.underline(options?.cwd ?? process.cwd())}:`) + (e.stderr || e.stack || e.message)
-            )
-        )
+            resolve(p)
+        } catch (e: any) {
+            if (options?.throwOnError)
+                reject(
+                    new Error(
+                        c.red(
+                            `Running ${c.bold([cmd, ...args].join(' '))} in ${c.underline(options?.cwd ?? process.cwd())}:`
+                        ) + (e.stderr || e.stack || e.message)
+                    )
+                )
 
-      resolve(void 0)
-    }
-  })
+            resolve(void 0)
+        }
+    })
 }
 
 /**
  * Check if the local version is the same as the remote version
  */
 export async function checkRemoteVersion(version?: string) {
-  const s = createSpinner('Check remote version...').start()
+    const s = createSpinner('Check remote version...').start()
 
-  const { config } = getManifestConfig()
+    const { config } = getManifestConfig()
 
-  try {
-    await execCommand('npm', ['view', `${config.name}@${version ?? config.version}`, 'version'])
+    try {
+        await execCommand('npm', ['view', `${config.name}@${version ?? config.version}`, 'version'])
 
-    s.warn({
-      text: `The npm package has a same remote version ${config.version}.`,
-    })
+        s.warn({
+            text: `The npm package has a same remote version ${config.version}.`,
+        })
 
-    return true
-  } catch (e) {
-    s.success()
-    return false
-  }
+        return true
+    } catch (e) {
+        s.success()
+        return false
+    }
 }
 
 /**
@@ -69,15 +67,14 @@ export async function checkRemoteVersion(version?: string) {
  * eg. package.json package-lock.json
  */
 export function getManifestConfig() {
-  const filePath = resolve(process.cwd(), 'package.json')
+    const filePath = resolve(process.cwd(), 'package.json')
 
-  return {
-    config: fse.readJSONSync(filePath) as {
-      name: string
-      version: string
-      private: boolean
-    },
-    filePath,
-  }
+    return {
+        config: fse.readJSONSync(filePath) as {
+            name: string
+            version: string
+            private: boolean
+        },
+        filePath,
+    }
 }
-

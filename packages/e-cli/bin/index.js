@@ -10,16 +10,10 @@ const program = new Command()
 const pkg = fse.readJsonSync(new URL('../package.json', import.meta.url))
 
 // default
-program
-    .name(Object.keys(pkg.bin)?.[0])
-    .usage('[option] <command>')
-    .description(pkg.description)
-    .version(pkg.version)
+program.name(Object.keys(pkg.bin)?.[0]).usage('[option] <command>').description(pkg.description).version(pkg.version)
 
 // init command
-program
-    .command('init')
-    .description('init (\u200Bhttps://www.baidu.com\u200B)')
+program.command('init').description('init (\u200Bhttps://www.baidu.com\u200B)')
 
 // release command
 program
@@ -47,9 +41,11 @@ program
 program
     .command('changelog')
     .description('Generate changelog')
-    .option('-r, --releaseCount <releaseCount>', 'Release count', 0)
     .option('-f, --file <file>', 'Changelog filename', 'CHANGELOG.md')
+    .option('-r, --release-count <releaseCount>', 'Release count', 1)
     .option('-p, --preset <preset>', 'Changelog preset', 'angular')
+    // .option('-i, --infile <infile>', 'Read the CHANGELOG from this file')
+    // .option('-o, --outfile <outfile>', 'Write the CHANGELOG to this file\nIf unspecified, it prints to stdout')
     .action((options) => changelog(options))
 
 program.parse()

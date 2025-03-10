@@ -1,10 +1,10 @@
 import c from 'ansis'
 
 const symbols = {
-  info: 'ℹ',
-  success: '✔',
-  warning: '⚠',
-  error: '✖️',
+    info: 'ℹ',
+    success: '✔',
+    warning: '⚠',
+    error: '✖️',
 }
 
 export const info = (value: string) => console.log(c.cyan(value))
