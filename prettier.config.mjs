@@ -22,5 +22,12 @@ export default {
                 requirePragma: true,
             },
         },
+        {
+            files: '**/package.json',
+            options: {
+                useTabs: false,
+                tabWidth: 4,
+            },
+        },
     ],
 }
