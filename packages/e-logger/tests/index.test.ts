@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-// import * as logger from '../src/index'
+import { Logger } from '../src'
 
 describe('eLogger', () => {
     it('should do something', () => {
@@ -10,5 +10,9 @@ describe('eLogger', () => {
         // logger.error('message7', 'message8')
         // logger.success('message9', 'message10')
         // logger.warn('message11', 'message12')
+        // logger.exec('npm install')
+        // const logger = new Logger({ prefix: '>' })
+
+        // logger.info('should do something')
     })
 })
