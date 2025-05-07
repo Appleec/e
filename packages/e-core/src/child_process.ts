@@ -1,6 +1,8 @@
 import {
     execa,
     execaSync,
+    execaCommand,
+    execaCommandSync,
     type Options as ExecaOptions,
     type SyncOptions as ExecaSyncOptions,
 } from 'execa'
@@ -33,6 +35,7 @@ export function exec(
     args: string[],
     opts?: ExecOptions,
 ): Promise<any> {
+    // (Array.isArray(args) ? args.join(' ') : args) ?? ''
     if (opts?.logger || opts?.dryRun)
         console.log(c.green(`> ${[cmd, ...args].join(' ')}`))
 
@@ -89,12 +92,63 @@ export function execSync(
 }
 
 /**
- * Print command logger
+ * Execute a command asynchronously (string)
  * @param cmd
- * @param args
+ * @param opts
  */
-function cmdLog(cmd: string, args?: string[]) {
-    const argStr = (Array.isArray(args) ? args.join(' ') : args) ?? ''
-    console.log([cmd, argStr].join(' '))
-    return ''
+export async function execCommand(
+    cmd: string,
+    opts?: ExecOptions,
+) {
+    if (opts?.logger || opts?.dryRun)
+        console.log(c.green(`> ${[cmd].join(' ')}`))
+
+    if (opts?.dryRun)
+        return Promise.resolve(void 0)
+
+    return execaCommand(cmd, opts)
+        .then((spawned) => (
+            opts?.abbrev
+                ? spawned?.stdout
+                : spawned
+        ))
+        .catch(e => {
+            if (opts?.throwOnError ?? true)
+                throw new Error(
+                    c.red(`Running ${c.bold([cmd].join(' '))} in ${c.underline(opts?.cwd || e?.cwd || process.cwd())}:`) +
+                    (e.stderr || e.stack || e.message)
+                )
+            return Promise.resolve(void 0)
+        })
+}
+
+/**
+ * Execute a command synchronously (string)
+ * @param cmd
+ * @param opts
+ */
+export function execCommandSync(
+    cmd: string,
+    opts?: ExecSyncOptions,
+) {
+    if (opts?.logger || opts?.dryRun)
+        console.log(c.green(`> ${[cmd].join(' ')}`))
+
+    if (opts?.dryRun)
+        return void 0
+
+    try {
+        const spawned = execaCommandSync(cmd, opts)
+
+        return opts?.abbrev
+            ? spawned?.stdout
+            : spawned
+    } catch (e) {
+        if (opts?.throwOnError ?? true)
+            throw new Error(
+                c.red(`Running ${c.bold([cmd].join(' '))} in ${c.underline(opts?.cwd || e?.cwd || process.cwd())}:`) +
+                (e.stderr || e.stack || e.message)
+            )
+        return void 0
+    }
 }
