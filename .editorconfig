@@ -1,6 +1,9 @@
-# @see https://editorconfig.org
+# EditorConfig is awesome: https://editorconfig.org
+
+# top-most EditorConfig file
 root = true
 
+# Unix-style newlines with a newline ending every file
 [*]
 charset = utf-8
 tab_width = 4
@@ -9,7 +12,24 @@ indent_size = 4
 end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
+max_line_length = 120
 
 [*.md]
 insert_final_newline = false
 trim_trailing_whitespace = false
+
+[{*.yml,*.yaml}]
+indent_size = 2
+tab_width = 2
+
+[{*.bash,*.sh,*.zsh}]
+indent_size = 2
+tab_width = 2
+
+[*.json]
+indent_size = 2
+tab_width = 2
+
+[{*.ts,*.mts,*.js,*.mjs}]
+indent_size = 2
+tab_width = 2
