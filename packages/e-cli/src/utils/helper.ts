@@ -1,43 +1,46 @@
 import { resolve } from 'node:path'
 
 import fse from 'fs-extra'
-import { execa, Options } from 'execa'
+import { execa, type Options as ExecaOptions } from 'execa'
+
 import c from 'ansis'
 import { createSpinner } from 'nanospinner'
 
-export interface CommandOptions extends Options {
+export interface CommandOptions extends ExecaOptions {
+    abbrev?: boolean
     logger?: boolean
+    debug?: boolean
     throwOnError?: boolean
 }
 
 /**
  * Command from execa / execSync
+ *
+ * https://github.com/themartec/execa/blob/main/docs/typescript.md
  * @param cmd
  * @param args
- * @param options
+ * @param opts
  */
-export async function execCommand(cmd: string, args: any[], options?: CommandOptions): Promise<any> {
-    // const { logger = false, throwOnError = true } = options || {}
-    if (options?.logger) console.log(c.green(`> ${[cmd, ...args].join(' ')}`))
+export async function execCommand(cmd: string = '', args: string[] = [], opts?: CommandOptions): Promise<any> {
+    if (opts?.logger)
+        console.log(c.green(`> ${[cmd, ...args].join(' ')}`))
 
-    return new Promise(async (resolve, reject) => {
-        try {
-            const p = await execa(cmd ?? '', args ?? [], options ?? {})
+    if (opts?.debug)
+        return
 
-            resolve(p)
-        } catch (e: any) {
-            if (options?.throwOnError)
-                reject(
-                    new Error(
-                        c.red(
-                            `Running ${c.bold([cmd, ...args].join(' '))} in ${c.underline(options?.cwd ?? process.cwd())}:`
-                        ) + (e.stderr || e.stack || e.message)
-                    )
-                )
+    try {
+        const r = await execa(cmd, args)
 
-            resolve(void 0)
-        }
-    })
+        return opts?.abbrev ? (r.stdout ?? '') : (r ?? {})
+    } catch (e) {
+        if (!opts?.throwOnError)
+            throw new Error(
+                c.red(`Running ${c.bold([cmd, ...args].join(' '))} in ${c.underline(e.cwd || opts?.cwd || process.cwd())}:`) +
+                    (e.stderr || e.stack || e.message)
+            )
+
+        return void 0
+    }
 }
 
 /**

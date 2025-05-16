@@ -32,9 +32,11 @@ program
 program
     .command('publish')
     .description('publish to npm')
-    .option('-c --check-remote-version <checkRemoteVersion>', 'check remote version')
     .option('-t --tag <tag>', 'npm tag')
     .option('-r --registry <registry>', 'npm registry')
+    .option('--check-remote-version <checkRemoteVersion>', 'check remote version')
+    .option('--package-manager <packageManager>', 'package manager, \nsuch as: npm, pnpm, yarn and so on')
+    .option('--dry-run <dryRun>', '')
     .action((options) => publish(options))
 
 // changelog command
