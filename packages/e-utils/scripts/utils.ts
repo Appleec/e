@@ -18,6 +18,62 @@ export const DIR_DOCS = resolve(__dirname, '../docs')
 export const DIR_DOCS_DIST = resolve(__dirname, '../docs/.vitepress/dist')
 
 /**
+ * Print step topic
+ * @param {string} value
+ * @param {Object} [opts = { prefix: '#', level: 0 }]
+ */
+export function printStep(
+  value = 'Step',
+  opts = { prefix: '#', level: 0, compact: false }
+) {
+  let prefix = '';
+  if (opts.prefix)
+    prefix = (+opts.level > 1)
+      ? opts.prefix.repeat(opts.level)
+      : opts.prefix;
+
+  if (!opts.compact) console.log();
+  console.log(c.cyan(`${prefix} ${value}`));
+}
+
+/**
+ * Print value list by action
+ * @param values
+ * @param opts
+ */
+export function printValues(
+  values: any[],
+  opts?
+) {
+  const _opts = {
+    action: 'changed', // changed update remove add
+    compact: false,
+  };
+
+  if (typeof opts === 'string')
+    _opts.action = opts;
+  if (typeof opts === 'object')
+    Object.assign(_opts, opts);
+
+  if (!values.length) {
+    console.log();
+    console.log(c.blue`i` + c.gray` No ${_opts.action ?? 'changed'}.`);
+    console.log();
+    return;
+  }
+
+  const prettified = values
+    .filter(Boolean)
+    .map((v) => c.green.underline(v));
+
+  console.log();
+  console.log(c.bold`${c.green(values.length)} ${_opts.action ?? 'changed'}:`);
+  console.log();
+  console.log(prettified.join('\n'));
+  console.log();
+}
+
+/**
  * Custom command from execa
  * @param bin
  * @param args
@@ -31,15 +87,6 @@ export async function run(bin, args, opt?) {
   } catch (e) {
     throw new Error(c.bold(c.red(`Error running ${c.bold([bin, ...args].join(' '))} in ${c.underline(opt.cwd)}:`)) + (e.stderr || e.stack || e.message))
   }
-}
-
-/**
- * Print step log
- * @param value
- */
-export async function printStep(value) {
-  console.log()
-  console.log(c.cyan(`# ${value}`))
 }
 
 /**
