@@ -30,7 +30,7 @@ export default [
             dir: 'dist',
             entryFileNames: '[name].cjs',
             exports: 'named',
-            preserveModules: false,
+            preserveModules: true,
             sourcemap: false,
         },
         plugins: [
@@ -53,7 +53,7 @@ export default [
             dir: 'dist',
             entryFileNames: '[name].mjs',
             exports: 'named',
-            preserveModules: false,
+            preserveModules: true,
             sourcemap: false,
         },
         plugins: [
