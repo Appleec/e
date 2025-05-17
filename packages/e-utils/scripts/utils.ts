@@ -94,7 +94,7 @@ export async function run(bin, args, opt?) {
  * @param values
  * @param options
  */
-export async function printAssets(values = [], options?) {
+export async function printAssets(values: any[] = [], options?) {
   if (!values.length) {
     console.log()
     console.log(c.blue`i` + c.gray` No ${options ?? 'changes'}.`)
@@ -116,7 +116,7 @@ export async function printAssets(values = [], options?) {
  * @param values
  * @param options
  */
-export async function printCommits(values = [], options?) {
+export async function printCommits(values: any[] = [], options?) {
   if (!values.length) {
     console.log()
     console.log(c.blue`i` + c.gray` No commits since the last version`)
