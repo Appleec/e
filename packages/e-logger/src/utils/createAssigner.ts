@@ -28,6 +28,7 @@ export type EAssignerOptions = {
   chip?: boolean;
   verbose?: boolean;
   timestamp?: boolean;
+  indent?: number;
   assigner?: 'all' | 'prev' | 'next'; // prev => 'prefix', next => 'after prefix', all => 'prev and next'
 }
 
@@ -62,6 +63,7 @@ export function createAssigner(
 
     // Prepend icon and text
     const prependSlots = opts?.prepend || [
+      opts.indent && padding(opts.indent),
       opts.timestamp && c.gray(new Date().toTimeString().split(' ')?.[0]),
       opts.icon || opts.symbol || (opts.type && symbols?.[opts.type]) || '',
       opts.text || '',
@@ -98,8 +100,8 @@ export function createAssigner(
   };
 }
 
-export function pad(value) {
-  return String(value).padStart(2, '0');
+export function padding(value = 0) {
+  return ''.padStart(value, ' ');
 }
 
 // Get timestamp string
