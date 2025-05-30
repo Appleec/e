@@ -1,6 +1,6 @@
 {
     "name": "@elinzy/e-core",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "e core implementation module",
     "type": "module",
     "main": "./dist/index.cjs",
@@ -10,6 +10,16 @@
             "types": "./dist/index.d.ts",
             "import": "./dist/index.mjs",
             "require": "./dist/index.cjs"
+        },
+        "./child_process": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/child_process.mjs",
+            "require": "./dist/child_process.cjs"
+        },
+        "./color": {
+            "types": "./dist/color.d.ts",
+            "import": "./dist/color.mjs",
+            "require": "./dist/color.cjs"
         }
     },
     "publishConfig": {

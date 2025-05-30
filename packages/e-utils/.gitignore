@@ -1,0 +1,33 @@
+# [Gitignore](https://git-scm.com/docs/gitignore)
+node_modules/
+dist
+cdn
+backup
+*.tgz
+package-lock.json
+
+.git
+.DS_Store
+.yarn
+.idea
+.sublime-*
+.vscode
+.env
+
+scripts/*
+!scripts/push-gh-pages.ts
+!scripts/release.ts
+!scripts/build.ts
+!scripts/publish.ts
+!scripts/utils.ts
+
+# Logs
+logs
+*.log*
+
+# Docs
+docs/.vitepress/cache
+docs/.vitepress/dist
+
+# Tests
+coverage

@@ -5,4 +5,4 @@ export {
     execCommandSync,
     type ExecOptions,
     type ExecSyncOptions,
-} from './child_process'
+} from './child_process';

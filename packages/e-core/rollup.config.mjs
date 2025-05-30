@@ -6,7 +6,7 @@ import babel from '@rollup/plugin-babel'
 
 export default [
     {
-        input: ['src/index.ts'],
+        input: { index: 'src/index.ts', color: 'src/color.ts' },
         output: {
             format: 'es',
             dir: 'dist',
@@ -24,13 +24,13 @@ export default [
         ],
     },
     {
-        input: ['src/index.ts'],
+        input: ['src/index.ts', 'src/color.ts'],
         output: {
             format: 'cjs',
             dir: 'dist',
             entryFileNames: '[name].cjs',
             exports: 'named',
-            preserveModules: false,
+            preserveModules: true,
             sourcemap: false,
         },
         plugins: [
@@ -47,13 +47,13 @@ export default [
         ],
     },
     {
-        input: 'src/index.ts',
+        input: ['src/index.ts', 'src/color.ts'],
         output: {
             format: 'es',
             dir: 'dist',
             entryFileNames: '[name].mjs',
             exports: 'named',
-            preserveModules: false,
+            preserveModules: true,
             sourcemap: false,
         },
         plugins: [

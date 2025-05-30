@@ -1,15 +1,4 @@
-export {
-    Logger,
-    type LoggerType,
-    type LoggerOptions
-} from './logger'
-export {
-    log,
-    info,
-    success,
-    error,
-    warn,
-    exec,
-} from './fastLogger'
-
-export * as symbols from './symbols'
+export * from './modules';
+export { createAssigner } from './utils/createAssigner';
+export { Logger } from './Logger';
+export * as symbols from './utils/symbols';

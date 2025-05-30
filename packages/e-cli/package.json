@@ -1,6 +1,6 @@
 {
   "name": "@elinzy/e-cli",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "e CLI, a collection of common scripts and commands",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -16,18 +16,17 @@
   "files": [
     "dist"
   ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsup --watch",
-    "build": "tsup",
-    "changelog": "conventional-changelog -p angular -r 0"
-  },
-  "bin": {
-    "e": "./bin/index.js"
-  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "e": "./bin/index.js"
   },
   "repository": {
     "type": "git",
@@ -46,6 +45,7 @@
   },
   "homepage": "https://github.com/Appleec/e#readme",
   "dependencies": {
+    "@elinzy/e-logger": "workspace:*",
     "ansis": "^3.17.0",
     "commander": "^13.1.0",
     "conventional-changelog": "^6.0.0",

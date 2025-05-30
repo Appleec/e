@@ -7,13 +7,13 @@
  */
 export default {
     trailingComma: 'es5', // none
-    tabWidth: 4,
+    tabWidth: 2,
     semi: false,
     singleQuote: true,
     jsxSingleQuote: true,
     printWidth: 120,
     bracketSpacing: true,
-    htmlWhitespaceSensitivity: 'ignore',
+    htmlWhitespaceSensitivity: "ignore",
     overrides: [
         {
             files: '**/*.{yml,yaml}',
@@ -22,12 +22,12 @@ export default {
                 requirePragma: true,
             },
         },
-        {
-            files: '**/package.json',
-            options: {
-                useTabs: false,
-                tabWidth: 4,
-            },
-        },
+        // {
+        //     files: '**/package.json',
+        //     options: {
+        //         useTabs: false,
+        //         tabWidth: 4,
+        //     },
+        // },
     ],
 }

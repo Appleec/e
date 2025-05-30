@@ -1,0 +1,34 @@
+## Project
+.DS_Store
+.idea
+.vscode
+.git
+.github
+.changeset
+node_modules
+package-lock.json
+yarn.lock
+.npmrc
+.npmignore
+.gitignore
+.editorconfig
+tsconfig.json
+CONTRIBUTING.md
+rollup.config.mjs
+
+## Directory
+src
+cdn
+docs
+dist
+backup
+scripts
+
+## Tests
+test
+tests
+coverage
+vitest.config.mts
+
+## other
+*.tgz
