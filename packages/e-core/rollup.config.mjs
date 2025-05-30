@@ -6,7 +6,7 @@ import babel from '@rollup/plugin-babel'
 
 export default [
     {
-        input: ['src/index.ts'],
+        input: { index: 'src/index.ts', color: 'src/color.ts' },
         output: {
             format: 'es',
             dir: 'dist',
@@ -24,7 +24,7 @@ export default [
         ],
     },
     {
-        input: ['src/index.ts'],
+        input: ['src/index.ts', 'src/color.ts'],
         output: {
             format: 'cjs',
             dir: 'dist',
@@ -47,7 +47,7 @@ export default [
         ],
     },
     {
-        input: 'src/index.ts',
+        input: ['src/index.ts', 'src/color.ts'],
         output: {
             format: 'es',
             dir: 'dist',

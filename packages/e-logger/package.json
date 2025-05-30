@@ -1,6 +1,6 @@
 {
     "name": "@elinzy/e-logger",
-    "version": "0.2.1",
+    "version": "1.0.0",
     "description": "Console log alias for e",
     "type": "module",
     "main": "./dist/index.cjs",
