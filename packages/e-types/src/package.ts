@@ -1,90 +1,150 @@
-export interface DependencyOptions {
-    from: string
-    version: string
-    resolved: string
-    path: string
+/**
+ * Package
+ */
+export interface EPackage {
+  // @deprecated use username
+  name?: string;
+  version?: string;
+  path?: string;
+  private?: boolean;
+  type?: string;
+  bin?: string | { [commandName: string]: string };
+  description?: string;
+  directories?: {
+    bin?: string
+  };
+  files?: string[];
+  funding?: string;
+  resolutions?: { [key: string]: string };
+  dependencies?: Record<string, EDependencyOptions>;
+  devDependencies?: Record<string, EDependencyOptions>;
+  optionalDependencies?: Record<string, EDependencyOptions>;
+  peerDependencies?: Record<string, EDependencyOptions>;
+  peerDependenciesMeta?: EPeerDependenciesMeta;
+  dependenciesMeta?: EDependenciesMeta;
+  bundleDependencies?: string[] | boolean;
+  bundledDependencies?: string[] | boolean;
+  homepage?: string;
+  repository?: string | { url: string };
+  bugs?: string | {
+    url?: string;
+    email?: string;
+  };
+  config?: object;
+  engines?: {
+    node?: string;
+    npm?: string;
+    pnpm?: string;
+  };
+  cpu?: string[];
+  os?: string[];
+  libc?: string[];
+  main?: string;
+  module?: string;
+  typings?: string;
+  types?: string;
+  publishConfig?: EPublishConfig;
+  typesVersions?: ETypesVersions;
+  readme?: string;
+  keywords?: string[];
+  author?: string;
+  license?: string;
+  exports?: Record<string, string>;
+  imports?: Record<string, unknown>;
+  scripts?: EScripts;
 }
 
-export interface PeerDependenciesMeta {
-    [dependencyName: string]: {
-        optional?: boolean
-    }
+/**
+ * PackageExtension
+ */
+export type EPackageExtension = Pick<EPackage, 'dependencies' | 'optionalDependencies' | 'peerDependencies' | 'peerDependenciesMeta'>;
+
+/**
+ * PackageSearchBody
+ */
+export type EPackageSearchBody = {
+  name: string;
+  scope: string;
+  description: string;
+  author: string | EPackageAuthor;
+  version: string;
+  keywords: string | string[] | undefined;
+  date: string;
+  links?: {
+    npm: string; // only include placeholder for URL eg: {url}/{packageName}
+    homepage?: string;
+    repository?: string;
+    bugs?: string;
+  };
+  publisher?: any;
+  maintainers?: EPackageAuthor[];
+};
+
+/**
+ * PackageAuthor
+ *
+ * @description Author or maintainer
+ */
+export type EPackageAuthor = {
+  username: string;
+  email: string;
+};
+
+/**
+ * PackageSearchResultWeb
+ */
+export type EPackageSearchResultWeb = {
+  name: string;
+  version: string;
+  description: string;
+};
+
+/**
+ * PackageManagers
+ */
+export type EPackageManagers = 'pnpm' | 'yarn' | 'npm' | string;
+
+// package.publishConfig
+interface EPublishConfig extends Record<string, unknown> {
+  access?: string;
+  registry?: string;
+  directory?: string;
+  linkDirectory?: boolean;
+  executableFiles?: string[];
 }
 
-export interface DependenciesMeta {
-    [dependencyName: string]: {
-        injected?: boolean
-        node?: string
-        patch?: string
-    }
+// package.dependencies
+interface EDependencyOptions {
+  from: string
+  version: string
+  resolved: string
+  path: string
 }
 
-export type PackageScripts = {
-    [name: string]: string
+// package.typesVersions
+interface ETypesVersions {
+  [version: string]: {
+    [pattern: string]: string[]
+  }
 }
 
-export interface PublishConfig extends Record<string, unknown> {
-    directory?: string
-    linkDirectory?: boolean
-    executableFiles?: string[]
-    registry?: string
+// package.scripts
+type EScripts = {
+  [name: string]: string;
 }
 
-export interface TypesVersions {
-    [version: string]: {
-        [pattern: string]: string[]
-    }
+// package.dependenciesMeta
+interface EDependenciesMeta {
+  [dependencyName: string]: {
+    injected?: boolean
+    node?: string
+    patch?: string
+  }
 }
 
-export interface PackageOptions {
-    name?: string
-    version?: string
-    path?: string
-    private?: boolean
-    type?: string
-    bin?: string | { [commandName: string]: string }
-    description?: string
-    directories?: {
-        bin?: string
-    }
-    files?: string[]
-    funding?: string
-    dependencies?: Record<string, DependencyOptions>
-    devDependencies?: Record<string, DependencyOptions>
-    optionalDependencies?: Record<string, DependencyOptions>
-    peerDependencies?: Record<string, DependencyOptions>
-    peerDependenciesMeta?: PeerDependenciesMeta
-    dependenciesMeta?: DependenciesMeta
-    bundleDependencies?: string[] | boolean
-    bundledDependencies?: string[] | boolean
-    homepage?: string
-    repository?: string | { url: string }
-    bugs?: string | {
-        url?: string
-        email?: string
-    }
-    config?: object
-    engines?: {
-        node?: string
-        npm?: string
-        pnpm?: string
-    }
-    cpu?: string[]
-    os?: string[]
-    libc?: string[]
-    main?: string
-    module?: string
-    typings?: string
-    types?: string
-    publishConfig?: PublishConfig
-    typesVersions?: TypesVersions
-    readme?: string
-    keywords?: string[]
-    author?: string
-    license?: string
-    exports?: Record<string, string>
-    imports?: Record<string, unknown>
-    scripts?: PackageScripts
+// package.dependenciesMeta
+interface EPeerDependenciesMeta {
+  [dependencyName: string]: {
+    optional?: boolean
+  }
 }
-
-export type PackageExtension = Pick<PackageOptions, 'dependencies' | 'optionalDependencies' | 'peerDependencies' | 'peerDependenciesMeta'>

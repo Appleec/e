@@ -1,12 +1,20 @@
 import { describe, it } from 'vitest';
 
-// import type { Record } from '../src/common';
+import type {
+  EPackage,
+  EPackageExtension,
+} from '../src';
 
 describe('e-types', () => {
-  it('should check common.ts', () => {
-    const r: Record<number, any> = {
-      a: '',
-      b: 1,
+  it('should do something', () => {
+    const p1: EPackage = {
+      name: 'e',
+      version: '1.0.0',
+    }
+
+    const p2: EPackageExtension = {
+      peerDependencies: {},
+      dependencies: {},
     }
   });
 });
