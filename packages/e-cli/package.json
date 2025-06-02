@@ -1,17 +1,17 @@
 {
   "name": "@elinzy/e-cli",
   "version": "0.1.3",
-  "description": "e CLI, a collection of common scripts and commands",
-  "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "description": "A collection of common scripts and commands for e",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
+      "module": "./dist/index.esm.js",
+      "import": "./dist/index.esm.js",
+      "default": "./dist/index.cjs.js"
+    },
+    "./package.json": "./package.json",
+    "./bin.js": "./bin.js"
   },
   "files": [
     "dist"
@@ -21,12 +21,13 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "dev": "tsup --watch",
-    "build": "tsup",
+    "dev": "rollup --watch",
+    "build": "rollup -c",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "e": "./bin/index.js"
+    "e": "./bin.js",
+    "e-cli": "./bin.js"
   },
   "repository": {
     "type": "git",
@@ -38,7 +39,10 @@
     "cli",
     "e-cli"
   ],
-  "author": "Appleec <771992522@qq.com>",
+  "author": {
+    "name": "Appleec",
+    "email": "771992522@qq.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Appleec/e/issues"
@@ -57,6 +61,16 @@
     "semver": "^7.7.1"
   },
   "devDependencies": {
-    "tsup": "^8.4.0"
+    "@babel/core": "7.27.4",
+    "@babel/preset-env": "7.27.2",
+    "@babel/preset-typescript": "7.27.1",
+    "@rollup/plugin-babel": "6.0.4",
+    "@rollup/plugin-node-resolve": "16.0.1",
+    "rollup": "4.41.1",
+    "rollup-plugin-dts": "6.2.1",
+    "rollup-plugin-esbuild": "6.2.1",
+    "rollup-plugin-node-externals": "8.0.0",
+    "tslib": "2.8.1",
+    "typescript": "5.8.3"
   }
 }
