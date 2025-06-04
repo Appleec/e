@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Dom",
+  "docs": "",
+  "_version": "0.0.0",
+
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": [
+      // Support for newer versions of language built-ins are
+      // left for the users to include, because that would require:
+      //   - either the project doesn't need to support older versions of browsers;
+      //   - or the project has properly included the necessary polyfills.
+      "ES2020",
+
+      "DOM",
+      "DOM.Iterable"
+    ],
+
+    // Set to empty to avoid accidental inclusion of unwanted types,
+    // e.g. the Node.js types that would pollute the global scope.
+    "types": []
+  }
+}
