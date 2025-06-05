@@ -33,6 +33,7 @@
   "devDependencies": {
     "@changesets/cli": "2.29.3",
     "@elinzy/e-cli": "workspace:*",
+    "@elinzy/e-tsconfig": "workspace:*",
     "@eslint/js": "9.22.0",
     "@types/node": "^22.13.10",
     "@vitest/coverage-istanbul": "^3.0.8",
