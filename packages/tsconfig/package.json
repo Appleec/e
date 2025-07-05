@@ -1,0 +1,63 @@
+{
+  "name": "@elinzy/tsconfig",
+  "version": "0.2.0",
+  "description": "TypeScript configuration for e",
+  "type": "module",
+  "main": "tsconfig.json",
+  "scripts": {
+    "dev": "rollup --watch",
+    "build": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "dist",
+    "tsconfig?(.*).json"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Appleec/e.git",
+    "directory": "packages/e-tsconfig"
+  },
+  "keywords": [
+    "e",
+    "tsconfig",
+    "e-tsconfig"
+  ],
+  "author": {
+    "name": "Appleec",
+    "email": "771992522@qq.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Appleec/e/issues"
+  },
+  "homepage": "https://github.com/Appleec/e#readme",
+  "peerDependencies": {
+    "typescript": "5.x"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "7.27.4",
+    "@babel/preset-env": "7.27.2",
+    "@babel/preset-typescript": "7.27.1",
+    "@elinzy/core": "workspace:*",
+    "@rollup/plugin-babel": "6.0.4",
+    "@rollup/plugin-json": "6.1.0",
+    "@rollup/plugin-node-resolve": "16.0.1",
+    "rollup": "4.41.1",
+    "rollup-plugin-copy": "3.5.0",
+    "rollup-plugin-dts": "6.2.1",
+    "rollup-plugin-esbuild": "6.2.1",
+    "rollup-plugin-node-externals": "8.0.0",
+    "tslib": "2.8.1",
+    "typescript": "5.8.3"
+  }
+}

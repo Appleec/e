@@ -1,11 +1,9 @@
 {
-  "extends": "@elinzy/e-tsconfig",
-  "compilerOptions": {
-    "noImplicitAny": false,
-    "noImplicitThis": false,
-    "composite": true,
-    "lib": ["dom","esnext"]
-  },
-  "include": ["**/src/*", "**/tests/*"],
-  "exclude": ["**/node_modules/*", "**/dist/*"]
+  "extends": "./tsconfig.base.json",
+  "include": ["src/**/*", "tests/**/*"],
+//  "references": [
+//    {
+//      "path": "packages/eslint-config"
+//    }
+//  ]
 }

@@ -1,0 +1,17 @@
+{
+  "extends": "@elinzy/tsconfig",
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "noImplicitReturns": true,
+    "composite": true,
+    "forceConsistentCasingInFileNames": true,
+    "useUnknownInCatchVariables": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "lib": ["dom", "dom.iterable", "esnext"]
+  },
+  "exclude": ["node_modules", "dist"]
+}
