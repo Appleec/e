@@ -1,69 +1,107 @@
-import tsEslint from 'typescript-eslint';
-import eslint from '@eslint/js';
-import pluginN from 'eslint-plugin-n';
-import globals from 'globals';
+// Import
+import eslintConfig, { plugins } from '@elinzy/eslint-config';
 
-/**
- * https://eslint.org/docs/latest/use/configure/migration-guide
- * https://eslint.org/docs/latest/use/configure/
- *
- * Tip: eslint9 not support `.eslintignore`,
- * need to config `eslint.config.js` in `ignore` or `ignorePattern` options.
- *
- * https://typescript-eslint.nodejs.cn/
- */
-export default tsEslint.config(
-  // Ignore
+export default [
+  /**
+   * ignores
+   */
   {
-    ignores: ['**/node_modules/**', '**/dist/**', '**/docs/**'],
+    name: 'eslint-config/ignore/recommended',
+    ignores: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/tests/**',
+      '**/docs/**',
+      '**/backup/**',
+    ],
   },
-  eslint.configs.recommended,
-  ...tsEslint.configs.recommended,
+
+  /**
+   * base
+   * need to install `eslint-plugin-import-x`
+   */
+  ...eslintConfig.configs.flat.base.recommended,
+
+  /**
+   * node
+   * need to install `eslint-plugin-n`
+   */
+  ...eslintConfig.configs.flat.node.recommended,
   {
-    name: 'main',
-    languageOptions: {
-      parser: tsEslint.parser,
-      parserOptions: {
-        sourceType: 'module',
-        ecmaVersion: 2022,
-        // project: ['./packages/*/tsconfig.json'],
-      },
-      globals: {
-        ...globals.es2021,
-        ...globals.node,
-      },
+    name: 'eslint-config/node/recommended',
+    plugins: plugins.nodeN.plugins,
+    rules: {
+      'n/global-require': 'off',
+      'n/prefer-global/process': 'off',
+      'n/exports-style': 'off',
+      'n/no-unsupported-features/es-syntax': 'off',
     },
-    plugins: {
-      n: pluginN,
+  },
+
+  /**
+   * typescript
+   * need to install `typescript` and `typescript-eslint`
+   */
+  ...eslintConfig.configs.flat.base.typescript,
+  {
+    name: 'eslint-config/typescript/recommended-typescript',
+    files: ['**/*.{ts,cts,mts,tsx}'],
+    languageOptions: {
+      parserOptions: {
+        project: 'tsconfig.eslint.json',
+      },
     },
     rules: {
-      eqeqeq: ['warn', 'always', { null: 'ignore' }],
-      semi: ['error'],
-      'no-debugger': ['error', 'always'],
-      'no-empty': ['warn', { allowEmptyCatch: true }],
-      'no-process-exit': 'off',
-      'no-useless-escape': 'off',
-      'no-fallthrough': 'off',
-      'no-case-declarations': 'off',
-      'no-misleading-character-class': 'off',
-      // https://eslint.org/docs/latest/rules/prefer-rest-params
-      'prefer-rest-params': 'off',
-      // https://eslint.org/docs/latest/rules/no-prototype-builtins
-      'no-prototype-builtins': 'off',
-      'prefer-const': [
-        'warn',
+      '@typescript-eslint/dot-notation': 'off',
+      '@typescript-eslint/no-implied-eval': 'off',
+      '@typescript-eslint/no-shadow': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+    },
+  },
+  {
+    name: 'eslint-config/import/recommended',
+    rules: {
+      'import-x/namespace': 'off',
+      'import-x/prefer-default-export': 'off',
+      'import-x/no-extraneous-dependencies': 'off',
+      'import-x/no-import-module-exports': 'off',
+      'import-x/no-rename-default': 'off',
+      // 'import/no-named-as-default': 'off',
+      'import-x/order': [
+        'off',
         {
-          destructuring: 'all',
+          groups: [['builtin', 'external', 'internal', 'sibling', 'type']],
         },
       ],
-      'no-async-promise-executor': 'off',
-      'n/no-missing-import': 'off', // doesn't like ts imports
-      'n/no-process-exit': 'off',
-      '@typescript-eslint/no-explicit-any': 'off', // we use any in some places
-      '@typescript-eslint/no-unused-vars': 'off',
-      '@typescript-eslint/ban-ts-comment': 'off',
-      '@typescript-eslint/no-unused-expressions': 'off',
-      '@typescript-eslint/no-this-alias': 'off',
     },
-  }
-)
+  },
+  {
+    name: 'eslint-config/import/disable-extensions-in-module-files',
+    files: ['**/*.mjs', '**/*.mts'],
+    rules: {
+      'import-x/extensions': 'off',
+      'import-x/no-unresolved': 'off',
+      'import-x/no-extraneous-dependencies': 'off',
+    },
+  },
+
+  {
+    name: 'eslint-config/general/recommended',
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: 2021,
+        sourceType: 'module',
+      },
+    },
+    rules: {
+      'no-console': 'off',
+      'no-void': 'off',
+      'no-shadow': 'off',
+      'no-unused-vars': 'off',
+      'no-multi-assign': 'off',
+      'no-restricted-syntax': 'off',
+      'prefer-rest-params': 'off',
+      'dot-notation': 'off',
+    },
+  },
+];

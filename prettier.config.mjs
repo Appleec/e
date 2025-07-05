@@ -13,7 +13,7 @@ export default {
     jsxSingleQuote: true,
     printWidth: 120,
     bracketSpacing: true,
-    htmlWhitespaceSensitivity: "ignore",
+    htmlWhitespaceSensitivity: 'ignore',
     overrides: [
         {
             files: '**/*.{yml,yaml}',
@@ -30,4 +30,4 @@ export default {
         //     },
         // },
     ],
-}
+};

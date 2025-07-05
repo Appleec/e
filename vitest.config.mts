@@ -1,5 +1,4 @@
-import { defineConfig } from 'vitest/config'
-import { resolve } from 'node:path'
+import { defineConfig } from 'vitest/config';
 
 // https://vitest.zhcndoc.com/guide/
 export default defineConfig({
@@ -8,10 +7,10 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@elinzy/e-core': resolve(__dirname, './packages/e-core'),
-      '@elinzy/e-cli': resolve(__dirname, './packages/e-cli'),
-      '@elinzy/e-utils': resolve(__dirname, './packages/e-utils'),
-      '@elinzy/e-git': resolve(__dirname, './packages/e-git'),
+      // '@elinzy/e-core': resolve(__dirname, './packages/e-core'),
+      // '@elinzy/e-cli': resolve(__dirname, './packages/e-cli'),
+      // '@elinzy/e-utils': resolve(__dirname, './packages/e-utils'),
+      // '@elinzy/e-git': resolve(__dirname, './packages/e-git'),
     },
   },
   test: {
@@ -57,4 +56,4 @@ export default defineConfig({
     //   },
     // },
   },
-})
+});
