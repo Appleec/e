@@ -1,4 +1,4 @@
-# @elinzy/e-tsconfig
+# @elinzy/tsconfig
 
 ## 0.2.0
 

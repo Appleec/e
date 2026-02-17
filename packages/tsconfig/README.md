@@ -1,11 +1,11 @@
-# @elinzy/e-tsconfig
+# @elinzy/tsconfig
 
 TypeScript configuration for e
 
 ## Installation
 
 ```shell
-npm install -D @elinzy/e-tsconfig typescript
+npm install -D @elinzy/tsconfig typescript
 ```
 
 ## Usage
