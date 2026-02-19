@@ -2,7 +2,7 @@ import Stack from './Stack';
 import assignMergeValue from './assignMergeValue';
 import baseFor from './baseFor';
 import baseMergeDeep from './baseMergeDeep';
-import isObject from '../isObject';
+import isObject from '../lang/isObject';
 import keysIn from './keysIn';
 
 /**

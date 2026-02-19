@@ -1,5 +1,5 @@
 // @ts-nocheck
-import baseIsEqual from './_internal/baseIsEqual.js';
+import baseIsEqual from '../_internal/baseIsEqual';
 
 /**
  * This method is like `isEqual` except that it accepts `customizer` which

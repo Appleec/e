@@ -1,7 +1,7 @@
 // @ts-nocheck
-import castSlice from './_internal/castSlice.js';
-import charsStartIndex from './_internal/charsStartIndex.js';
-import stringToArray from './_internal/stringToArray.js';
+import castSlice from '../_internal/castSlice';
+import charsStartIndex from '../_internal/charsStartIndex';
+import stringToArray from '../_internal/stringToArray';
 
 const methodName = ''.trimLeft ? 'trimLeft' : 'trimStart';
 

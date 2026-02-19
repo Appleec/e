@@ -1,4 +1,4 @@
-import toString from './toString';
+import toString from '../lang/toString';
 
 /**
  * Converts `string`, as a whole, to lower case just like

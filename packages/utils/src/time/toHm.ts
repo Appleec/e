@@ -2,9 +2,9 @@
  * @author appleex
  * @date 2024-09-06 13:27
  */
-import isString from './isString';
-import isNumber from './isNumber';
-import isDate from './isDate';
+import isString from '../lang/isString';
+import isNumber from '../lang/isNumber';
+import isDate from '../lang/isDate';
 import toDate from './toDate';
 
 /**
@@ -23,7 +23,7 @@ import toDate from './toDate';
  * // => 2030
  *
  */
-function formatTimeToHm<DateType extends Date>(date: DateType, earlier: number): number {
+function toHm<T extends Date>(date: T, earlier: number): number {
     if (isString(date)) {
         try {
             date = toDate(date);
@@ -40,4 +40,4 @@ function formatTimeToHm<DateType extends Date>(date: DateType, earlier: number):
     return 0;
 }
 
-export default formatTimeToHm;
+export default toHm;

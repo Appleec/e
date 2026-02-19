@@ -1,7 +1,7 @@
 // @ts-nocheck
-import castSlice from './_internal/castSlice.js';
-import charsEndIndex from './_internal/charsEndIndex.js';
-import stringToArray from './_internal/stringToArray.js';
+import castSlice from '../_internal/castSlice';
+import charsEndIndex from '../_internal/charsEndIndex';
+import stringToArray from '../_internal/stringToArray';
 
 const methodName = ''.trimRight ? 'trimRight' : 'trimEnd';
 

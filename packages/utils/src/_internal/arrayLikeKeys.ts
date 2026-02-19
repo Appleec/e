@@ -1,7 +1,7 @@
-import isArguments from '../isArguments.js';
-import isBuffer from '../isBuffer.js';
-import isIndex from './isIndex.js';
-import isTypedArray from '../isTypedArray.js';
+import isArguments from '../lang/isArguments';
+import isBuffer from '../lang/isBuffer';
+import isIndex from './isIndex';
+import isTypedArray from '../lang/isTypedArray';
 
 /** Used to check objects for own properties. */
 const hasOwnProperty = Object.prototype.hasOwnProperty;

@@ -1,7 +1,7 @@
 /**
  *  Create by appleex on 2022/4/19 5:13 下午.
  */
-import root from './_internal/root';
+import root from '../_internal/root';
 
 /**
  * Checks if `value` is a finite primitive number.

@@ -1,6 +1,6 @@
 // @ts-nocheck
-import baseAt from './_internal/baseAt.js';
-import baseFlatten from './_internal/baseFlatten.js';
+import baseAt from '../_internal/baseAt';
+import baseFlatten from '../_internal/baseFlatten';
 
 /**
  * Creates an array of values corresponding to `paths` of `object`.

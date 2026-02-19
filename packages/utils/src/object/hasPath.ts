@@ -1,8 +1,8 @@
-import castPath from './_internal/castPath';
-import isArguments from './isArguments';
-import isIndex from './_internal/isIndex';
-import isLength from './isLength';
-import toKey from './_internal/toKey';
+import castPath from '../_internal/castPath';
+import isArguments from '../lang/isArguments';
+import isIndex from '../_internal/isIndex';
+import isLength from '../lang/isLength';
+import toKey from '../_internal/toKey';
 
 /** Used to check objects for own properties. */
 const hasOwnProperty = Object.prototype.hasOwnProperty;

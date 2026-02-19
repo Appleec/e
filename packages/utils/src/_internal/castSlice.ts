@@ -1,4 +1,4 @@
-import slice from '../slice';
+import slice from '../array/slice';
 
 /**
  * Casts `array` to a slice if it's needed.

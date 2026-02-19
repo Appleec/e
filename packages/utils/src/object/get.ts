@@ -1,4 +1,4 @@
-import baseGet from './_internal/baseGet.js';
+import baseGet from '../_internal/baseGet';
 
 /**
  * Gets the value at `path` of `object`. If the resolved value is

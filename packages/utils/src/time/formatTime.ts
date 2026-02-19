@@ -2,9 +2,9 @@
  * @author appleex
  * @date 2024-09-05 22:36
  */
-import isObject from './isObject';
-import isString from './isString';
-import isNumber from './isNumber';
+import isObject from '../lang/isObject';
+import isString from '../lang/isString';
+import isNumber from '../lang/isNumber';
 
 // This RegExp consists of three parts separated by `|`:
 // - [yYQqMLwIdDecihHKkms]o matches any available ordinal number token

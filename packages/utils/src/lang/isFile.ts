@@ -1,7 +1,7 @@
 /**
  *  Create by appleex on 2022/4/11 4:05 下午.
  */
-import getTag from './_internal/getTag';
+import getTag from './getTag';
 import isObjectLike from './isObjectLike';
 
 /**

@@ -2,7 +2,7 @@
  * @author appleex
  * @date 2024-09-10 21:46
  */
-import camelCase from './camelCase';
+import camelCase from '../string/camelCase';
 
 const IN_BROWSER = typeof window !== 'undefined';
 

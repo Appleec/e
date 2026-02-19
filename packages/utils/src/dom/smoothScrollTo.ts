@@ -24,7 +24,7 @@
  * // =>
  *
  */
-function smoothScrollTo(element, target, duration) {
+function smoothScrollTo(element: HTMLElement, target: number, duration: number) {
     target = Math.round(target);
     duration = Math.round(duration);
     if (duration < 0) {

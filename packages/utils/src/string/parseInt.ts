@@ -1,4 +1,4 @@
-import root from './_internal/root';
+import root from '../_internal/root';
 
 /** Used to match leading and trailing whitespace. */
 const reTrimStart = /^\s+/;

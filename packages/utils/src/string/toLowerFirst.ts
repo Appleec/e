@@ -1,4 +1,4 @@
-import createCaseFirst from './_internal/createCaseFirst';
+import createCaseFirst from '../_internal/createCaseFirst';
 
 /**
  * Converts the first character of `string` to lower case.

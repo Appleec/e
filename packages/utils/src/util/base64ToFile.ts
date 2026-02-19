@@ -1,4 +1,4 @@
-import fileTypeWith from './fileTypeWith';
+import fileTypeWith from './fileTypes';
 
 /**
  * base64ToFile

@@ -1,4 +1,4 @@
-import createMathOperation from './_internal/createMathOperation';
+import createMathOperation from '../_internal/createMathOperation';
 
 /**
  * Subtract two numbers.

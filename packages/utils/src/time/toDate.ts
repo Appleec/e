@@ -2,7 +2,7 @@
  * @author appleex
  * @date 2024-09-06 16:30
  */
-import isDate from './isDate';
+import isDate from '../lang/isDate';
 
 /**
  * Convert date string to date
@@ -26,18 +26,18 @@ import isDate from './isDate';
  */
 
 // TODO: Next plan to support special timestamp, eg: 202201011200
-function toDate<DateType extends Date>(value: DateType | number | string):  DateType {
+function toDate<T extends Date>(value: T | number | string): T {
     // if (!value) return value;
 
     // isDate
-    if (isDate(value)) return value as DateType;
+    if (isDate(value)) return value as T;
 
     // isNaN
-    if (!Number.isNaN(+value)) return new Date(+value) as DateType;
+    if (!Number.isNaN(+value)) return new Date(+value) as T;
 
     value = value.toString().replace(/-/g, '/');
 
-    return new Date(value) as DateType;
+    return new Date(value) as T;
 }
 
 // console.log('=>', toDate('2022-01-01'))

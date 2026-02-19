@@ -1,5 +1,5 @@
 import baseForOwn from './baseForOwn';
-import isArrayLike from '../isArrayLike';
+import isArrayLike from '../lang/isArrayLike';
 
 /**
  * The base implementation of `forEach`.

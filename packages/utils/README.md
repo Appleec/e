@@ -16,16 +16,16 @@ e Tools, a collection of common JavaScript / TypeScript utilities
 
 ```sh
 # devDependencies
-npm install -D @elinzy/e-utils
+npm install -D @elinzy/utils
 
 # dependencies
-npm install -S @elinzy/e-utils
+npm install -S @elinzy/utils
 ```
 
 global:
 
 ```sh
-npm install -g @elinzy/e-utils
+npm install -g @elinzy/utils
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ npm install -g @elinzy/e-utils
 - ESM
 
 ```js
-import * as _ from '@elinzy/e-utils';
+import * as _ from '@elinzy/utils';
 
 _.isNil();
 _.isNull();
@@ -43,7 +43,7 @@ _.isNull();
 - CJS
 
 ```js
-const _ = require('@elinzy/e-utils');
+const _ = require('@elinzy/utils');
 
 _.isNil();
 _.isNull();

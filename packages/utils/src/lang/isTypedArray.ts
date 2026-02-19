@@ -1,6 +1,6 @@
-import getTag from './_internal/getTag.js';
-import nodeTypes from './_internal/nodeTypes.js';
-import isObjectLike from './isObjectLike.js';
+import getTag from './getTag';
+import nodeTypes from '../_internal/nodeTypes';
+import isObjectLike from './isObjectLike';
 
 /** Used to match `toStringTag` values of typed arrays. */
 const reTypedTag = /^\[object (?:Float(?:32|64)|(?:Int|Uint)(?:8|16|32)|Uint8Clamped)Array\]$/;

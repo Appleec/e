@@ -1,7 +1,7 @@
-import isArrayLike from '../isArrayLike';
+import isArrayLike from '../lang/isArrayLike';
 import isIndex from './isIndex';
-import isObject from '../isObject';
-import eq from '../eq';
+import isObject from '../lang/isObject';
+import eq from '../lang/eq';
 
 /**
  * Checks if the given arguments are from an iteratee call.

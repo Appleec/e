@@ -1,6 +1,6 @@
 // @ts-nocheck
-import arrayLikeKeys from './_internal/arrayLikeKeys';
-import isArrayLike from './isArrayLike';
+import arrayLikeKeys from '../_internal/arrayLikeKeys';
+import isArrayLike from '../lang/isArrayLike';
 
 /**
  * Creates an array of the own enumerable property names of `object`.

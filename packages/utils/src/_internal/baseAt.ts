@@ -1,5 +1,5 @@
 // @ts-nocheck
-import get from '../get.js';
+import get from '../object/get';
 
 /**
  * The base implementation of `at` without support for individual paths.

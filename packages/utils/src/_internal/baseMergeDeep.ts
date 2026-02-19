@@ -3,13 +3,13 @@ import cloneBuffer from './cloneBuffer';
 import cloneTypedArray from './cloneTypedArray';
 import copyArray from './copyArray';
 import initCloneObject from './initCloneObject';
-import isArguments from '../isArguments';
-import isArrayLikeObject from '../isArrayLikeObject';
-import isBuffer from '../isBuffer';
-import isObject from '../isObject';
-import isPlainObject from '../isPlainObject';
-import isTypedArray from './isTypedArray';
-import toPlainObject from '../toPlainObject';
+import isArguments from '../lang/isArguments';
+import isArrayLikeObject from '../lang/isArrayLikeObject';
+import isBuffer from '../lang/isBuffer';
+import isObject from '../lang/isObject';
+import isPlainObject from '../lang/isPlainObject';
+import isTypedArray from '../lang/isTypedArray';
+import toPlainObject from '../lang/toPlainObject';
 
 /**
  * A specialized version of `baseMerge` for arrays and objects which performs

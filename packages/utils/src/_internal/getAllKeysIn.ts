@@ -1,5 +1,5 @@
 // @ts-nocheck
-import getSymbolsIn from './getSymbolsIn.js';
+import getSymbolsIn from './getSymbolsIn';
 
 /**
  * Creates an array of own and inherited enumerable property names and symbols of `object`.

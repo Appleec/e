@@ -1,4 +1,4 @@
-import getTag from './_internal/getTag';
+import getTag from './getTag';
 
 /**
  * Checks if `value` is classified as a `Symbol` primitive or object.

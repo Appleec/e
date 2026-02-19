@@ -1,15 +1,15 @@
-import fileTypes from './_internal/fileTypes';
-import getTag from './_internal/getTag';
-import has from './has';
+import fileTypesTable from '../_internal/fileTypes';
+import getTag from '../lang/getTag';
+import has from '../object/has';
 
 /**
- *
+ * fileTypes
  * @param {string} value -
  * @param {*} options - parameter
- *  - field - mimeType(default), extension, tag
- *  - abbrev - false(default)
+ * @param {string} options.field - mimeType(default), extension, tag
+ * @param {boolean} options.abbrev - false(default)
  */
-function fileTypeWith(
+function fileTypes(
   value: string = '',
   options?: any,
 ) {
@@ -43,7 +43,7 @@ function fileTypeWith(
     options.abbrev = true;
   }
 
-  for (const o of fileTypes) {
+  for (const o of fileTypesTable) {
     if (has(o, options.field) && o[options.field].includes(value)) {
       result.push((options.abbrev ? o.mimeType : o));
     }
@@ -56,4 +56,4 @@ function fileTypeWith(
 
 
 
-export default fileTypeWith;
+export default fileTypes;

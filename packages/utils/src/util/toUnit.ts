@@ -1,5 +1,5 @@
-import toNumber from './toNumber';
-import isNil from './isNil';
+import toNumber from '../lang/toNumber';
+import isNil from '../lang/isNil';
 
 /**
  * Unit conversion.
@@ -23,7 +23,7 @@ import isNil from './isNil';
  * convertToUnit('16', 'g');
  * // => 16g
  */
-function convertToUnit(value, unit = '') {
+function toUnit(value, unit = '') {
     if (isNil(value))
       return value;
     if (Number.isNaN(+value))
@@ -44,4 +44,4 @@ function convertToUnit(value, unit = '') {
 //     }
 // }
 
-export default convertToUnit;
+export default toUnit;

@@ -1,5 +1,5 @@
 import baseFor from './baseFor';
-import keys from '../keys';
+import keys from '../object/keys';
 
 /**
  * The base implementation of `forOwn`.

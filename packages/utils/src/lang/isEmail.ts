@@ -17,6 +17,7 @@
  *
  */
 function isEmail(value: any): boolean {
+  // /^[\w.%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i
   // /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value)
   return /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(value);
 }

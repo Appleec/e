@@ -1,5 +1,5 @@
-import baseToNumber from '../toNumber';
-import baseToString from '../toString';
+import baseToNumber from '../lang/toNumber';
+import baseToString from '../lang/toString';
 
 /**
  * Creates a function that performs a mathematical operation on two values.

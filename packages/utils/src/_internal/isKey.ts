@@ -1,4 +1,4 @@
-import isSymbol from '../isSymbol.js';
+import isSymbol from '../lang/isSymbol';
 
 /** Used to match property names within property paths. */
 const reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/;

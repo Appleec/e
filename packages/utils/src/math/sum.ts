@@ -1,4 +1,4 @@
-import baseSum from './_internal/baseSum';
+import baseSum from '../_internal/baseSum';
 
 /**
  * Computes the sum of the values in `array`.

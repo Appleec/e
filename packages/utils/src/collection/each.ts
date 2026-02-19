@@ -1,5 +1,5 @@
-import arrayEach from './_internal/arrayEach';
-import baseEach from './_internal/baseEach';
+import arrayEach from '../_internal/arrayEach';
+import baseEach from '../_internal/baseEach';
 
 /**
  * Iterates over elements of `collection` and invokes `iteratee` for each element.

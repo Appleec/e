@@ -23,7 +23,7 @@ import formatTime from './formatTime';
  * // => 2022
  *
  */
-function formatTimeToLast(time, option) {
+function toLast(time, option) {
     if (('' + time).length === 10) {
         time = parseInt(time) * 1000;
     } else {
@@ -61,4 +61,4 @@ function formatTimeToLast(time, option) {
 
 }
 
-export default formatTimeToLast;
+export default toLast;

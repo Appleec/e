@@ -1,5 +1,5 @@
 import baseAssignValue from './baseAssignValue';
-import eq from '../eq';
+import eq from '../lang/eq';
 
 /**
  * This function is like `assignValue` except that it doesn't assign

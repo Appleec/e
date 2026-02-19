@@ -1,4 +1,4 @@
-import isFlattenable from './isFlattenable.js';
+import isFlattenable from './isFlattenable';
 
 /**
  * The base implementation of `flatten` with support for restricting flattening.

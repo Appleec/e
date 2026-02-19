@@ -1,25 +1,36 @@
 /**
  * @author appleex
- * @date 2024-08-25 14:58
+ * @date 2025-08-25 14:58
  */
 
 /**
- * Checks if `value` is `null`.
+ * Checks if `value` is empty as an object.
  *
+ * @summary isEmptyObject
+ * @static
  * @since 0.1.0
  * @category Lang
  * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is `null`, else `false`.
+ * @returns {boolean} Returns `true` if `value` is nullish, else `false`.
  * @example
  *
- * isNull(null)
+ * isEmptyObject({});
  * // => true
  *
- * isNull(void 0)
+ * isEmptyObject({ a: 1 });
  * // => false
  */
-function isNull(value: any): boolean {
-    return value === null;
+function isEmptyObject(value: any): boolean {
+  // eg: 1
+  // for (const t in e) {
+  //     return !1;
+  // }
+  // return !0;
+
+  // eg: 2
+  if (!value || typeof value !== "object" || Array.isArray(value))
+    return false;
+  return !Object.keys(value).length;
 }
 
-export default isNull;
+export default isEmptyObject;

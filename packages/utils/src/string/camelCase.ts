@@ -1,6 +1,6 @@
 import upperFirst from './toUpperFirst';
 import words from './words';
-import toString from './toString';
+import toString from '../lang/toString';
 
 /**
  * Converts `string` to [camel case](https://en.wikipedia.org/wiki/CamelCase).

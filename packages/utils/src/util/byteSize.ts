@@ -1,4 +1,4 @@
-import symbolTables from './_internal/bytes';
+import symbolTables from '../_internal/bytes';
 
 /* Tables */
 const referenceTables = symbolTables;

@@ -1,4 +1,4 @@
-import toString from './toString';
+import toString from '../lang/toString';
 
 /**
  * Add comma separator.

@@ -1,5 +1,5 @@
-import baseMerge from './_internal/baseMerge';
-import createAssigner from './_internal/createAssigner';
+import baseMerge from '../_internal/baseMerge';
+import createAssigner from '../_internal/createAssigner';
 
 /**
  * This method is like `assign` except that it recursively merges own and

@@ -1,6 +1,6 @@
-import getTag from './_internal/getTag.js';
-import isObjectLike from './isObjectLike.js';
-import nodeTypes from './_internal/nodeTypes.js';
+import getTag from './getTag';
+import isObjectLike from './isObjectLike';
+import nodeTypes from '../_internal/nodeTypes';
 
 /* Node.js helper references. */
 const nodeIsRegExp = nodeTypes && nodeTypes.isRegExp;

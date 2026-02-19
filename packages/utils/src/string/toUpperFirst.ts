@@ -2,7 +2,7 @@
  * @author appleex
  * @date 2024-08-26 21:07
  */
-import createCaseFirst from './_internal/createCaseFirst';
+import createCaseFirst from '../_internal/createCaseFirst';
 /**
  * Converts the first character of `string` to upper case.
  *

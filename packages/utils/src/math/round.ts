@@ -1,4 +1,4 @@
-import createRound from './_internal/createRound';
+import createRound from '../_internal/createRound';
 
 /**
  * Computes `number` rounded to `precision`.

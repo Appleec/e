@@ -1,4 +1,4 @@
-import baseSum from './_internal/baseSum';
+import baseSum from '../_internal/baseSum';
 
 /**
  * This method is like `sum` except that it accepts `iteratee` which is

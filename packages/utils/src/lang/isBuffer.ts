@@ -1,4 +1,4 @@
-import root from './_internal/root';
+import root from '../_internal/root';
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
 const nativeIsBuffer = root?.Buffer?.isBuffer;

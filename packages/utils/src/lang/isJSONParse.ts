@@ -17,13 +17,10 @@
  * // => false
  */
 function isJSONParse(value) {
-  // console.log(value);
   try {
-    const o = JSON.parse(value);
-    // console.log(o);
-    return !!(typeof o === 'object' && o);
+    const parsed = JSON.parse(value);
+    return true;
   } catch (e) {
-    // console.log('error：' + str + '!!!' + e)
     return false;
   }
 }
@@ -34,8 +31,5 @@ function isJSONParse(value) {
 // console.log('=>', isJSONParse(true));
 // console.log('=>', isJSONParse('{ "a": 1, "b": 1 }'));
 // console.log('=>', isJSONParse('[1, 2, 3]'));
-
-// const o = { a: 1, b: 2 };
-// console.log('=>', JSON.stringify(o));
 
 export default isJSONParse;

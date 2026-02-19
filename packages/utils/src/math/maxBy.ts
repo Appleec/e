@@ -1,4 +1,4 @@
-import isSymbol from './isSymbol';
+import isSymbol from '../lang/isSymbol';
 
 /**
  * This method is like `max` except that it accepts `iteratee` which is

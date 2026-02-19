@@ -1,8 +1,8 @@
 // @ts-nocheck
-import eq from '../eq.js';
-import equalArrays from './equalArrays.js';
-import mapToArray from './mapToArray.js';
-import setToArray from './setToArray.js';
+import eq from '../lang/eq';
+import equalArrays from './equalArrays';
+import mapToArray from './mapToArray';
+import setToArray from './setToArray';
 
 /** Used to compose bitmasks for value comparisons. */
 const COMPARE_PARTIAL_FLAG = 1;

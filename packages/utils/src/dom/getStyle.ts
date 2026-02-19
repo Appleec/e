@@ -1,7 +1,7 @@
 /**
  *  Create by appleex on 2022/4/22 3:53 下午.
  */
-import camelCase from './camelCase';
+import camelCase from '../string/camelCase';
 
 // var ieVersion = document.documentMode ? Number(document.documentMode) : 0;
 const ieVersion = (typeof document !== 'undefined' && (document as any).documentMode) ? Number((document as any).documentMode) : 0;

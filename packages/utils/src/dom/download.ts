@@ -21,7 +21,7 @@
  * // => file
  *
  */
-function downloadFile(data: any, filename: string, mime: string, bom: string): void {
+function download(data: any, filename: string, mime: string, bom: string): void {
   const blobData = typeof bom !== 'undefined' ? [bom, data] : [data];
   const blob = new Blob(blobData, { type: mime || 'application/octet-stream' });
   if (typeof (window.navigator as any).msSaveBlob !== 'undefined') {
@@ -56,4 +56,4 @@ function downloadFile(data: any, filename: string, mime: string, bom: string): v
   }
 }
 
-export default downloadFile;
+export default download;
