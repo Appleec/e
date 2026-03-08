@@ -1,9 +1,9 @@
 {
   "name": "@elinzy/tsconfig",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "TypeScript configuration for e",
   "type": "module",
-  "main": "base.json",
+  "main": "tsconfig.json",
   "scripts": {
     "dev": "rollup --watch",
     "build": "rollup -c",
@@ -11,7 +11,7 @@
   },
   "files": [
     "dist",
-    "tsconfig?(.*).json"
+		"*.json"
   ],
   "publishConfig": {
     "access": "public",
