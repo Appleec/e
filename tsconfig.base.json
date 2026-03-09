@@ -1,17 +1,24 @@
 {
-  "extends": "@elinzy/tsconfig",
+  "extends": "@elinzy/tsconfig/tsconfig.json",
   "compilerOptions": {
-    "noImplicitAny": false,
-    "noImplicitThis": false,
-    "noImplicitReturns": true,
-    "composite": true,
-    "forceConsistentCasingInFileNames": true,
-    "useUnknownInCatchVariables": false,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+
+    "composite": false,
+    "declaration": true,
+    "declarationMap": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "sourceMap": false,
+    "forceConsistentCasingInFileNames": true,
+    "useUnknownInCatchVariables": false,
     "isolatedModules": true,
-    "declaration": true,
-    "lib": ["dom", "dom.iterable", "esnext"]
-  },
-  "exclude": ["node_modules", "dist"]
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "skipLibCheck": true
+  }
 }
