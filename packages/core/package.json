@@ -1,6 +1,6 @@
 {
     "name": "@elinzy/core",
-    "version": "0.2.2",
+    "version": "0.1.1",
     "description": "e core implementation module",
     "type": "module",
     "main": "./dist/index.cjs",
@@ -12,14 +12,9 @@
             "require": "./dist/index.cjs"
         },
         "./child_process": {
-            "types": "./dist/index.d.ts",
+            "types": "./dist/child_process.d.ts",
             "import": "./dist/child_process.mjs",
             "require": "./dist/child_process.cjs"
-        },
-        "./color": {
-            "types": "./dist/color.d.ts",
-            "import": "./dist/color.mjs",
-            "require": "./dist/color.cjs"
         }
     },
     "publishConfig": {
@@ -30,14 +25,17 @@
         "dist"
     ],
     "scripts": {
-        "dev": "rollup --watch",
-        "build": "rollup -c",
+        "dev": "rollup --config rollup.config.mjs --watch",
+        "build": "npm-run-all --parallel build:clean build:main build:type",
+        "build:main": "rollup --config rollup.config.mjs",
+        "build:type": "tsc --project tsconfig.build.json --emitDeclarationOnly --preserveWatchOutput",
+        "build:clean": "rimraf ./dist",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Appleec/e.git",
-        "directory": "packages/e-core"
+        "directory": "packages/core"
     },
     "keywords": [
         "e",
@@ -64,7 +62,6 @@
         "typescript": "^5.8.2"
     },
     "dependencies": {
-        "@elinzy/logger": "workspace:*",
         "ansis": "^3.17.0",
         "execa": "^9.5.2"
     }
