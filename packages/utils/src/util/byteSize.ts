@@ -64,7 +64,7 @@ function byteSize(bytes, options?) {
 
   options = Object.assign({}, defaultOptions, options);
 
-  if (options?.customTypes) Object.assign(referenceTables, options.customTypes);
+  if (options.customTypes) Object.assign(referenceTables, options.customTypes);
 
   const base = options.binary === 2
     ? 1024
@@ -87,7 +87,7 @@ function byteSize(bytes, options?) {
   }
 
   if (options.plainObject) {
-    return { type: options.type, value: `${bytes}`, unit: shorts?.[loop], long: longs?.[loop] };
+    return { type: options.type, value: `${bytes}`, unit: shorts[loop], long: longs[loop] };
   }
 
   return shorts && shorts[loop] ? `${bytes}${options.space ? ' ' : ''}${shorts[loop]}` : `${bytes}`;
@@ -113,7 +113,7 @@ byteSize.toTransValue = function (bytes, options?) {
 
   // Named capture groups need to be manually typed today.
   // https://github.com/microsoft/TypeScript/issues/32098
-  const groups = match?.groups as { value: string; unit?: string } | undefined;
+  const groups = match && match.groups as { value: string; unit?: string } | undefined;
   if (!groups) return Number.NaN;
 
   const unit = (groups.unit || 'Bytes')

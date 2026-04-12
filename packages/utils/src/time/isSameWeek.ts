@@ -39,7 +39,7 @@ function startOfWeek<DateType extends Date>(
     date: DateType | number | string,
     options?: IWeekOptions,
 ): DateType {
-    const weekStartsOn = options?.weekStartsOn ?? 0;
+    const weekStartsOn = options && options.weekStartsOn || 0;
 
     const _date = toDate(date);
     const day = _date.getDay();

@@ -24,7 +24,7 @@
 function sleep(wait: number, callback?: () => any): Promise<void> {
     return new Promise(resolve => {
       setTimeout(async() => {
-        await callback?.();
+        callback && await callback();
         resolve();
       }, wait);
     });

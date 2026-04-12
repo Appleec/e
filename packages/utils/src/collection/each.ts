@@ -29,8 +29,4 @@ function each(collection, iteratee) {
     return func(collection, iteratee);
 }
 
-// console.time('each');
-// each([1, 2], v => console.log(v));
-// console.timeEnd('each');
-
 export default each;

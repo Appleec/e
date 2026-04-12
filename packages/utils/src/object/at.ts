@@ -1,4 +1,3 @@
-// @ts-nocheck
 import baseAt from '../_internal/baseAt';
 import baseFlatten from '../_internal/baseFlatten';
 
@@ -18,9 +17,5 @@ import baseFlatten from '../_internal/baseFlatten';
  * // => [3, 4]
  */
 const at = (object, ...paths) => baseAt(object, baseFlatten(paths, 1));
-
-// const object = { 'a': [{ 'b': { 'c': 3 } }, 4] };
-//
-// console.log('=>', at(object, ['a[0].b.c', 'a[1]']));
 
 export default at;

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import baseClone from '../_internal/baseClone';
 
 /** Used to compose bitmasks for cloning. */
@@ -35,7 +34,8 @@ const CLONE_SYMBOLS_FLAG = 4;
  */
 function cloneWith(value, customizer) {
     customizer = typeof customizer === 'function' ? customizer : undefined;
-    return baseClone(value, CLONE_SYMBOLS_FLAG, customizer);
+    // @ts-ignore
+  return baseClone(value, CLONE_SYMBOLS_FLAG, customizer);
 }
 
 export default cloneWith;

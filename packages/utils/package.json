@@ -1,6 +1,6 @@
 {
   "name": "@elinzy/utils",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "description": "e Tools, a collection of common JavaScript / TypeScript utilities.",
 	"type": "module",
   "main": "./dist/cjs/index.js",
