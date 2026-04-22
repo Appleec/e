@@ -14,8 +14,6 @@ import path from 'node:path';
 // import { builtinModules } from 'node:module';
 import pkg from './package.json' with { type: 'json' };
 
-const isExternal = (id) => !path.isAbsolute(id) && !id.startsWith('.');
-
 const banner = `
 /*!
  * ${pkg.name} v${pkg.version}
@@ -29,13 +27,20 @@ const banner = `
  * @type {RollupOptions}
  */
 const commonConfig = defineConfig({
-  input: 'src/index.ts',
-  // external: isExternal,
-  external: [
-    ...Object.keys(pkg.dependencies || {}),
-    ...Object.keys(pkg.peerDependencies || {}),
-    ...Object.keys(pkg.optionalDependencies || {})
-  ],
+  input: './src/index.ts',
+  // external: (id) => !path.isAbsolute(id) && !id.startsWith('.'),
+  external: (id) => !id.startsWith('.') && !id.startsWith('/') && !id.startsWith('\0'),
+  // external: [
+  //   // base: eg. execa, lodash
+  //   ...Object.keys(pkg.dependencies || {}),
+  //   // level: eg. vue, react
+  //   ...Object.keys(pkg.peerDependencies || {}),
+  //   ...Object.keys(pkg.optionalDependencies || {}),
+  //   // Node.js (node:<>)
+  //   /^node:/,
+  //   // sub path: eg. lodash/map
+  //   /^(.*)\/.*/
+  // ],
   plugins: [
     nodeResolve({
       extensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.json'],
@@ -80,7 +85,7 @@ const commonConfig = defineConfig({
     }),
     dynamicImportVars({}),
   ],
-});
+})
 
 /**
  * esmConfig
@@ -94,7 +99,7 @@ const esmConfig = defineConfig({
     chunkFileNames: '[name]-[hash].mjs',
     format: 'esm',
     sourcemap: false,
-    preserveModules: true,
+    preserveModules: false,
     // preserveModulesRoot: 'src',
   },
 });
@@ -111,17 +116,17 @@ const cjsConfig = defineConfig({
     chunkFileNames: '[name]-[hash].cjs',
     format: 'cjs',
     sourcemap: false,
-    preserveModules: true,
+    preserveModules: false,
     // preserveModulesRoot: 'src',
   },
-});
+})
 
 /**
  * dtsConfig
  * @type {RollupOptions}
  */
 const dtsConfig = defineConfig({
-  input: 'src/index.ts',
+  input: './src/index.ts',
   output: {
     dir: 'dist',
     entryFileNames: '[name].d.ts',
