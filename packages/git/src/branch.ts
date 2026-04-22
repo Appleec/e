@@ -1,14 +1,14 @@
 /**
  * Git branch
  */
-import { exec } from '@elinzy/core';
+import { execSync, type ExecSyncResult } from '@elinzy/core';
 
 /**
  * Get default branch from {main,master,gh-pages}
  */
-export async function getDefaultBranch() {
+export function getDefaultBranch() {
     for (const branch of ['main', 'master', 'gh-pages']) {
-        if (await isExistBranch(branch)) {
+        if (isExistBranch(branch)) {
             return branch;
         }
     }
@@ -27,22 +27,18 @@ export async function getDefaultBranch() {
  * // => true
  *
  */
-export async function isExistBranch(
-    value: string = 'main',
-    opts?: Record<string, any>,
+export function isExistBranch(
+  value: string = 'main',
+  opts?: { cwd?: string; cmd?: string },
 ) {
-    try {
-        await exec('git', [
-            'show-ref',
-            '--verify',
-            '--quiet',
-            `refs/heads/${value}`,
-        ], opts);
+  try {
+    // @ts-ignore
+    const r = execSync('git', ['show-ref', '--verify', '--quiet', `refs/heads/${value}`], opts) as ExecSyncResult;
 
-        return true;
-    } catch (e) {
-        return false;
-    }
+    return true;
+  } catch (e) {
+    return false;
+  }
 }
 
 /**
@@ -50,16 +46,17 @@ export async function isExistBranch(
  *
  * @description
  * `git symbolic-ref --short HEAD`
+ * `git rev-parse --abbrev-ref HEAD`
  *
  * @example
- * const stdout = await getCurrentBranch()
+ * const stdout = getCurrentBranch()
  * // => 'main'
  */
-export async function getCurrentBranch() {
-    const r = await exec('git', [
-        'symbolic-ref',
-        '--short',
-        'HEAD',
-    ]);
-    return r?.stdout;
+export function getCurrentBranch() {
+  const r = execSync('git', [
+    'symbolic-ref',
+    '--short',
+    'HEAD',
+  ]) as ExecSyncResult;
+  return r.stdout;
 }

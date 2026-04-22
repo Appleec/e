@@ -1,3 +1,3 @@
-# @elinzy/e-git
+# @elinzy/git
 
 Git utils for e.
