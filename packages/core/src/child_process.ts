@@ -1,10 +1,13 @@
 import {
-    execa,
-    execaSync,
-    execaCommand,
-    execaCommandSync,
-    type Options as ExecaOptions,
-    type SyncOptions as ExecaSyncOptions,
+  execa,
+  execaSync,
+  execaCommand,
+  execaCommandSync,
+  type Options as ExecaOptions,
+  type SyncOptions as ExecaSyncOptions,
+  type Result as ExecaResult,
+  type SyncResult as ExecaSyncResult,
+  type ResultPromise as ExecaResultPromise,
 } from 'execa';
 import c from 'ansis';
 
@@ -24,6 +27,11 @@ export interface ExecSyncOptions extends ExecaSyncOptions {
     throwOnError?: boolean
 }
 
+// Types returns
+export type ExecResult = ExecaResult
+export type ExecSyncResult = ExecaSyncResult
+export type ExecResultPromise = ExecaResultPromise
+
 /**
  * Execute a command asynchronously
  * @param {string} cmd
@@ -31,31 +39,37 @@ export interface ExecSyncOptions extends ExecaSyncOptions {
  * @param {import("execa").Options} [opts]
  */
 export function exec(
-    cmd: string,
-    args: string[],
-    opts?: ExecOptions,
+  cmd: string,
+  args: string[],
+  opts?: ExecOptions,
 ): Promise<any> {
-    // (Array.isArray(args) ? args.join(' ') : args) ?? ''
-    if (opts?.logger || opts?.dryRun)
-        console.log(c.green(`> ${[cmd, ...args].join(' ')}`));
+  // Define default
+  opts = {
+    throwOnError: true,
+    ...opts,
+  };
 
-    if (opts?.dryRun)
-        return Promise.resolve(void 0);
+  // (Array.isArray(args) ? args.join(' ') : args) ?? ''
+  if (opts.logger || opts.dryRun)
+    console.log(c.green(`> ${[cmd, ...args].join(' ')}`));
 
-    return execa(cmd, args, opts)
-        .then((spawned) => (
-            opts?.abbrev
-                ? spawned?.stdout
-                : spawned
-        ))
-        .catch(e => {
-            if (opts?.throwOnError ?? true)
-                throw new Error(
-                    c.red(`Running ${c.bold([cmd, ...args].join(' '))} in ${c.underline(opts?.cwd || e?.cwd || process.cwd())}:`) +
-                    (e.stderr || e.stack || e.message),
-                );
-            return Promise.resolve(void 0);
-        });
+  if (opts.dryRun)
+    return Promise.resolve(void 0);
+
+  return execa(cmd, args, opts)
+    .then((spawned) => (
+      opts.abbrev
+        ? spawned.stdout
+        : spawned
+    ))
+    .catch(e => {
+      if (opts.throwOnError)
+        throw new Error(
+            c.red(`Running ${c.bold([cmd, ...args].join(' '))} in ${c.underline(opts.cwd || e.cwd || process.cwd())}:`) +
+            (e.stderr || e.stack || e.message),
+        );
+      return Promise.resolve(void 0);
+    });
 }
 
 /**
@@ -69,26 +83,34 @@ export function execSync(
     args: string[],
     opts?: ExecSyncOptions,
 ) {
-    if (opts?.logger || opts?.dryRun)
-        console.log(c.green(`> ${[cmd, ...args].join(' ')}`));
+  // Define default
+  opts = {
+    throwOnError: true,
+    ...opts,
+  };
 
-    if (opts?.dryRun)
-        return void 0;
+  if (opts.logger || opts.dryRun)
+    console.log(c.green(`> ${[cmd, ...args].join(' ')}`));
 
-    try {
-        const spawned = execaSync(cmd, args, opts);
+  if (opts.dryRun)
+    return void 0;
 
-        return opts?.abbrev
-            ? spawned?.stdout
-            : spawned;
-    } catch (e) {
-        if (opts?.throwOnError ?? true)
-            throw new Error(
-                c.red(`Running ${c.bold([cmd, ...args].join(' '))} in ${c.underline(opts?.cwd || e?.cwd || process.cwd())}:`) +
-                (e.stderr || e.stack || e.message),
-            );
-        return void 0;
-    }
+  try {
+    const spawned = execaSync(cmd, args, opts);
+
+    return (
+      opts.abbrev
+        ? spawned.stdout
+        : spawned
+    );
+  } catch (e) {
+    if (opts?.throwOnError)
+      throw new Error(
+        c.red(`Running ${c.bold([cmd, ...args].join(' '))} in ${c.underline(opts.cwd || e.cwd || process.cwd())}:`) +
+          (e.stderr || e.stack || e.message),
+      );
+    return void 0;
+  }
 }
 
 /**
@@ -97,29 +119,35 @@ export function execSync(
  * @param opts
  */
 export function execCommand(
-    cmd: string,
-    opts?: ExecOptions,
+  cmd: string,
+  opts?: ExecOptions,
 ) {
-    if (opts?.logger || opts?.dryRun)
-        console.log(c.green(`> ${[cmd].join(' ')}`));
+  // Define default
+  opts = {
+    throwOnError: true,
+    ...opts,
+  };
 
-    if (opts?.dryRun)
-        return Promise.resolve(void 0);
+  if (opts.logger || opts.dryRun)
+    console.log(c.green(`> ${[cmd].join(' ')}`));
 
-    return execaCommand(cmd, opts)
-        .then((spawned) => (
-            opts?.abbrev
-                ? spawned?.stdout
-                : spawned
-        ))
-        .catch(e => {
-            if (opts?.throwOnError ?? true)
-                throw new Error(
-                    c.red(`Running ${c.bold([cmd].join(' '))} in ${c.underline(opts?.cwd || e?.cwd || process.cwd())}:`) +
-                    (e.stderr || e.stack || e.message),
-                );
-            return Promise.resolve(void 0);
-        });
+  if (opts.dryRun)
+    return Promise.resolve(void 0);
+
+  return execaCommand(cmd, opts)
+    .then((spawned) => (
+      opts.abbrev
+        ? spawned.stdout
+        : spawned
+    ))
+    .catch((e) => {
+      if (opts.throwOnError)
+        throw new Error(
+          c.red(`Running ${c.bold([cmd].join(' '))} in ${c.underline(opts.cwd || e.cwd || process.cwd())}:`) +
+            (e.stderr || e.stack || e.message),
+        );
+      return Promise.resolve(void 0);
+    });
 }
 
 /**
@@ -128,27 +156,35 @@ export function execCommand(
  * @param opts
  */
 export function execCommandSync(
-    cmd: string,
-    opts?: ExecSyncOptions,
+  cmd: string,
+  opts?: ExecSyncOptions,
 ) {
-    if (opts?.logger || opts?.dryRun)
-        console.log(c.green(`> ${[cmd].join(' ')}`));
+  // Define default
+  opts = {
+    throwOnError: true,
+    ...opts,
+  };
 
-    if (opts?.dryRun)
-        return void 0;
+  if (opts.logger || opts.dryRun)
+    console.log(c.green(`> ${[cmd].join(' ')}`));
 
-    try {
-        const spawned = execaCommandSync(cmd, opts);
+  if (opts.dryRun)
+    return void 0;
 
-        return opts?.abbrev
-            ? spawned?.stdout
-            : spawned;
-    } catch (e) {
-        if (opts?.throwOnError ?? true)
-            throw new Error(
-                c.red(`Running ${c.bold([cmd].join(' '))} in ${c.underline(opts?.cwd || e?.cwd || process.cwd())}:`) +
-                (e.stderr || e.stack || e.message),
-            );
-        return void 0;
-    }
+  try {
+    const spawned = execaCommandSync(cmd, opts);
+
+    return (
+      opts.abbrev
+        ? spawned.stdout
+        : spawned
+    );
+  } catch (e) {
+    if (opts.throwOnError)
+      throw new Error(
+        c.red(`Running ${c.bold([cmd].join(' '))} in ${c.underline(opts.cwd || e.cwd || process.cwd())}:`) +
+          (e.stderr || e.stack || e.message),
+      );
+    return void 0;
+  }
 }

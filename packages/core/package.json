@@ -1,6 +1,6 @@
 {
     "name": "@elinzy/core",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "e core implementation module",
     "type": "module",
     "main": "./dist/index.cjs",
