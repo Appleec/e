@@ -48,7 +48,7 @@
     },
     "homepage": "https://github.com/Appleec/e#readme",
     "dependencies": {
-        "ansis": "^3.17.0",
+        "ansis": "4.2.0",
         "execa": "^9.5.2"
     }
 }
