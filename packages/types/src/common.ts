@@ -5,27 +5,34 @@
  */
 
 /**
- * Empty
+ * Nullable
  */
-export type ENullable<T> = T | null | undefined
-export type EEmptyData = null | undefined
-export type ERecordable<T = any> = Record<string, T>
+export type ENullable<T> = T | null | undefined;
 
 /**
- *  Array
+ * NonNullable
  */
-export type EArrayable<T> = T | Array<T>
-export type EArrayData = string[] | number[] | boolean[];
-export type EReadonlyArray<T> = ReadonlyArray<T>;
+export type ENonNullable<T> = T extends null | undefined ? never : T;
 
 /**
- *  Function
+ * Arrayable
  */
-export type EFn<T = void> = () => T
-export interface IFn<T = any, R = T> {
-    (...arg: T[]): R
-}
-export type AnyFn = (...args: any[]) => any
+export type EArrayable<T> = T | Array<T>;
+
+/**
+ * Object
+ */
+export type EObjable<T = any> = Record<string, T>;
+
+/**
+ * Function
+ */
+export type EFn<T = void> = () => T;
+
+/**
+ * Any Function
+ */
+export type EAnyFn = (...args: any[]) => any;
 
 /**
  *  Range
