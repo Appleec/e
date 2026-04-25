@@ -8,10 +8,36 @@ import { getLastTag } from './tag';
 import { getRepoRoot } from './repo';
 
 /**
+ * Get last commit ID in current branch (refs)
+ *
+ * @example
+ * const r = getCurrentCommitId()
+ * // => '589a759bb602d03db64cacef24a472a4eef777bb'
+ *
+ * const r = etCurrentCommitId({ short: true })
+ * // => 'eef777bb'
+ * @param options
+ */
+export function getCurrentCommitId(
+  options?: { short?: boolean },
+) {
+  if (!options)
+    options = {};
+
+  const r = execSync('git', [
+    'rev-parse',
+    ...(options.short ? ['--short'] : []),
+    'HEAD',
+  ]) as ExecSyncResult;
+
+  return r.stdout ? r.stdout.toString() : '';
+}
+
+/**
  * Get first commit hash(long)
  *
  * @example
- * const stdout = await getFirstCommitHash()
+ * const stdout = getFirstCommitHash()
  * // => 589a759bb602d03db64cacef24a472a4eef777bb
  */
 export function getFirstCommitHash() {

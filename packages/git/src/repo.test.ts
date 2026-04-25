@@ -4,18 +4,18 @@ import {
   isGitRepo,
   getRepoRoot,
   isCleanWithWorkingTree,
-} from './root';
+} from './repo';
 
-describe('git:root', () => {
+describe('git:repo', () => {
   it('=> isCleanWithWorkingTree', () => {
-    console.log('=>', isCleanWithWorkingTree());
-  });
+    console.log('=>', isCleanWithWorkingTree())
+  })
 
   it('=> isGitRepo', () => {
-    console.log('=>', isGitRepo());
-  });
+    console.log('=>', isGitRepo())
+  })
 
   it('=> getRepoRoot', () => {
-    console.log('=>', getRepoRoot());
-  });
-});
+    console.log('=>', getRepoRoot())
+  })
+})

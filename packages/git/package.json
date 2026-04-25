@@ -1,6 +1,6 @@
 {
     "name": "@elinzy/git",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Git for e, a collection of common scripts and commands",
     "type": "module",
     "main": "./dist/index.cjs",
