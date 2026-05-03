@@ -1,10 +1,8 @@
-import { createAssigner } from '../utils/createAssigner';
+import { createAssigner } from '../createAssigner';
 
 /**
  * time
  */
-export const time = createAssigner(
-  {
-    timestamp: true,
-  },
-);
+export const time = createAssigner({
+  timeEnabled: true,
+});

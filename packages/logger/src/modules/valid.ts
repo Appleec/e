@@ -1,11 +1,10 @@
-import { createAssigner } from '../utils/createAssigner';
+import { createAssigner } from '../createAssigner';
 
 /**
  * valid
  */
-export const valid = createAssigner(
-  {
-    type: 'valid',
-    color: 'green',
-  },
-);
+export const valid = createAssigner({
+  type: 'valid',
+  symbolEnabled: true,
+  variant: 'text',
+});

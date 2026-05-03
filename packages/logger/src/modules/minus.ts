@@ -1,11 +1,10 @@
-import { createAssigner } from '../utils/createAssigner';
+import { createAssigner } from '../createAssigner';
 
 /**
  * minus
  */
-export const minus = createAssigner(
-  {
-    type: 'minus',
-    color: 'red',
-  },
-);
+export const minus = createAssigner({
+  type: 'minus',
+  symbolEnabled: true,
+  variant: 'text',
+});

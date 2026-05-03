@@ -1,11 +1,10 @@
-import { createAssigner } from '../utils/createAssigner';
+import { createAssigner } from '../createAssigner';
 
 /**
  * spawn
  */
-export const spawn = createAssigner(
-  {
-    type: 'spawn',
-    color: 'green',
-  },
-);
+export const spawn = createAssigner({
+  type: 'spawn',
+  symbolEnabled: true,
+  variant: 'text',
+});

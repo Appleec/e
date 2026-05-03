@@ -1,11 +1,10 @@
-import { createAssigner } from '../utils/createAssigner';
+import { createAssigner } from '../createAssigner';
 
 /**
  * plus
  */
-export const plus = createAssigner(
-  {
-    type: 'plus',
-    color: 'green',
-  },
-);
+export const plus = createAssigner({
+  type: 'plus',
+  symbolEnabled: true,
+  variant: 'text',
+});

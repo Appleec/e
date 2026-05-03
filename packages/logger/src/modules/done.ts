@@ -1,11 +1,10 @@
-import { createAssigner } from '../utils/createAssigner';
+import { createAssigner } from '../createAssigner';
 
 /**
  * done
  */
-export const done = createAssigner(
-  {
-    type: 'done',
-    color: 'green',
-  },
-);
+export const done = createAssigner({
+  type: 'done',
+  symbolEnabled: true,
+  variant: 'text',
+});

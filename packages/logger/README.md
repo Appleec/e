@@ -1,27 +1,21 @@
-# @elinzy/e-logger
+# @elinzy/logger
 
 ## Install
 
 ```shell
-npm install @elinzy/e-logger
+npm install @elinzy/logger
 ```
 
 ## Usage
 
 ```js
-import * as L from '@elinzy/e-logger'; // or, use '@elinzy/e-logger/compact' to replace
+import * as L from '@elinzy/logger';
 
 // compact
 L.info('Item-1');
 L.success('Item-1');
 L.error('Item-1');
 L.warn('Item-1');
-
-// complex - suppurt `options` parameter
-L.info({ timestamp: true }, 'Item-1');
-L.success({ fit: true }, 'Item-1');
-L.error({ chip: true, text: 'ERROR' }, 'Item-1');
-L.warn({ fit: true, chip: true, text: 'WARNING' }, 'Item-1');
 ```
 
 ## API
@@ -31,12 +25,12 @@ L.warn({ fit: true, chip: true, text: 'WARNING' }, 'Item-1');
 #### strings
 
 - Type: `String|Object`
-- Default: 
+- Default:
 
 #### slots
 
 - Type: `Array[]`
-- Default: 
+- Default:
 
 ### success(strings?, ...slots)
 

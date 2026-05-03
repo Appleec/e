@@ -1,1 +1,1 @@
-# @elinzy/e-core
+# @elinzy/core

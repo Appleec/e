@@ -1,15 +1,15 @@
 {
     "name": "@elinzy/logger",
-    "version": "1.0.0",
-    "description": "Console log alias for e",
+    "version": "0.1.0",
+    "description": "A simple logger for for e",
     "type": "module",
-    "main": "./dist/index.cjs",
+    "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
             "import": "./dist/index.mjs",
-            "require": "./dist/index.cjs"
+            "require": "./dist/index.js"
         }
     },
     "files": [
@@ -20,19 +20,21 @@
         "registry": "https://registry.npmjs.org/"
     },
     "scripts": {
-        "dev": "unbuild --stub",
-        "build": "unbuild",
+        "dev": "rollup --config rollup.config.mjs --watch",
+        "build": "npm-run-all --parallel build:clean build:main build:type",
+        "build:main": "rollup --config rollup.config.mjs",
+        "build:type": "tsc --project tsconfig.build.json --emitDeclarationOnly --preserveWatchOutput",
+        "clean": "rimraf ./dist",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Appleec/e.git",
-        "directory": "packages/e-logger"
+        "directory": "packages/logger"
     },
     "keywords": [
         "e",
-        "logger",
-        "e-logger"
+        "logger"
     ],
     "author": "Appleec <771992522@qq.com>",
     "license": "MIT",
@@ -42,8 +44,6 @@
     "homepage": "https://github.com/Appleec/e#readme",
     "dependencies": {
         "ansis": "^3.17.0",
-        "dedent": "1.6.0",
-        "is-unicode-supported": "^2.1.0",
-        "object-treeify": "5.0.1"
+        "is-unicode-supported": "^2.1.0"
     }
 }

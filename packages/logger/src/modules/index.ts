@@ -2,17 +2,20 @@
  * Compact modules
  * ok, pass, conflict, fail
  */
-export * from './log';
-export * from './help';
-export * from './time';
+// export * from './log';
 
 export * from './info';
 export * from './success';
 export * from './error';
 export * from './warn';
 
+export * from './help';
+export * from './time';
+
 export * from './spawn';
 export * from './plus';
 export * from './minus';
 export * from './valid';
 export * from './done';
+
+

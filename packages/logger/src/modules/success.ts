@@ -1,11 +1,10 @@
-import { createAssigner } from '../utils/createAssigner';
+import { createAssigner } from '../createAssigner';
 
 /**
  * success
  */
-export const success = createAssigner(
-  {
-    type: 'success',
-    color: 'green',
-  },
-);
+export const success = createAssigner({
+  type: 'success',
+  symbolEnabled: true,
+  variant: 'text',
+});
