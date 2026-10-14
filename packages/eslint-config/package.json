@@ -1,60 +1,23 @@
 {
   "name": "@elinzy/eslint-config",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "Common ESLint configuration for e",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
   "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
-    "dev": "rollup --watch",
-    "build": "rollup -c",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint -c eslint.config.mjs ."
+    "dev": "rollup --config rollup.config.mjs --watch",
+    "build": "npm-run-all --parallel build:clean build:main build:type",
+    "build:main": "rollup --config rollup.config.mjs",
+    "build:type": "tsc --project tsconfig.build.json --emitDeclarationOnly --preserveWatchOutput",
+    "build:clean": "rimraf ./dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "exports": {
     ".": {
-      "module": "./dist/index.js",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
-    },
-    "./flat/recommended": {
-      "module": "./dist/configs/flat/recommended.cjs",
-      "import": "./dist/configs/flat/recommended.mjs",
-      "require": "./dist/configs/flat/recommended.cjs"
-    },
-    "./eslintrc/base/recommended": {
-      "module": "./dist/configs/eslintrc/base/recommended.js",
-      "import": "./dist/configs/eslintrc/base/recommended.js",
-      "require": "./dist/configs/eslintrc/base/recommended.js"
-    },
-    "./eslintrc/base/recommended-script": {
-      "module": "./dist/configs/eslintrc/base/recommended-script.js",
-      "import": "./dist/configs/eslintrc/base/recommended-script.js",
-      "require": "./dist/configs/eslintrc/base/recommended-script.js"
-    },
-    "./eslintrc/base/recommended-module": {
-      "module": "./dist/configs/eslintrc/base/recommended-module.js",
-      "import": "./dist/configs/eslintrc/base/recommended-module.js",
-      "require": "./dist/configs/eslintrc/base/recommended-module.js"
-    },
-    "./eslintrc/base/typescript": {
-      "module": "./dist/configs/eslintrc/base/typescript.js",
-      "import": "./dist/configs/eslintrc/base/typescript.js",
-      "require": "./dist/configs/eslintrc/base/typescript.js"
-    },
-    "./eslintrc/node/recommended": {
-      "module": "./dist/configs/eslintrc/node/recommended-script.js",
-      "import": "./dist/configs/eslintrc/node/recommended-script.js",
-      "require": "./dist/configs/eslintrc/node/recommended-script.js"
-    },
-    "./eslintrc/node/recommended-script": {
-      "module": "./dist/configs/eslintrc/node/recommended-script.js",
-      "import": "./dist/configs/eslintrc/node/recommended-script.js",
-      "require": "./dist/configs/eslintrc/node/recommended-script.js"
-    },
-    "./eslintrc/node/recommended-module": {
-      "module": "./dist/configs/eslintrc/node/recommended-module.js",
-      "import": "./dist/configs/eslintrc/node/recommended-module.js",
-      "require": "./dist/configs/eslintrc/node/recommended-module.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
   "files": [
@@ -67,7 +30,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Appleec/e.git",
-    "directory": "packages/e-eslint-config"
+    "directory": "packages/eslint-config"
   },
   "keywords": [
     "e",
@@ -85,57 +48,31 @@
   },
   "homepage": "https://github.com/Appleec/e#readme",
   "devDependencies": {
-    "@babel/core": "7.27.4",
-    "@babel/preset-env": "7.27.2",
-    "@babel/preset-typescript": "7.27.1",
-    "@rollup/plugin-alias": "5.1.1",
-    "@rollup/plugin-babel": "6.0.4",
-    "@rollup/plugin-node-resolve": "16.0.1",
-    "@rollup/plugin-terser": "0.4.4",
+    "eslint": "catalog:",
     "mlly": "1.7.4",
-    "rollup": "4.41.1",
-    "rollup-plugin-dts": "6.2.1",
-    "rollup-plugin-esbuild": "6.2.1",
-    "rollup-plugin-node-externals": "8.0.0"
+    "typescript": "catalog:"
   },
   "dependencies": {
+    "@stylistic/eslint-plugin": "5.10.0",
     "@typescript-eslint/eslint-plugin": "8.34.1",
     "@typescript-eslint/parser": "8.34.1",
-    "eslint": "^9.22.0",
+    "confusing-browser-globals": "1.0.11",
     "eslint-import-resolver-next": "0.6.0",
-    "eslint-import-resolver-typescript": "4.4.3",
+    "eslint-import-resolver-typescript": "4.4.4",
     "eslint-plugin-import": "2.31.0",
-    "eslint-plugin-import-x": "4.15.2",
-    "eslint-plugin-n": "17.16.2",
+    "eslint-plugin-import-x": "4.16.2",
+    "eslint-plugin-n": "17.24.0",
     "eslint-plugin-promise": "7.2.1",
     "globals": "^16.0.0",
-    "local-pkg": "1.1.1",
-    "typescript": "5.8.3",
-    "typescript-eslint": "^8.26.0"
+    "import-meta-resolve": "4.1.0",
+    "typescript-eslint": "^8.58.2"
   },
   "peerDependencies": {
-    "eslint": "^8.57.0 || ^9.0.0",
-    "eslint-plugin-import": "2.x",
-    "eslint-plugin-import-x": "4.x",
-    "eslint-plugin-n": "17.x",
-    "typescript": ">=4.8.4 <5.9.0",
-    "typescript-eslint": "8.x"
+    "eslint": "^9.0.0"
   },
   "peerDependenciesMeta": {
     "eslint": {
       "optional": false
-    },
-    "eslint-plugin-import": {
-      "optional": true
-    },
-    "eslint-plugin-import-x": {
-      "optional": true
-    },
-    "eslint-plugin-n": {
-      "optional": true
-    },
-    "typescript-eslint": {
-      "optional": true
     }
   }
 }

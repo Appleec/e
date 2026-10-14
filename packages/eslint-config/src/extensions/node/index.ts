@@ -1,15 +1,5 @@
-/**
- * Import
- */
-import type { Linter } from 'eslint';
+import { nodeRecommendedExtensionsConfig } from '@/extensions/node/recommended';
 
-/**
- * Config
- */
-const nodeExtensions = {
-  get recommended(): Linter.Config[] {
-    return require('./recommended').default;
-  },
-};
-
-export default nodeExtensions;
+export const nodeExtensions = {
+  recommended: nodeRecommendedExtensionsConfig,
+} as const;

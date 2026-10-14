@@ -1,18 +1,5 @@
-/**
- * Import
- */
-import type { Linter } from 'eslint';
+import { baseRecommendedExtensionsConfig } from '@/extensions/base/recommended';
 
-/**
- * Config
- */
-const baseExtensions = {
-  get recommended(): Linter.Config[] {
-    return [];
-  },
-  get typescript(): Linter.Config[] {
-    return [];
-  },
-};
-
-export default baseExtensions;
+export const baseExtensions = {
+  recommended: baseRecommendedExtensionsConfig,
+} as const;

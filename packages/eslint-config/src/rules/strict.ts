@@ -1,17 +1,16 @@
-/**
- * Import
- */
-import type { Linter } from 'eslint';
+// Utils
+import { allFilesExtensions, defineConfigObject } from '@/utils';
 
-/**
- * Config
- */
-const strictRules = {
-  name: 'eslint-config/rules/strict',
-  rules: {
-    // babel inserts `'use strict';` for us
-    strict: ['error', 'never'],
-  },
-} satisfies Linter.Config;
+// Types
+import type { ConfigRules } from '@/types/common';
 
-export default strictRules;
+export const strictInternalRules = {
+  // babel inserts `'use strict';` for us
+  strict: ['error', 'never'],
+} satisfies ConfigRules;
+
+export const strictRules = defineConfigObject({
+  name: 'e/config/strict',
+  files: allFilesExtensions,
+  rules: strictInternalRules,
+});

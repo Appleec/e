@@ -1,3 +1,3 @@
-const c = '';
+const a = ''
 
-console.log('=>', c);
+console.log('=>', a);

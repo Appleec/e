@@ -1,19 +1,8 @@
-/**
- * Import
- */
-import type eslintrc from '@/configs/eslintrc';
-import type flat from '@/configs/flat';
+// Imports
+import { base } from '@/configs/base';
+import { node } from '@/configs/node';
 
-/**
- * Config
- */
-const configs = {
-  get flat(): Record<keyof typeof flat, any> {
-    return require('./flat').default;
-  },
-  get eslintrc(): Record<keyof typeof eslintrc, any> {
-    return require('./eslintrc').default;
-  },
-};
-
-export default configs;
+export const configs = {
+  base,
+  node,
+} as const;

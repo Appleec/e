@@ -1,1 +1,1 @@
-# @elinzy/e-cli
+# @elinzy/cli

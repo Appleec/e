@@ -1,0 +1,78 @@
+{
+  "name": "@elinzy/eslint-config",
+  "version": "0.1.0",
+  "description": "Common ESLint configuration for e",
+  "main": "dist/index.cjs",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "rollup --config rollup.config.mjs --watch",
+    "build": "npm-run-all --parallel build:clean build:main build:type",
+    "build:main": "rollup --config rollup.config.mjs",
+    "build:type": "tsc --project tsconfig.build.json --emitDeclarationOnly --preserveWatchOutput",
+    "build:clean": "rimraf ./dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Appleec/e.git",
+    "directory": "packages/eslint-config"
+  },
+  "keywords": [
+    "e",
+    "eslint",
+    "config",
+    "eslint-config"
+  ],
+  "author": {
+    "name": "Appleec",
+    "email": "771992522@qq.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Appleec/e/issues"
+  },
+  "homepage": "https://github.com/Appleec/e#readme",
+  "devDependencies": {
+    "eslint": "catalog:",
+    "mlly": "1.7.4",
+    "typescript": "catalog:"
+  },
+  "dependencies": {
+    "@stylistic/eslint-plugin": "5.10.0",
+    "@typescript-eslint/eslint-plugin": "8.34.1",
+    "@typescript-eslint/parser": "8.34.1",
+    "confusing-browser-globals": "1.0.11",
+    "eslint-import-resolver-next": "0.6.0",
+    "eslint-import-resolver-typescript": "4.4.4",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-import-x": "4.16.2",
+    "eslint-plugin-n": "17.24.0",
+    "eslint-plugin-promise": "7.2.1",
+    "globals": "^16.0.0",
+    "import-meta-resolve": "4.1.0",
+    "typescript-eslint": "^8.58.2"
+  },
+  "peerDependencies": {
+    "eslint": "^9.0.0"
+  },
+  "peerDependenciesMeta": {
+    "eslint": {
+      "optional": false
+    }
+  }
+}

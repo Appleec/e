@@ -1,3 +1,8 @@
+/**
+ *
+ * https://github.com/eslint-community/eslint-plugin-n/blob/master/lib/util
+ * https://github.com/wooorm/import-meta-resolve/blob/main/lib/package-json-reader.js
+ */
 // import { findUpSync } from 'find-up-simple';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -5,6 +10,7 @@ import path from 'node:path';
 import Cache from './Cache';
 
 const cache = new Cache();
+const hasOwnProperty = {}.hasOwnProperty;
 
 /**
  * Find package.json file and convert to json format
@@ -67,7 +73,7 @@ function getPackageJson(startPath = 'a.js') {
  * Check package.json type
  */
 export function isModule() {
-  const data: any = getPackageJson();
+  const data = getPackageJson() as any;
   return (
     data != null &&
     typeof data === 'object' &&

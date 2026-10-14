@@ -1,23 +1,8 @@
 /**
  * Import
  */
-import allRules from '@/rules';
-import allConfigs from '@/configs';
-import allPlugins from '@/plugins';
-
-/**
- * common or custom rules
- */
-export const rules = allRules;
-
-/**
- * combine configs
- */
-export const configs = allConfigs;
-
-/**
- * plugins
- */
-export const plugins = allPlugins;
-
-export default { configs, rules, plugins };
+export { configs } from '@/configs';
+export { extensions } from '@/extensions';
+export { helpers } from '@/helpers';
+export { plugins } from '@/plugins';
+export { rules } from '@/rules';

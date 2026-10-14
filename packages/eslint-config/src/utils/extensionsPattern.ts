@@ -33,3 +33,15 @@ export const extensionsRuleAssigner = (extensions: string[] = [], _options?) => 
         .map(m => [m.slice(1), 'never']),
     );
 };
+
+// ::file
+export const allFilesExtensions = extensionsPatternAssigner([
+  ...jsExtensionsWithAll,
+  ...tsExtensionsWithAll,
+]);
+export const tsFilesExtensions = extensionsPatternAssigner([
+  ...tsExtensionsWithAll,
+]);
+export const jsFilesExtensions = extensionsPatternAssigner([
+  ...jsExtensionsWithAll,
+]);

@@ -1,22 +1,18 @@
-/**
- * Import
- */
+// Imports
 import plugin from 'eslint-plugin-import-x';
-import { hasPackage } from '@/utils/checked';
 
-import type { Linter } from 'eslint';
+import {
+  allFilesExtensions,
+  defineConfigPlugin,
+} from '@/utils';
 
-/**
- * Config
- */
-const config = {
-  name: 'eslint-config/plugins/import-x',
+// Types
+import type { ConfigPluginObject } from '@/types/common';
+
+export const importXPluginConfig = defineConfigPlugin({
+  name: 'e/config/plugin/import-x',
+  files: allFilesExtensions,
   plugins: {
     'import-x': plugin,
-  },
-} as unknown as Linter.Config;
-
-const checked = hasPackage('eslint-plugin-import');
-
-export { plugin, config, checked };
-export default config;
+  } as unknown as ConfigPluginObject,
+});

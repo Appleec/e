@@ -1,83 +1,87 @@
-/**
- * Import
- */
-import type { Linter } from 'eslint';
+// Imports
+import confusingBrowserGlobals from 'confusing-browser-globals';
 
-/**
- * Config
- */
-const variablesRules = {
-  name: 'eslint-config/rules/variables',
-  rules: {
-    // enforce or disallow variable initializations at definition
-    'init-declarations': 'off',
+// Utils
+import { allFilesExtensions, defineConfigObject } from '@/utils';
 
-    // disallow the catch clause parameter name being the same as a variable in the outer scope
-    'no-catch-shadow': 'off',
+// Types
+import type { ConfigRules } from '@/types/common';
 
-    // disallow deletion of variables
-    'no-delete-var': 'error',
+export const variablesInternalRules = {
+  // enforce or disallow variable initializations at definition
+  'init-declarations': 'off',
 
-    // disallow labels that share a name with a variable
-    // https://eslint.org/docs/rules/no-label-var
-    'no-label-var': 'error',
+  // disallow the catch clause parameter name being the same as a variable in the outer scope
+  // 'no-catch-shadow': 'off',
 
-    // disallow specific globals
-    'no-restricted-globals': [
-      'error',
-      {
-        name: 'isFinite',
-        message:
-          'Use Number.isFinite instead https://github.com/airbnb/javascript#standard-library--isfinite',
-      },
-      {
-        name: 'isNaN',
-        message:
-          'Use Number.isNaN instead https://github.com/airbnb/javascript#standard-library--isnan',
-      },
-    ],
+  // disallow deletion of variables
+  'no-delete-var': 'error',
 
-    // disallow declaration of variables already declared in the outer scope
-    'no-shadow': 'error',
+  // disallow labels that share a name with a variable
+  // https://eslint.org/docs/rules/no-label-var
+  'no-label-var': 'error',
 
-    // disallow shadowing of names such as arguments
-    'no-shadow-restricted-names': 'error',
+  // disallow specific globals
+  'no-restricted-globals': [
+    'error',
+    {
+      name: 'isFinite',
+      message: 'Use Number.isFinite instead https://github.com/airbnb/javascript#standard-library--isfinite',
+    },
+    {
+      name: 'isNaN',
+      message: 'Use Number.isNaN instead https://github.com/airbnb/javascript#standard-library--isnan',
+    },
+    ...confusingBrowserGlobals.map((g) => ({
+      name: g,
+      message: `Use window.${g} instead. https://github.com/facebook/create-react-app/blob/HEAD/packages/confusing-browser-globals/README.md`,
+    })),
+  ],
 
-    // disallow use of undeclared variables unless mentioned in a /*global */ block
-    'no-undef': 'error',
+  // disallow declaration of variables already declared in the outer scope
+  'no-shadow': 'error',
 
-    // disallow use of undefined when initializing variables
-    'no-undef-init': 'error',
+  // disallow shadowing of names such as arguments
+  'no-shadow-restricted-names': 'error',
 
-    // disallow use of undefined variable
-    // https://eslint.org/docs/rules/no-undefined
-    // TODO: enable?
-    'no-undefined': 'off',
+  // disallow use of undeclared variables unless mentioned in a /*global */ block
+  'no-undef': 'error',
 
-    // disallow declaration of variables that are not used in the code
-    'no-unused-vars': [
-      'warn',
-      {
-        vars: 'all',
-        args: 'after-used',
-        caughtErrors: 'none',
-        ignoreRestSiblings: true,
-        argsIgnorePattern: '^_',
-      },
-    ],
+  // disallow use of undefined when initializing variables
+  'no-undef-init': 'error',
 
-    // disallow use of variables before they are defined
-    // https://eslint.nodejs.cn/docs/latest/rules/no-use-before-define#functions
-    // NOTE:
-    'no-use-before-define': [
-      'error',
-      {
-        functions: false, // default: true
-        classes: true,
-        variables: true,
-      },
-    ],
-  },
-} satisfies Linter.Config;
+  // disallow use of undefined variable
+  // https://eslint.org/docs/rules/no-undefined
+  // TODO: enable?
+  'no-undefined': 'off',
 
-export default variablesRules;
+  // disallow declaration of variables that are not used in the code
+  'no-unused-vars': [
+    'warn',
+    {
+      vars: 'all',
+      args: 'after-used',
+      caughtErrors: 'none',
+      ignoreRestSiblings: true,
+      argsIgnorePattern: '^_',
+    },
+  ],
+
+  // disallow use of variables before they are defined
+  // https://eslint.nodejs.cn/docs/latest/rules/no-use-before-define#functions
+  // NOTE:
+  'no-use-before-define': [
+    'error',
+    {
+      functions: false, // default: true
+      classes: true,
+      variables: true,
+    },
+  ],
+} satisfies ConfigRules;
+
+export const variablesRules = defineConfigObject({
+  name: 'e/config/variables',
+  files: allFilesExtensions,
+  rules: variablesInternalRules,
+});

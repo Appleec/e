@@ -1,18 +1,9 @@
-/**
- * Import
- */
-import type { Linter } from 'eslint';
+// Utils
+import { tsFilesExtensions, defineConfigObject } from '@/utils';
 
-import { tsExtensions, extensionsPatternAssigner } from '@/utils/extensionsPattern';
-
-/**
- * Config
- */
-const typescriptBaseRules = {
-  name: 'eslint-config/rules/typescript/typescript-base',
-  files: extensionsPatternAssigner([
-    ...tsExtensions,
-  ]),
+export const typescriptBaseRules = defineConfigObject({
+  name: 'e/config/typescript/base',
+  files: tsFilesExtensions,
   rules: {
     // The following rules are enabled in Airbnb config, but are already checked (more thoroughly) by the TypeScript compiler
     // Rules are inspired by: https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/eslint-recommended-raw.ts
@@ -37,6 +28,4 @@ const typescriptBaseRules = {
     'no-with': 'off', // ts(1101) & ts(2410)
     'valid-typeof': 'off',
   },
-} satisfies Linter.Config;
-
-export default typescriptBaseRules;
+});

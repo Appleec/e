@@ -1,4 +1,4 @@
-# @elinzy/e-eslint-config
+# @elinzy/eslint-config
 
 - https://eslint.org/docs
 - https://eslint.nodejs.cn/docs
@@ -17,8 +17,8 @@ Config installation:
 npm install -D @elinzy/eslint-config
 ```
 
-> **Requirements**  
-> ESLint v8.44.0 and above  
+> **Requirements**
+> ESLint v8.44.0 and above
 > Node.js v18.x, v20.x and above
 
 ## Usage
@@ -36,7 +36,7 @@ export default [
 ]
 ```
 
-**Plugins:** 
+**Plugins:**
 
 ```sh
 # base

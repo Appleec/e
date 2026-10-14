@@ -1,7 +1,9 @@
-const c = '';
+const c = 1;
 
 console.log('=>', c);
 
-function ff() {}
+function ff() {
+  if (c === 1) { /* empty */ }
+}
 
 ff();

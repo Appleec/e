@@ -1,64 +1,58 @@
-/**
- * Import
- */
-import globals from 'globals';
-import { isModule } from '@/utils/checkedModule';
+// Imports
+import nodePlugin from 'eslint-plugin-n';
 
-import type { Linter } from 'eslint';
+// Utils
+import { allFilesExtensions, defineConfigArray } from '@/utils';
 
-/**
- * Config
- */
-const nodeRecommendedExtensionsConfig = [
-  {
-    name: 'eslint-config/extensions/recommended',
-    languageOptions: {
-      ecmaVersion: 2021,
-      sourceType: isModule() ? 'module' : 'commonjs',
-      parserOptions: {
-        ecmaFeatures: { jsx: true },
-      },
-      globals: {
-        ...globals.node,
-        ...globals.es2021,
-        document: 'readonly',
-        navigator: 'readonly',
-        window: 'readonly',
-      },
-    },
+// Rules
+import { nodeNoUnsupportedFeaturesInternalRules } from '@/rules/node/nodeNoUnsupportedFeatures';
+
+// Data
+const flatNodeConfig = nodePlugin.configs['flat/recommended'];
+const flatModuleConfig = nodePlugin.configs['flat/recommended-module'];
+const flatScriptConfig = nodePlugin.configs['flat/recommended-script'];
+
+export const nodeRecommendedExtensionsConfig = defineConfigArray([
+   {
+    name: 'e/config/node-configurations',
+    files: allFilesExtensions,
+    ...(flatNodeConfig
+      ? {
+          languageOptions: flatNodeConfig.languageOptions,
+          rules: {
+            'n/no-unsupported-features/es-syntax':
+              flatNodeConfig.rules?.['n/no-unsupported-features/es-syntax'] ??
+              nodeNoUnsupportedFeaturesInternalRules['n/no-unsupported-features/es-syntax'],
+          },
+        }
+      : null),
   },
-  {
-    name: 'eslint-config/extensions/recommended-for-module',
+   {
+    name: 'e/config/node-configurations-for-module',
     files: ['**/*.mjs', '**/*.mts'],
-    languageOptions: {
-      sourceType: 'module',
-      globals: {
-        ...globals.node,
-        ...globals.es2021,
-        __dirname: 'off',
-        __filename: 'off',
-        exports: 'off',
-        module: 'off',
-        require: 'off',
-      },
-    },
+    ...(flatModuleConfig
+      ? {
+          languageOptions: flatModuleConfig.languageOptions,
+          rules: {
+            'n/no-unsupported-features/es-syntax':
+              flatModuleConfig.rules?.['n/no-unsupported-features/es-syntax'] ??
+              nodeNoUnsupportedFeaturesInternalRules['n/no-unsupported-features/es-syntax'],
+          },
+        }
+      : null),
   },
-  {
-    name: 'eslint-config/extensions/recommended-for-script',
+   {
+    name: 'e/config/node-configurations-for-script',
     files: ['**/*.cjs', '**/*.cts'],
-    languageOptions: {
-      sourceType: 'commonjs',
-      globals: {
-        ...globals.node,
-        ...globals.es2021,
-        __dirname: 'readonly',
-        __filename: 'readonly',
-        exports: 'writable',
-        module: 'readonly',
-        require: 'readonly',
-      },
-    },
+    ...(flatScriptConfig
+      ? {
+          languageOptions: flatScriptConfig.languageOptions,
+          rules: {
+            'n/no-unsupported-features/es-syntax':
+              flatScriptConfig.rules?.['n/no-unsupported-features/es-syntax'] ??
+              nodeNoUnsupportedFeaturesInternalRules['n/no-unsupported-features/es-syntax'],
+          },
+        }
+      : null),
   },
-] satisfies Linter.Config[];
-
-export default nodeRecommendedExtensionsConfig;
+]);

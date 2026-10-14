@@ -1,81 +1,52 @@
-/**
- * Import
- */
+// Utils
 import {
+  tsFilesExtensions,
+  defineConfigObject,
   extensionsRuleAssigner,
-  tsExtensionsResolver,
-  jsExtensions,
-  tsExtensions,
-  tsExtensionsWithReact,
-  extensionsPatternAssigner, tsExtensionsWithAll,
-} from '@/utils/extensionsPattern';
-import { getDevDeps } from '@/utils/filterPattern';
+  tsExtensionsWithAll,
+  jsExtensionsWithAll,
+} from '@/utils';
 
-import type { Linter } from 'eslint';
+// Helpers
+import { getDevDepsList } from '@/helpers/getDevDepsList';
 
 /**
- * Config
- *
  * @see https://github.com/un-ts/eslint-plugin-import-x/blob/master/src/config/typescript.ts
  */
-const typescriptImportsRules = {
-  name: 'eslint-config/rules/typescript/imports',
-  files: extensionsPatternAssigner([
-    ...tsExtensionsWithAll,
-  ]),
-  settings: {
-    // Apply special parsing for TypeScript files
-    'import/parsers': {
-      '@typescript-eslint/parser': tsExtensionsResolver,
-    },
-    // Append 'ts' extensions to Airbnb 'import/resolver' setting
-    // Original: ['.mjs', '.js', '.json']
-    'import/resolver': {
-      node: {
-        extensions: [...tsExtensionsResolver, '.json'],
-      },
-      // need to install `eslint-import-resolver-typescript`
-      typescript: true,
-      // need to install `eslint-import-resolver-next`
-      next: {
-        packages: {
-          pnpmWorkspace: true,
-          includeRoot: true,
-        },
-      },
-    },
-    // Append 'ts' extensions to Airbnb 'import/extensions' setting
-    // Original: ['.js', '.mjs', '.jsx']
-    'import/extensions': tsExtensionsResolver,
-    // Resolve type definition packages
-    'import/external-module-folders': ['node_modules', 'node_modules/@types'],
-  },
+export const typescriptImportsRules = defineConfigObject({
+  name: 'e/config/typescript/import-x',
+  files: tsFilesExtensions,
   rules: {
-    // Append 'ts' and 'tsx' to Airbnb 'import/extensions' rule
-    // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
-    'import/extensions': ['error', 'ignorePackages', extensionsRuleAssigner([
-      ...tsExtensionsWithReact,
-    ])],
-
-    // Append 'ts' and 'tsx' extensions to Airbnb 'import-x/no-extraneous-dependencies' rule
-    // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-extraneous-dependencies.md
-    'import/no-extraneous-dependencies': [
+    // Append 'ts' and 'tsx' to Airbnb 'import-x/extensions' rule
+    // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/extensions.md
+    'import-x/extensions': [
       'error',
+      'ignorePackages',
       {
-        devDependencies: getDevDeps(
-          [...jsExtensions, ...tsExtensions].map((ext) => ext.slice(1)).join(','),
-        ),
-        optionalDependencies: false,
+        ...(extensionsRuleAssigner([
+          ...jsExtensionsWithAll,
+          ...tsExtensionsWithAll,
+        ])),
       },
     ],
 
-    // The following rules are enabled in Airbnb config, but are recommended to be disabled within TypeScript projects
-    // See: https://github.com/typescript-eslint/typescript-eslint/blob/13583e65f5973da2a7ae8384493c5e00014db51b/docs/linting/TROUBLESHOOTING.md#eslint-plugin-import
-    'import/named': 'off',
-    'import/no-named-as-default-member': 'off',
-    // Disable `import/no-unresolved`, see README.md for details
-    'import/no-unresolved': 'off',
-  },
-} satisfies Linter.Config;
+    // Append 'ts' and 'tsx' extensions to Airbnb 'import-x/no-extraneous-dependencies' rule
+    // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-extraneous-dependencies.md
+    'import-x/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: getDevDepsList('typescript'),
+        optionalDependencies: false,
+        peerDependencies: true,
+        bundledDependencies: true,
+      },
+    ],
 
-export default typescriptImportsRules;
+    // See: https://github.com/typescript-eslint/typescript-eslint/blob/13583e65f5973da2a7ae8384493c5e00014db51b/docs/linting/TROUBLESHOOTING.md#eslint-plugin-import
+
+    // TypeScript compilation already ensures that named imports exist in the referenced module
+    'import-x/named': 'off',
+    // warn on accessing default export property names that are also named exports
+    'import-x/no-named-as-default-member': 'off',
+  },
+});

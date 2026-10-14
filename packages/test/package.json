@@ -12,8 +12,7 @@
   "description": "",
   "devDependencies": {
     "@elinzy/eslint-config": "workspace:*",
-    "eslint": "^9.22.0",
-    "rollup-plugin-node-externals": "8.0.1",
-    "typescript": "5.3.3"
+    "eslint": "catalog:",
+    "eslint-plugin-unused-imports": "4.4.1"
   }
 }

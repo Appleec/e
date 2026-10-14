@@ -1,10 +1,14 @@
 {
-  "extends": "./../../tsconfig.base.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "./",
-    "allowJs": true,
+    "composite": true,
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": [
-    "**/src/*"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules", "**/__tests__/**"]
 }

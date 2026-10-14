@@ -1,29 +1,38 @@
-/**
- * Import
- */
-import globals from 'globals';
+// Utils
+import {
+  allExtensions,
+  jsExtensions,
+  extensionsPatternAssigner,
+  defineConfigArray,
+} from '@/utils';
 
-import type { Linter } from 'eslint';
-/**
- * Config
- */
-const baseRecommendedExtensionsConfig = [
-  /**
-   * Basic configuration
-   */
+// Helpers
+import { getImportSettings } from '@/helpers/getImportSettings';
+import { getStylisticLegacyConfig } from '@/helpers/getStylisticLegacyConfig';
+
+export const baseRecommendedExtensionsConfig = defineConfigArray([
   {
-    name: 'eslint-config/extensions/base/recommended',
+    name: 'e/config/base-configurations',
+    files: allExtensions,
     languageOptions: {
-      globals: {
-        ...globals.node,
-        ...globals.es2015,
-      },
       parserOptions: {
         ecmaVersion: 2018,
         sourceType: 'module',
       },
     },
+    settings: {
+      'import-x/core-modules': [],
+      'import-x/ignore': ['node_modules', String.raw`\.(coffee|scss|css|less|hbs|svg|json)$`],
+    },
   },
-] satisfies Linter.Config[];
-
-export default baseRecommendedExtensionsConfig;
+  {
+    name: 'e/config/base-settings-extensions-configurations',
+    files: extensionsPatternAssigner([...jsExtensions]),
+    settings: getImportSettings({ javascript: true, typescript: false, jsx: false }),
+  },
+  {
+    name: 'e/config/base-disable-legacy-stylistic-js-config',
+    files: allExtensions,
+    ...getStylisticLegacyConfig('javascript'),
+  },
+])

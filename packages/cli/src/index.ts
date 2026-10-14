@@ -1,25 +1,26 @@
-import { Command } from 'commander';
-import fse from 'fs-extra';
+#!/usr/bin/env node
 
-import init from './commands/init';
+// import c from 'ansis'
+// import prompts from 'prompts'
 
-// https://www.npmjs.com/package/commander
-const program = new Command();
+// Args
+import { getArgs } from '@/helpers/getArgs'
 
-const pkg = fse.readJsonSync(new URL('../package.json', import.meta.url));
+// Utils
+import { exit } from '@/utils';
 
-// default
-program
-  .name(Object.keys(pkg.bin)?.[0])
-  .usage('[option] <command>')
-  .description(pkg.description)
-  .version(pkg.version);
+const main = async () => {
+  console.log('=>');
+  let args = getArgs();
+}
 
-// init command
-program
-  .command('init')
-  .description('init')
-  .action((opts) => init(opts));
+main()
+  .catch((error) => {
+    if (error instanceof Error) {
+      exit(error);
+    } else {
+      console.error(error)
+    }
+  });
 
-program
-  .parse();
+

@@ -1,69 +1,153 @@
-/**
- * Import
- */
-import type { Linter } from 'eslint';
+// Utils
+import { allFilesExtensions, defineConfigObject } from '@/utils';
 
-/**
- * Config
- */
-const nodeBaseRules = {
-  name: 'eslint-config/rules/node/node-base',
+export const nodeBaseRules = defineConfigObject({
+  name: 'e/config/node/base',
+  files: allFilesExtensions,
   rules: {
-    // enforce return after a callback
-    // https://eslint.nodejs.cn/docs/latest/rules/callback-return#rule-details
-    // NOTE: This rule was deprecated in ESLint v7.0.0. Please use the corresponding rule in eslint-plugin-n.
-    'callback-return': 'off',
+    // Require return statements after callbacks
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/callback-return.md
+    'n/callback-return': 'off',
 
-    // require all requires be top-level
-    // https://eslint.nodejs.cn/docs/latest/rules/global-require#rule-details
-    // NOTE: This rule was deprecated in ESLint v7.0.0. Please use the corresponding rule in eslint-plugin-n.
-    'global-require': 'error',
+    // Enforce either module.exports or exports
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/exports-style.md
+    'n/exports-style': [
+      'error',
+      'module.exports',
+      {
+        allowBatchAssign: false,
+      },
+    ],
 
-    // enforces error handling in callbacks (node environment)
-    // https://eslint.nodejs.cn/docs/latest/rules/handle-callback-err#rule-details
-    // NOTE: This rule was deprecated in ESLint v7.0.0. Please use the corresponding rule in eslint-plugin-n.
-    'handle-callback-err': 'off',
+    // Enforce the style of file extensions in import declarations
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/file-extension-in-import.md
+    // Off due to 'import-x/extensions'
+    'n/file-extension-in-import': 'off',
 
-    // disallow use of the Buffer() constructor
-    // https://eslint.nodejs.cn/docs/latest/rules/no-buffer-constructor#rule-details
-    // NOTE: This rule was deprecated in ESLint v7.0.0. Please use the corresponding rule in eslint-plugin-n.
-    'no-buffer-constructor': 'error',
+    // Require require() calls to be placed at top-level module scope
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/global-require.md
+    'n/global-require': 'error',
 
-    // disallow mixing regular variable and require declarations
-    // https://eslint.nodejs.cn/docs/latest/rules/no-mixed-requires#rule-details
-    // NOTE: This rule was deprecated in ESLint v7.0.0. Please use the corresponding rule in eslint-plugin-n.
-    'no-mixed-requires': 'off',
+    // Require error handling in callbacks
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/handle-callback-err.md
+    'n/handle-callback-err': 'off',
 
-    // disallow use of new operator with the require function
-    // https://eslint.nodejs.cn/docs/latest/rules/no-new-require#rule-details
-    // NOTE: This rule was deprecated in ESLint v7.0.0. Please use the corresponding rule in eslint-plugin-n.
-    'no-new-require': 'error',
+    // Require correct usage of hashbang
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/hashbang.md
+    'n/hashbang': 'error',
 
-    // disallow string concatenation with __dirname and __filename
-    // https://eslint.nodejs.cn/docs/latest/rules/no-path-concat#rule-details
-    // NOTE: This rule was deprecated in ESLint v7.0.0. Please use the corresponding rule in eslint-plugin-n.
-    'no-path-concat': 'error',
+    // Enforce Node.js-style error-first callback pattern is followed
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-callback-literal.md
+    'n/no-callback-literal': 'off',
 
-    // disallow use of process.env
-    // https://eslint.nodejs.cn/docs/latest/rules/no-process-env#rule-details
-    // NOTE: This rule was deprecated in ESLint v7.0.0. Please use the corresponding rule in eslint-plugin-n.
-    'no-process-env': 'off',
+    // Disallow deprecated APIs
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-deprecated-api.md
+    'n/no-deprecated-api': 'error',
 
-    // disallow process.exit()
-    // https://eslint.nodejs.cn/docs/latest/rules/no-process-exit#rule-details
-    // NOTE: This rule was deprecated in ESLint v7.0.0. Please use the corresponding rule in eslint-plugin-n.
-    'no-process-exit': 'off',
+    // Disallow the assignment to exports
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-exports-assign.md
+    'n/no-exports-assign': 'error',
 
-    // restrict usage of specified node modules
-    // https://eslint.nodejs.cn/docs/latest/rules/no-restricted-modules#rule-details
-    // NOTE: This rule was deprecated in ESLint v7.0.0. Please use the corresponding rule in eslint-plugin-n.
-    'no-restricted-modules': 'off',
+    // Disallow import declarations which import extraneous modules
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-extraneous-import.md
+    // Off due to 'import-x/no-extraneous-dependencies'
+    'n/no-extraneous-import': 'off',
 
-    // disallow use of synchronous methods (off by default)
-    // https://eslint.nodejs.cn/docs/latest/rules/no-sync#rule-details
-    // NOTE: This rule was deprecated in ESLint v7.0.0. Please use the corresponding rule in eslint-plugin-n.
-    'no-sync': 'off',
+    // Disallow require() expressions which import extraneous modules
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-extraneous-require.md
+    // Off due to 'import-x/no-extraneous-dependencies'
+    'n/no-extraneous-require': 'off',
+
+    // Disallow import declarations which import non-existence modules
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-missing-import.md
+    // Off due to 'import-x/no-unresolved'
+    'n/no-missing-import': 'off',
+
+    // Disallow require() expressions which import non-existence modules
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-missing-require.md
+    // Off due to 'import-x/no-unresolved'
+    'n/no-missing-require': 'off',
+
+    // Disallow require calls to be mixed with regular variable declarations
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-mixed-requires.md
+    'n/no-mixed-requires': 'off',
+
+    // Disallow new operators with calls to require
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-new-require.md
+    'n/no-new-require': 'error',
+
+    // Disallow string concatenation with __dirname and __filename
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-path-concat.md
+    'n/no-path-concat': 'error',
+
+    // Disallow the use of process.env
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-process-env.md
+    'n/no-process-env': 'off',
+
+    // Disallow the use of process.exit()
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-process-exit.md
+    'n/no-process-exit': 'error',
+
+    // Disallow specified modules when loaded by import declarations
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-restricted-import.md
+    // Off due to 'no-restricted-imports'
+    'n/no-restricted-import': 'off',
+
+    // Disallow specified modules when loaded by require
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-restricted-require.md
+    // Off due to 'no-restricted-imports'
+    'n/no-restricted-require': 'off',
+
+    // Disallow synchronous methods
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-sync.md
+    'n/no-sync': [
+      'error',
+      {
+        allowAtRootLevel: false,
+        ignores: [],
+      },
+    ],
+
+    // Disallow top-level await in published modules
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-top-level-await.md
+    'n/no-top-level-await': 'off',
+
+    // Disallow bin files that npm ignores
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-unpublished-bin.md
+    'n/no-unpublished-bin': 'error',
+
+    // Disallow import declarations which import private modules
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-unpublished-import.md
+    // Off due to 'import-x/no-extraneous-dependencies'
+    'n/no-unpublished-import': 'off',
+
+    // Disallow require() expressions which import private modules
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-unpublished-require.md
+    // Off due to 'import-x/no-extraneous-dependencies'
+    'n/no-unpublished-require': 'off',
+
+    // Enforce using the node: protocol when importing Node.js builtin modules
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/prefer-node-protocol.md
+    'n/prefer-node-protocol': 'error',
+
+    // Require that process.exit() expressions use the same code path as throw
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/process-exit-as-throw.md
+    'n/process-exit-as-throw': 'error',
   },
-} satisfies Linter.Config;
+})
 
-export default nodeBaseRules;
+export const deprecatedNodeBaseRules = defineConfigObject({
+  name: 'e/config/node/base/deprecated',
+  files: allFilesExtensions,
+  rules: {
+    // Disallow third-party modules which are hiding core modules
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-hide-core-modules.md
+    // @deprecated
+    'n/no-hide-core-modules': 'off',
+
+    // Require correct usage of hashbang
+    // https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/shebang.md
+    // @deprecated
+    'n/shebang': 'off',
+  },
+});

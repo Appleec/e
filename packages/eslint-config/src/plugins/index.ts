@@ -1,24 +1,13 @@
-/**
- * Import
- */
-import type { Linter } from 'eslint';
+// Plugins
+import { importXPluginConfig } from '@/plugins/importXPlugin';
+import { nodePlugin } from '@/plugins/nodePlugin';
+import { stylisticPlugin } from '@/plugins/stylisticPlugin';
+import { typescriptEslintPlugin } from '@/plugins/typescriptEslintPlugin';
 
-/**
- * Config
- */
-const plugins = {
-  get importX(): Linter.Config {
-    return require('./importXPlugin').default;
-  },
-  get import(): Linter.Config {
-    return require('./importPlugin').default;
-  },
-  get nodeN(): Linter.Config {
-    return require('./nodeNPlugin').default;
-  },
-  get typescriptEslint(): Linter.Config {
-    return require('./typescriptEslintPlugin').default;
-  },
-};
-
-export default plugins;
+// @ts-ignore
+export const plugins = {
+  stylistic: stylisticPlugin,
+  importX: importXPluginConfig,
+  node: nodePlugin,
+  typescriptEslint: typescriptEslintPlugin,
+} as const;
