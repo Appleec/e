@@ -32,7 +32,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Appleec/e.git",
-    "directory": "packages/eslint-config-extended"
+    "directory": "packages/eslint-config"
   },
   "keywords": [
     "e",
@@ -55,18 +55,16 @@
     "typescript": "catalog:"
   },
   "dependencies": {
+    "@next/eslint-plugin-next": "^16.3.8",
     "@stylistic/eslint-plugin": "5.10.0",
-    "@typescript-eslint/eslint-plugin": "8.34.1",
-    "@typescript-eslint/parser": "8.34.1",
     "confusing-browser-globals": "1.0.11",
-    "eslint-import-resolver-next": "0.6.0",
     "eslint-import-resolver-typescript": "4.4.4",
-    "eslint-plugin-import": "2.31.0",
     "eslint-plugin-import-x": "4.16.2",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-n": "17.24.0",
-    "eslint-plugin-promise": "7.2.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^16.0.0",
-    "import-meta-resolve": "4.1.0",
     "typescript-eslint": "^8.58.2"
   },
   "peerDependencies": {
@@ -76,8 +74,5 @@
     "eslint": {
       "optional": false
     }
-  },
-  "engines": {
-    "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
   }
 }
