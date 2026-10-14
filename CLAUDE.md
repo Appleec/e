@@ -71,7 +71,7 @@ eslint-config-extended — eslint-config 的扩展版（同名 npm 包，更严�
 
 ### ESLint 配置
 
-- Root `eslint.config.mjs` 使用 `@elinzy/eslint-config` 的 flat config presets（base/recommended、base/typescript、node/recommended）。
+- Root `eslint.config.js` 使用 `@elinzy/eslint-config/root`。
 - `packages/eslint-config` 导出 `configs`（base、node）、`extensions`、`helpers`、`plugins`、`rules` 五个命名空间。
 
 ### 测试
