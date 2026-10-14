@@ -1,3 +1,3 @@
-import config from './src/lint-staged-base.config.js';
+import config from '@elinzy/lint-staged-config/base';
 
 export default config;
