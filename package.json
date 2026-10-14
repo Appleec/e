@@ -34,7 +34,7 @@
   "homepage": "https://github.com/Appleec/e#readme",
   "devDependencies": {
     "@changesets/cli": "2.29.3",
-    "@elinzy/eslint-config": "workspace:*",
+    "@elinzy/eslint-config-extended": "workspace:*",
     "@elinzy/tsconfig": "workspace:*",
     "@types/node": "^22.13.10",
     "@vitest/coverage-istanbul": "catalog:",

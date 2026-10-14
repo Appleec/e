@@ -1,12 +1,8 @@
-// Import
-import { configs } from '@elinzy/eslint-config';
+import { configs, plugins } from '@elinzy/eslint-config-extended';
 
 export default [
-  /**
-   * ignores
-   */
   {
-    name: 'eslint-config/ignore/recommended',
+    name: 'e/ignore/recommended',
     ignores: [
       '**/node_modules/**',
       '**/dist/**',
@@ -17,27 +13,20 @@ export default [
     ],
   },
 
-  /**
-   * base
-   * need to install `eslint-plugin-import-x`
-   * need to install `eslint-plugin-n`
-   * need to install `typescript` and `typescript-eslint`
-   */
-  ...configs.flat.base.recommended,
-  ...configs.flat.base.typescript,
-  ...configs.flat.node.recommended,
+  plugins.stylistic,
+  plugins.importX,
+  ...configs.base.recommended,
 
-  /**
-   * fixture
-   */
+  plugins.typescriptEslint,
+  ...configs.base.typescript,
+
+  plugins.node,
+  ...configs.node.recommended,
+
+  // Project-specific overrides
   {
-    name: 'eslint-config/typescript/recommended-typescript',
+    name: 'e/typescript/relax',
     files: ['**/*.{ts,cts,mts,tsx}'],
-    languageOptions: {
-      parserOptions: {
-        project: 'tsconfig.eslint.json',
-      },
-    },
     rules: {
       '@typescript-eslint/dot-notation': 'off',
       '@typescript-eslint/no-implied-eval': 'off',
@@ -46,7 +35,7 @@ export default [
     },
   },
   {
-    name: 'eslint-config/node/recommended',
+    name: 'e/node/relax',
     rules: {
       'n/global-require': 'off',
       'n/prefer-global/process': 'off',
@@ -55,26 +44,7 @@ export default [
     },
   },
   {
-    name: 'eslint-config/import/recommended',
-    rules: {
-      'import-x/namespace': 'off',
-      'import-x/prefer-default-export': 'off',
-      'import-x/no-extraneous-dependencies': 'off',
-      'import-x/no-import-module-exports': 'off',
-      'import-x/no-rename-default': 'off',
-      'import-x/no-named-as-default': 'off',
-      'import-x/no-relative-packages': 'off',
-      'import-x/no-named-as-default-member': 'off',
-    },
-  },
-  {
-    name: 'eslint-config/base/recommended',
-    languageOptions: {
-      parserOptions: {
-        ecmaVersion: 2021,
-        sourceType: 'module',
-      },
-    },
+    name: 'e/base/relax',
     rules: {
       'no-console': 'off',
       'no-void': 'off',
