@@ -49,6 +49,7 @@
   "homepage": "https://github.com/Appleec/e#readme",
   "dependencies": {
     "@elinzy/core": "workspace:^",
+    "@elinzy/build-templates": "workspace:*",
     "@elinzy/logger": "workspace:*",
     "ansis": "^3.17.0",
     "commander": "^14.0.3",

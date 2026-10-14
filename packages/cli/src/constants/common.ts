@@ -1,0 +1,50 @@
+export const configs = {
+  EXTENDED: 'extended',
+  LEGACY: 'legacy',
+} as const;
+
+export const languages = {
+  JAVASCRIPT: 'javascript',
+  TYPESCRIPT: 'typescript',
+} as const;
+
+export const formatters = {
+  NONE: 'none',
+  PRETTIER: 'prettier',
+} as const;
+
+export const runtimes = {
+  REACT: 'react',
+  NEXT: 'next',
+  NODE: 'node',
+} as const;
+
+export const strictConfigs = {
+  NONE: 'none',
+  IMPORT: 'import',
+  REACT: 'react',
+  TYPESCRIPT: 'typescript',
+} as const;
+
+export const legacyConfigs = {
+  BASE: 'base',
+  REACT: 'react',
+  REACT_HOOKS: 'react-hooks',
+} as const;
+
+export const defaults = {
+  config: configs.EXTENDED,
+  language: languages.TYPESCRIPT,
+  formatter: formatters.PRETTIER,
+  strictConfig: false,
+  legacyReactHooks: true,
+  createEslintFile: true,
+  skipInstall: false,
+} as const;
+
+export const subFolders = {
+  DEFAULT: 'default',
+  STRICT: 'strict',
+} as const;
+
+export const eslintConfigName = 'eslint.config.mjs';
