@@ -47,6 +47,7 @@ export function isExistBranch(
  * @description
  * `git symbolic-ref --short HEAD`
  * `git rev-parse --abbrev-ref HEAD`
+ * `git name-rev --name-only HEAD`
  *
  * @example
  * const stdout = getCurrentBranch()
@@ -54,8 +55,8 @@ export function isExistBranch(
  */
 export function getCurrentBranch() {
   const r = execSync('git', [
-    'symbolic-ref',
-    '--short',
+    'rev-parse',
+    '--abbrev-ref',
     'HEAD',
   ]) as ExecSyncResult;
   return r.stdout;
