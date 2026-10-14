@@ -3,6 +3,7 @@
   "version": "0.1.3",
   "description": "A collection of common scripts and commands for e",
   "type": "module",
+  "main": "./dist/index.cjs",
   "exports": {
     ".": {
       "types": {
