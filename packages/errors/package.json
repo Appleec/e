@@ -4,18 +4,20 @@
     "description": "Error classes for e",
     "type": "module",
     "main": "./dist/index.cjs",
-    "types": "./dist/index.d.ts",
+    "types": "./dist/index.d.mts",
     "scripts": {
-        "dev": "rollup -c -w",
-        "build": "npm-run-all --parallel build:clean build:main build:type",
-        "build:main": "rollup -c",
-        "build:type": "tsc -p tsconfig.build.json --emitDeclarationOnly",
-        "build:clean": "rimraf ./dist",
+        "dev": "tsdown --watch",
+        "build": "tsdown",
+        "typecheck": "tsc --noEmit",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "exports": {
         ".": {
-            "types": "./dist/index.d.ts",
+            "types": {
+                "import": "./dist/index.d.mts",
+                "require": "./dist/index.d.cts",
+                "default": "./dist/index.d.mts"
+            },
             "import": "./dist/index.mjs",
             "require": "./dist/index.cjs"
         }

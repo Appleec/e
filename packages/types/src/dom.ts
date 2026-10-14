@@ -1,3 +1,3 @@
-import { ENullable } from './common';
+import type { ENullable } from './common';
 
 export type ERef<T extends HTMLElement = HTMLDivElement> = ENullable<T>

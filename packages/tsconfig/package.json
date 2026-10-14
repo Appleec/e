@@ -5,13 +5,12 @@
   "type": "module",
   "main": "tsconfig.json",
   "scripts": {
-    "dev": "rollup --watch",
-    "build": "rollup -c",
+    "dev": "echo 'tsconfig: no build required'",
+    "build": "echo 'tsconfig: no build required'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
-    "dist",
-		"*.json"
+    "*.json"
   ],
   "publishConfig": {
     "access": "public",

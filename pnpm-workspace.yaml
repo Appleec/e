@@ -3,7 +3,17 @@ packages:
   - docs
   - '!**/tests/**'
 
+allowBuilds:
+  esbuild: true
+  unrs-resolver: true
+
 catalog:
+  '@vitest/coverage-istanbul': ^5.0.4
+  '@vitest/ui': ^5.0.4
   eslint: ^9.39.4
   typescript: ^5.8.3
   tsx: ^4.21.0
+  vite: ^6.4.4
+  vitest: ^5.0.4
+
+minimumReleaseAge: 1440

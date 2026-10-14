@@ -4,18 +4,20 @@
   "description": "Common types shared for e",
   "type": "module",
   "main": "./dist/index.cjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.d.mts",
   "scripts": {
-		"dev": "rollup --config rollup.config.mjs --watch",
-		"build": "npm-run-all --parallel build:clean build:main build:type",
-		"build:main": "rollup --config rollup.config.mjs",
-		"build:type": "tsc --project tsconfig.build.json --emitDeclarationOnly --preserveWatchOutput",
-		"build:clean": "rimraf ./dist",
-		"test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsdown --watch",
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": {
+        "import": "./dist/index.d.mts",
+        "require": "./dist/index.d.cts",
+        "default": "./dist/index.d.mts"
+      },
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     }
@@ -45,7 +47,7 @@
     "url": "https://github.com/Appleec/e/issues"
   },
   "homepage": "https://github.com/Appleec/e#readme",
-	"peerDependencies": {
-		"typescript": "catalog:"
-	}
+  "peerDependencies": {
+    "typescript": "catalog:"
+  }
 }

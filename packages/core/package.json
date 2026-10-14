@@ -4,15 +4,23 @@
     "description": "e core implementation module",
     "type": "module",
     "main": "./dist/index.cjs",
-    "types": "./dist/index.d.ts",
+    "types": "./dist/index.d.mts",
     "exports": {
         ".": {
-            "types": "./dist/index.d.ts",
+            "types": {
+                "import": "./dist/index.d.mts",
+                "require": "./dist/index.d.cts",
+                "default": "./dist/index.d.mts"
+            },
             "import": "./dist/index.mjs",
             "require": "./dist/index.cjs"
         },
         "./child_process": {
-            "types": "./dist/child_process.d.ts",
+            "types": {
+                "import": "./dist/child_process.d.mts",
+                "require": "./dist/child_process.d.cts",
+                "default": "./dist/child_process.d.mts"
+            },
             "import": "./dist/child_process.mjs",
             "require": "./dist/child_process.cjs"
         }
@@ -25,11 +33,9 @@
         "dist"
     ],
     "scripts": {
-        "dev": "rollup --config rollup.config.mjs --watch",
-        "build": "npm-run-all --parallel build:clean build:main build:type",
-        "build:main": "rollup --config rollup.config.mjs",
-        "build:type": "tsc --project tsconfig.build.json --emitDeclarationOnly --preserveWatchOutput",
-        "build:clean": "rimraf ./dist",
+        "dev": "tsdown --watch",
+        "build": "tsdown",
+        "typecheck": "tsc --noEmit",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
