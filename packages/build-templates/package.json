@@ -1,0 +1,27 @@
+{
+  "name": "@elinzy/build-templates",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Generate ESLint config templates for the e CLI",
+  "type": "module",
+  "scripts": {
+    "build": "tsx lib/index.ts",
+    "dev": "tsx lib/index.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Appleec/e.git",
+    "directory": "packages/build-templates"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "tsx": "catalog:",
+    "typescript": "catalog:"
+  },
+  "engines": {
+    "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
+  }
+}
