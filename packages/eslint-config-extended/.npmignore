@@ -1,0 +1,9 @@
+# Ignore everything
+/*
+
+# Not ignored folders
+!dist
+
+# Note Ignored files
+!package.json
+!README.md
