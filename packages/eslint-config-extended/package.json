@@ -20,7 +20,9 @@
       },
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
-    }
+    },
+    "./legacy": "./dist/legacy.mjs",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist"
