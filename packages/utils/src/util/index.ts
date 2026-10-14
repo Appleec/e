@@ -19,3 +19,5 @@ export { default as fileToBase64 } from './fileToBase64';
 
 export { default as isMobile } from './isMobile';
 export { default as isCreditCard } from './isCreditCard';
+
+export { default as parseEnv } from './parseEnv'

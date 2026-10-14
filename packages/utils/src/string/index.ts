@@ -19,3 +19,5 @@ export { default as endsWith } from './endsWith';
 export { default as trim } from './trim';
 export { default as trimStart } from './trimStart';
 export { default as trimEnd } from './trimEnd';
+
+export { default as repeat } from './repeat';

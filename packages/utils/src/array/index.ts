@@ -4,6 +4,8 @@
 export { default as first } from './first';
 export { default as last } from './last';
 
+export { default as some } from './some';
+
 export { default as filter } from './filter';
 export { default as slice } from './slice';
 export { default as indexOf } from './indexOf';

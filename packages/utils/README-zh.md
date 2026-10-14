@@ -1,4 +1,4 @@
-# @elinzy/e-utils
+# @elinzy/utils
 
 [![NPM Version](https://img.shields.io/npm/v/@elinzy/e-utils.svg)](https://npmjs.org/package/@elinzy/e-utils)
 [![NPM Downloads](https://img.shields.io/npm/dm/@elinzy/e-utils.svg)](https://npmjs.org/package/@elinzy/e-utils)
