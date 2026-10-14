@@ -5,11 +5,11 @@
   "description": "Shared ESLint configuration for the e monorepo",
   "type": "module",
   "exports": {
-    "./base": "./configs/base.mjs",
-    "./internal": "./configs/internal.mjs",
-    "./root": "./configs/root.mjs",
-    "./utils": "./configs/utils.mjs",
-    "./prettier": "./configs/prettier.mjs",
+    "./base": "./src/eslint-base.config.js",
+    "./internal": "./src/eslint-internal.config.js",
+    "./root": "./src/eslint-root.config.js",
+    "./utils": "./src/eslint-utils.js",
+    "./prettier": "./src/eslint/prettier.eslint.js",
     "./package.json": "./package.json"
   },
   "scripts": {
@@ -17,7 +17,7 @@
     "lint:fix": "eslint . --fix"
   },
   "files": [
-    "configs"
+    "src"
   ],
   "repository": {
     "type": "git",

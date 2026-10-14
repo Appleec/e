@@ -1,7 +1,7 @@
 import { rules } from '@elinzy/eslint-config-extended';
 import unusedImportsPlugin from 'eslint-plugin-unused-imports';
 
-import { defineConfig, getNoExtraneousDependenciesRule } from './utils.mjs';
+import { defineConfig, getNoExtraneousDependenciesRule } from './eslint-utils.js';
 
 const unusedImportConfig = defineConfig([
   {

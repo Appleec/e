@@ -3,7 +3,7 @@ import { configs, plugins } from '@elinzy/eslint-config-extended';
 import promisePlugin from 'eslint-plugin-promise';
 import unicornPlugin from 'eslint-plugin-unicorn';
 
-import { defineConfig } from './utils.mjs';
+import { defineConfig } from './eslint-utils.js';
 
 const promiseConfig = defineConfig([
   promisePlugin.configs['flat/recommended'],

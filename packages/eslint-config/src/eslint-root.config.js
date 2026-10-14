@@ -1,7 +1,7 @@
 import { readdirSync } from 'node:fs';
 
 import config from './base.mjs';
-import { defineConfig, gitIgnoreFile, globalIgnores, rootPath } from './utils.mjs';
+import { defineConfig, gitIgnoreFile, globalIgnores, rootPath } from './eslint-utils.js';
 
 const rootFolders = readdirSync(rootPath, { withFileTypes: true })
   .filter((dirent) => dirent.isDirectory())

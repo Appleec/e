@@ -1,6 +1,6 @@
 import { configs, plugins, rules } from '@elinzy/eslint-config-extended';
 
-import { defineConfig } from './utils.mjs';
+import { defineConfig } from './eslint-utils.js';
 
 export const tsConfig = defineConfig([
   plugins.typescriptEslint,
