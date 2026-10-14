@@ -1,8 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { baseGithubUrl } from './constants';
-
 /**
  * Resolve templates directory from the `@elinzy/build-templates` package.
  * Uses import.meta.resolve to find the package, then reads templates locally.

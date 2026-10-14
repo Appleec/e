@@ -1,26 +1,31 @@
 #!/usr/bin/env node
 
-// import c from 'ansis'
-// import prompts from 'prompts'
-
-// Args
-import { getArgs } from '@/helpers/getArgs'
-
 // Utils
-import { exit } from '@/utils';
+import { exit } from '@/utils/functions';
 
-const main = async () => {
-  console.log('=>');
-  let args = getArgs();
-}
+// @ts-ignore
+import { name, version } from '../package.json';
+import { Command } from 'commander';
+import { eslint } from '@/commands/eslint';
 
-main()
-  .catch((error) => {
-    if (error instanceof Error) {
-      exit(error);
-    } else {
-      console.error(error)
+const program = new Command()
+  .name(name)
+  .version(version, '-v, --version', 'Output the current version.')
+  .helpOption('-h, --help', 'Display help message.');
+
+program
+  .command('eslint')
+  .description('Interactive ESLint config scaffold')
+  .action(async () => {
+    try {
+      await eslint();
+    } catch (error) {
+      if (error instanceof Error) {
+        exit(error);
+      } else {
+        console.error(error);
+      }
     }
   });
 
-
+program.parse();

@@ -1,5 +1,31 @@
 import pc from 'ansis';
 
+import type { InitialReturnValue } from 'prompts';
+
+// Handle Sigterm
+export const handleSigTerm = (): void => process.exit(0);
+
+// On Prompt State
+interface PromptStateProps {
+  value: InitialReturnValue;
+  aborted: boolean;
+  exited: boolean;
+}
+
+export const onPromptState = (state: PromptStateProps): void => {
+  if (state.aborted) {
+    process.stdout.write('\u001B[?25h');
+    process.stdout.write('\n');
+    process.exit(1);
+  }
+};
+
+// On Cancel
+export const onCancel = (): void => {
+  console.error('Exiting, bye bye.');
+  process.exit(1);
+};
+
 /**
  * Run Function Catch Block
  * @see https://github.com/vercel/next.js/blob/canary/packages/create-next-app/index.ts#L499
