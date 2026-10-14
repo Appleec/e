@@ -1,52 +1,55 @@
 {
-    "name": "@elinzy/logger",
-    "version": "0.1.0",
-    "description": "A simple logger for for e",
-    "type": "module",
-    "main": "./dist/index.cjs",
-    "types": "./dist/index.d.mts",
-    "exports": {
-        ".": {
-            "types": {
-                "import": "./dist/index.d.mts",
-                "require": "./dist/index.d.cts",
-                "default": "./dist/index.d.mts"
-            },
-            "import": "./dist/index.mjs",
-            "require": "./dist/index.cjs"
-        }
-    },
-    "files": [
-        "dist"
-    ],
-    "publishConfig": {
-        "access": "public",
-        "registry": "https://registry.npmjs.org/"
-    },
-    "scripts": {
-        "dev": "tsdown --watch",
-        "build": "tsdown",
-        "typecheck": "tsc --noEmit",
-        "clean": "rimraf ./dist",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Appleec/e.git",
-        "directory": "packages/logger"
-    },
-    "keywords": [
-        "e",
-        "logger"
-    ],
-    "author": "Appleec <771992522@qq.com>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/Appleec/e/issues"
-    },
-    "homepage": "https://github.com/Appleec/e#readme",
-    "dependencies": {
-        "ansis": "^3.17.0",
-        "is-unicode-supported": "^2.1.0"
+  "name": "@elinzy/logger",
+  "version": "0.1.0",
+  "description": "A simple logger for for e",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": {
+        "import": "./dist/index.d.mts",
+        "require": "./dist/index.d.cts",
+        "default": "./dist/index.d.mts"
+      },
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "dev": "tsdown --watch",
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf ./dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Appleec/e.git",
+    "directory": "packages/logger"
+  },
+  "keywords": [
+    "e",
+    "logger"
+  ],
+  "author": "Appleec <771992522@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Appleec/e/issues"
+  },
+  "homepage": "https://github.com/Appleec/e#readme",
+  "dependencies": {
+    "ansis": "^3.17.0",
+    "is-unicode-supported": "^2.1.0"
+  },
+  "devDependencies": {
+    "tsdown": "catalog:"
+  }
 }

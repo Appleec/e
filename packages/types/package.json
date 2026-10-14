@@ -49,5 +49,8 @@
   "homepage": "https://github.com/Appleec/e#readme",
   "peerDependencies": {
     "typescript": "catalog:"
+  },
+  "devDependencies": {
+    "tsdown": "catalog:"
   }
 }

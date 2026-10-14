@@ -50,6 +50,7 @@
   },
   "homepage": "https://github.com/Appleec/e#readme",
   "devDependencies": {
+    "tsdown": "catalog:",
     "eslint": "catalog:",
     "mlly": "1.7.4",
     "typescript": "catalog:"

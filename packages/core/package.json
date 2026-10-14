@@ -1,60 +1,63 @@
 {
-    "name": "@elinzy/core",
-    "version": "0.1.2",
-    "description": "e core implementation module",
-    "type": "module",
-    "main": "./dist/index.cjs",
-    "types": "./dist/index.d.mts",
-    "exports": {
-        ".": {
-            "types": {
-                "import": "./dist/index.d.mts",
-                "require": "./dist/index.d.cts",
-                "default": "./dist/index.d.mts"
-            },
-            "import": "./dist/index.mjs",
-            "require": "./dist/index.cjs"
-        },
-        "./child_process": {
-            "types": {
-                "import": "./dist/child_process.d.mts",
-                "require": "./dist/child_process.d.cts",
-                "default": "./dist/child_process.d.mts"
-            },
-            "import": "./dist/child_process.mjs",
-            "require": "./dist/child_process.cjs"
-        }
+  "name": "@elinzy/core",
+  "version": "0.1.2",
+  "description": "e core implementation module",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": {
+        "import": "./dist/index.d.mts",
+        "require": "./dist/index.d.cts",
+        "default": "./dist/index.d.mts"
+      },
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
-    "publishConfig": {
-        "access": "public",
-        "registry": "https://registry.npmjs.org/"
-    },
-    "files": [
-        "dist"
-    ],
-    "scripts": {
-        "dev": "tsdown --watch",
-        "build": "tsdown",
-        "typecheck": "tsc --noEmit",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Appleec/e.git",
-        "directory": "packages/core"
-    },
-    "keywords": [
-        "e",
-        "core"
-    ],
-    "author": "Appleec <771992522@qq.com>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/Appleec/e/issues"
-    },
-    "homepage": "https://github.com/Appleec/e#readme",
-    "dependencies": {
-        "ansis": "4.2.0",
-        "execa": "^9.5.2"
+    "./child_process": {
+      "types": {
+        "import": "./dist/child_process.d.mts",
+        "require": "./dist/child_process.d.cts",
+        "default": "./dist/child_process.d.mts"
+      },
+      "import": "./dist/child_process.mjs",
+      "require": "./dist/child_process.cjs"
     }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsdown --watch",
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Appleec/e.git",
+    "directory": "packages/core"
+  },
+  "keywords": [
+    "e",
+    "core"
+  ],
+  "author": "Appleec <771992522@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Appleec/e/issues"
+  },
+  "homepage": "https://github.com/Appleec/e#readme",
+  "dependencies": {
+    "ansis": "4.2.0",
+    "execa": "^9.5.2"
+  },
+  "devDependencies": {
+    "tsdown": "catalog:"
+  }
 }

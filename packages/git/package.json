@@ -45,6 +45,7 @@
     },
     "homepage": "https://github.com/Appleec/e#readme",
     "devDependencies": {
+    "tsdown": "catalog:",
         "@elinzy/core": "workspace:*"
     }
 }
