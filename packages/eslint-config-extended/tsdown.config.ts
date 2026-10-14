@@ -8,4 +8,5 @@ export default defineConfig({
   platform: 'node',
   unbundle: true,
   clean: true,
+  nodeProtocol: true,
 });

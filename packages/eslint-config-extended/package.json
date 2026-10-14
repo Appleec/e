@@ -1,5 +1,5 @@
 {
-  "name": "@elinzy/eslint-config",
+  "name": "@elinzy/eslint-config-extended",
   "version": "0.1.0",
   "description": "Common ESLint configuration for e",
   "main": "./dist/index.cjs",
@@ -32,7 +32,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Appleec/e.git",
-    "directory": "packages/eslint-config"
+    "directory": "packages/eslint-config-extended"
   },
   "keywords": [
     "e",
@@ -76,5 +76,8 @@
     "eslint": {
       "optional": false
     }
+  },
+  "engines": {
+    "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
   }
 }
