@@ -20,6 +20,8 @@
     "root:format": "prettier . --check --log-level silent",
     "root:format:fix": "prettier . --write --log-level silent",
     "prepare": "husky || true",
+    "pkg:prepare": "pnpm changeset && pnpm changeset version",
+    "pkg:publish": "pnpm -r build && pnpm changeset publish",
     "docs:dev": "pnpm -C docs run docs:dev",
     "docs:build": "pnpm -C docs run docs:build",
     "docs:preview": "pnpm -C docs run docs:preview"
