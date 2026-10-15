@@ -1,24 +1,34 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
+title: '@elinzy/e'
+titleTemplate: '@elinzy/e - Multi-package Toolkit'
 
 hero:
-  name: "e"
-  text: "About e"
-  tagline: My great project tagline
+  name: '@elinzy/e'
+  text: Multi-package Toolkit
+  tagline: A collection of TypeScript / JavaScript modules for managing multi-package repositories.
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Get Started
+      link: /guide/getting-started
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Config
+      link: /config/installation
+    - theme: alt
+      text: CLI
+      link: /cli/guide
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - icon: 📦
+    title: ESLint Config
+    details: Flat config presets for TypeScript, Node, React, and Next.js.
+  - icon: 🔧
+    title: CLI Toolkit
+    details: Interactive scaffolding for project setup in seconds.
+  - icon: 🏗️
+    title: Core Utilities
+    details: Process execution, git helpers, file operations, and more.
+  - icon: 🎨
+    title: Pretty Logger
+    details: Styled console output with colors and symbols.
 ---
