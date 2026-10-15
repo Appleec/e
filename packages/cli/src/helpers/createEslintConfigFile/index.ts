@@ -1,8 +1,11 @@
 import fs from 'node:fs';
+import fsPromise from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { eslintConfigName } from '@/constants';
+import fetch from 'node-fetch';
+
+import { baseGithubRawUrl, eslintConfigName } from '@/constants';
 import { getConfigUrl } from '@/helpers/getConfigUrl';
 
 /**
@@ -30,34 +33,39 @@ const resolveTemplatesDir = (): string | null => {
 };
 
 const templatesDir = resolveTemplatesDir();
+const rootPath = path.resolve('.');
 
-interface ESLintConfigFileArgs {
+export const createESLintConfigFile = async (args: {
   config: string;
   language: string;
   formatter?: string | null;
   runtime?: string | null;
   strictConfig?: string[] | null;
   legacyConfig?: string | null;
-}
+}): Promise<void> => {
+  try {
+    const configUrl = getConfigUrl(args);
+    if (!configUrl) return;
 
-/**
- * Create an ESLint config file from template.
- * Accepts the full args object, internally resolves the template path.
- */
-export const createESLintConfigFile = async (args: ESLintConfigFileArgs): Promise<void> => {
-  if (!templatesDir) {
-    throw new Error('Cannot find @elinzy/build-templates package. Please ensure it is installed.');
+    const { path: configPath } = configUrl;
+
+    // Try local templates first (from @elinzy/build-templates)
+    if (templatesDir) {
+      const localFile = path.join(templatesDir, configPath);
+      if (fs.existsSync(localFile)) {
+        const content = fs.readFileSync(localFile, 'utf8');
+        await fsPromise.writeFile(`${rootPath}/${eslintConfigName}`, content, { encoding: 'utf8' });
+        return;
+      }
+    }
+
+    // Fall back to GitHub raw URL
+    const url = `${baseGithubRawUrl}/${configPath}`;
+    const res = await fetch(url);
+    const data = await res.text();
+
+    await fsPromise.writeFile(`${rootPath}/${eslintConfigName}`, data, { encoding: 'utf8' });
+  } catch (error) {
+    console.error(error);
   }
-
-  const configUrl = getConfigUrl(args);
-  const templateFile = path.join(templatesDir, configUrl.path);
-
-  if (!fs.existsSync(templateFile)) {
-    console.warn(`Template not found: ${configUrl.path}`);
-    return;
-  }
-
-  const content = fs.readFileSync(templateFile, 'utf8');
-  const outputPath = path.resolve(process.cwd(), eslintConfigName);
-  fs.writeFileSync(outputPath, content, 'utf8');
 };
