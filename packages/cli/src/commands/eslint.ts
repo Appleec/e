@@ -13,7 +13,7 @@ import {
 import { createESLintConfigFile } from '@/helpers/createEslintConfigFile';
 import { getCommands } from '@/helpers/getCommands';
 import { getConfigUrl } from '@/helpers/getConfigUrl';
-import { getEslintArgs } from '@/helpers/getEslintArgs';
+import { getArgs } from '@/helpers/getArgs';
 import { installPackages } from '@/helpers/installPackages';
 import { exit, handleSigTerm, onCancel, onPromptState } from '@/utils/functions';
 
@@ -21,7 +21,7 @@ process.on('SIGINT', handleSigTerm);
 process.on('SIGTERM', handleSigTerm);
 
 const run = async (cliOpts: Record<string, any> = {}) => {
-  let args = { ...getEslintArgs(cliOpts) };
+  let args = { ...getArgs(cliOpts) };
 
   // 1. Config type
   if (args.config === null || args.config === undefined) {
