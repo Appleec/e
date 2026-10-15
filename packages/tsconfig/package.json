@@ -1,6 +1,6 @@
 {
   "name": "@elinzy/tsconfig",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "TypeScript configuration for e",
   "type": "module",
   "main": "tsconfig.json",

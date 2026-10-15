@@ -1,6 +1,6 @@
 {
   "name": "@elinzy/eslint-config",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "Shared ESLint configuration for the e monorepo",
   "type": "module",
