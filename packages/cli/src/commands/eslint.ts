@@ -280,7 +280,7 @@ const run = async (cliOpts: Record<string, any> = {}) => {
 
     await installPackages({ formatter: args.formatter });
     console.log();
-    console.log(pc.green('Installation Completed'));
+    console.log(pc.yellow('Installation Completed'));
     console.log();
     console.log(pc.cyan('Executed Command:'));
     console.log(pc.blue(command));
@@ -289,6 +289,7 @@ const run = async (cliOpts: Record<string, any> = {}) => {
   console.log();
   console.log(pc.cyan(args.createEslintFile ? 'Created Config:' : 'Config:'));
   console.log(configUrl.url);
+
   console.log();
 };
 
