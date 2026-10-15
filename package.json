@@ -22,6 +22,10 @@
     "prepare": "husky || true",
     "pkg:prepare": "pnpm changeset && pnpm changeset version",
     "pkg:publish": "pnpm -r build && pnpm changeset publish",
+    "clean:dist": "pnpx rimraf dist && pnpm -r exec pnpx rimraf dist",
+    "clean:node_modules": "pnpx rimraf node_modules && pnpm -r exec pnpx rimraf node_modules",
+    "clean:all": "pnpm clean:node_modules && pnpm clean:dist",
+    "lint:inspector": "pnpx @eslint/config-inspector",
     "docs:dev": "pnpm -C docs run docs:dev",
     "docs:build": "pnpm -C docs run docs:build",
     "docs:preview": "pnpm -C docs run docs:preview"
@@ -45,6 +49,7 @@
     "@elinzy/eslint-config": "workspace:*",
     "@elinzy/lint-staged-config": "workspace:*",
     "@elinzy/prettier-config": "workspace:*",
+    "@types/node": "^22.13.10",
     "@vitest/coverage-istanbul": "catalog:",
     "@vitest/ui": "catalog:",
     "eslint": "catalog:",
