@@ -1,7 +1,7 @@
 {
   "name": "@elinzy/build-templates",
   "version": "0.1.0",
-  "description": "Pre-generated ESLint config templates for @elinzy/eslint-config-extended",
+  "description": "Build Templates",
   "type": "module",
   "scripts": {
     "build": "tsx lib/index.ts",

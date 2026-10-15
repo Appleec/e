@@ -1,15 +1,26 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 /**
  * Resolve templates directory from the `@elinzy/build-templates` package.
- * Uses import.meta.resolve to find the package, then reads templates locally.
  */
-const templatesDir = (() => {
-  // In a pnpm workspace, resolve to the source directory
+const resolveTemplatesDir = (): string | null => {
+  // Try import.meta.resolve for installed packages (npm/pnpm)
+  try {
+    const pkgUrl = import.meta.resolve('@elinzy/build-templates/package.json');
+    const pkgPath = fileURLToPath(pkgUrl);
+    const dir = path.join(path.dirname(pkgPath), 'templates');
+    if (fs.existsSync(dir)) return dir;
+  } catch {
+    // Fall through to workspace paths
+  }
+
+  // Workspace fallbacks
+  const base = import.meta.dirname;
   const resolvePaths = [
-    path.resolve(import.meta.dirname, '..', '..', '..', 'build-templates', 'templates'),
-    path.resolve(import.meta.dirname, '..', '..', '..', '..', 'build-templates', 'templates'),
+    path.resolve(base, '..', '..', '..', 'build-templates', 'templates'),
+    path.resolve(base, '..', '..', '..', '..', 'build-templates', 'templates'),
     path.resolve(process.cwd(), 'packages', 'build-templates', 'templates'),
   ];
 
@@ -17,7 +28,9 @@ const templatesDir = (() => {
     if (fs.existsSync(p)) return p;
   }
   return null;
-})();
+};
+
+const templatesDir = resolveTemplatesDir();
 
 export const createESLintConfigFile = async (config: {
   configPath: string;
