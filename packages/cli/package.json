@@ -1,6 +1,6 @@
 {
   "name": "@elinzy/cli",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A collection of common scripts and commands for e",
   "type": "module",
   "main": "./dist/index.cjs",
