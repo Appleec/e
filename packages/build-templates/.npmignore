@@ -1,0 +1,4 @@
+# Only publish templates directory
+/*
+!/templates
+!/package.json

@@ -1,8 +1,7 @@
 {
   "name": "@elinzy/build-templates",
   "version": "0.1.0",
-  "private": true,
-  "description": "Generate ESLint config templates for the e CLI",
+  "description": "Pre-generated ESLint config templates for @elinzy/eslint-config-extended",
   "type": "module",
   "scripts": {
     "build": "tsx lib/index.ts",
@@ -11,12 +10,30 @@
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit"
   },
+  "files": [
+    "templates"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Appleec/e.git",
     "directory": "packages/build-templates"
   },
+  "keywords": [
+    "e",
+    "elinzy",
+    "eslint",
+    "templates"
+  ],
+  "author": "Appleec <771992522@qq.com>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Appleec/e/issues"
+  },
+  "homepage": "https://github.com/Appleec/e#readme",
   "devDependencies": {
     "tsx": "catalog:",
     "typescript": "catalog:"
