@@ -1,4 +1,6 @@
 export {
+  baseGithubUrl,
+  baseGithubRawUrl,
   configs,
   defaults,
   eslintConfigName,
