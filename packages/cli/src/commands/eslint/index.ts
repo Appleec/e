@@ -317,18 +317,6 @@ const run = async (cliOpts: Record<string, any> = {}) => {
   console.log();
 };
 
-const eslint = async (opts: Record<string, any> = {}) => {
-  try {
-    await run(opts);
-  } catch (error) {
-    if (error instanceof Error) {
-      exit(error);
-    } else {
-      console.error(error);
-    }
-  }
-};
-
 export const eslint = async (opts: Record<string, any> = {}) => {
   try {
     await run(opts);
