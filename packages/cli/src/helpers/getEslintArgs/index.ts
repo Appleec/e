@@ -4,7 +4,7 @@ import {
   languages,
   legacyConfigs,
   runtimes,
-  strictConfigs,
+  stringBooleans,
 } from '@/constants';
 
 // Get Config
@@ -60,15 +60,17 @@ const getLegacyConfig = (opts: Record<string, any>) => {
 // Get Create Eslint File
 const getCreateEslintFile = (opts: Record<string, any>) => {
   const { createEslintFile } = opts;
+
   if (createEslintFile === undefined) return null;
-  return createEslintFile === true || createEslintFile === 'true';
+  return createEslintFile === true || createEslintFile === stringBooleans.TRUE;
 };
 
 // Get Skip Install
 const getSkipInstall = (opts: Record<string, any>) => {
   const { skipInstall } = opts;
+
   if (skipInstall === undefined) return null;
-  return skipInstall === true || skipInstall === 'true';
+  return skipInstall === true || skipInstall === stringBooleans.TRUE;
 };
 
 // Get Args
