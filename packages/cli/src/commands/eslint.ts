@@ -283,23 +283,24 @@ const run = async (cliOpts: Record<string, any> = {}) => {
     args = { ...args, skipInstall };
   }
 
-  const commands = getCommands(args);
+  const newArgs = args;
+  const commands = getCommands(newArgs);
   const command = commands.join(' ');
   console.log();
 
-  if (args.createEslintFile) await createESLintConfigFile(args);
+  if (newArgs.createEslintFile) await createESLintConfigFile(newArgs);
 
-  if (args.skipInstall) {
+  if (newArgs.skipInstall) {
     console.log(
-      `${pc.yellow('No Worries')}, you can install the packages yourself using your ${pc.blue('favourite')} package manager (${args.packageManager}, maybe?)`,
+      `${pc.yellow('No Worries')}, you can install the packages yourself using your ${pc.blue('favourite')} package manager (${newArgs.packageManager}, maybe?)`,
     );
     console.log();
     console.log(pc.cyan('Command:'));
     console.log(pc.blue(command));
   } else {
-    console.log(pc.blue(`Installing packages using ${args.packageManager}, please wait...`));
+    console.log(pc.blue(`Installing packages using ${newArgs.packageManager}, please wait...`));
 
-    await installPackages(args);
+    await installPackages(newArgs);
     console.log();
     console.log(pc.yellow('Installation Completed'));
     console.log();
@@ -308,8 +309,8 @@ const run = async (cliOpts: Record<string, any> = {}) => {
   }
 
   console.log();
-  console.log(pc.cyan(args.createEslintFile ? 'Created Config:' : 'Config:'));
-  console.log(getConfigUrl(args).url);
+  console.log(pc.cyan(newArgs.createEslintFile ? 'Created Config:' : 'Config:'));
+  console.log(getConfigUrl(newArgs).url);
 
   console.log();
 };
