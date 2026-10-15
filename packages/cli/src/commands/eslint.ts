@@ -15,14 +15,15 @@ import {
 import { createESLintConfigFile } from '@/helpers/createEslintConfigFile';
 import { getCommands } from '@/helpers/getCommands';
 import { getConfigUrl } from '@/helpers/getConfigUrl';
+import { getEslintArgs } from '@/helpers/getEslintArgs';
 import { installPackages } from '@/helpers/installPackages';
 import { exit, handleSigTerm, onCancel, onPromptState } from '@/utils/functions';
 
 process.on('SIGINT', handleSigTerm);
 process.on('SIGTERM', handleSigTerm);
 
-const run = async () => {
-  let args: Record<string, any> = {};
+const run = async (cliOpts: Record<string, any> = {}) => {
+  let args = { ...getEslintArgs(cliOpts) };
 
   // 1. Config type
   if (args.config === null || args.config === undefined) {
@@ -295,9 +296,9 @@ const run = async () => {
   console.log();
 };
 
-export const eslint = async () => {
+export const eslint = async (opts: Record<string, any> = {}) => {
   try {
-    await run();
+    await run(opts);
   } catch (error) {
     if (error instanceof Error) {
       exit(error);
