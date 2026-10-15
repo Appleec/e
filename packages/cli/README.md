@@ -1,42 +1,44 @@
-# e-cli
+# @elinzy/cli
 
-## Introduction
-
-`e-cli` is a command line tool. It includes release, publish and changelog commands, and more new functions will be added in the future.
+A general-purpose CLI toolkit for the `@elinzy/e` ecosystem.
 
 ## Installation
 
 ```shell
-npm install -D @elinz/e-cli
+# Project dependency
+npm install -D @elinzy/cli
+
+# Global
+npm install -g @elinzy/cli
 ```
 
-or, globals
+## Commands
+
+### `e eslint`
+
+Interactive ESLint config scaffolding. Generates an `eslint.config.mjs` with `@elinzy/eslint-config-extended` presets.
 
 ```shell
-npm install -g @elinzy/e-cli
+e eslint
 ```
 
-## Usage
+The wizard will guide you through:
+
+1. Config type — Extended (flat config) or Legacy (.eslintrc compat)
+2. Language — TypeScript or JavaScript
+3. Formatter — Prettier or none
+4. Runtime — Node.js / React / Next.js
+5. Strict configs — Import / React / TypeScript
+6. Create file — writes `eslint.config.mjs` to current directory
+7. Skip install — optionally skip `pnpm add` for dependencies
+
+### `e --help`
 
 ```shell
-# Just generate changelogs
-npx e changelog
+e --help       # Show all commands
+e eslint --help # Show eslint subcommand options
 ```
-
-## Configuration
-
-- changelog
-
-| Name         | Arguments                               | Type   | Default          | Description                                                                           |
-|--------------|-----------------------------------------|--------|------------------|---------------------------------------------------------------------------------------|
-| file         | -f --file <file>                        | string | `CHANGELOG.md`   | Specify changelog filename                                                            |
-| releaseCount | -n --releaseCount <releaseCount>        | number | `0`              | Release count                                                                         |
-| preset       | -p --preset <preset>                    | string | `angular`        | Specify changelog preset. Example: `angular, atom, codemirror, conventionalcommits`   |
 
 ## License
 
-[MIT](https://github.com/Appleec/e-cli/blob/main/LICENSE)
-
-## References
-
-- [release-it](https://github.com/release-it/release-it)
+[MIT](https://github.com/Appleec/e/blob/main/LICENSE)
