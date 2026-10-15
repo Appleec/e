@@ -1,6 +1,6 @@
 {
   "name": "@elinzy/eslint-config-extended",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Common ESLint configuration for e",
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.mts",
