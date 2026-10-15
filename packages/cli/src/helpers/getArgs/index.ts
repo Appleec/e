@@ -6,6 +6,7 @@ import {
   runtimes,
   stringBooleans,
 } from '@/constants';
+import { getPackageManager } from '@/helpers/getPackageManager';
 
 // Get Config
 const getConfig = (opts: Record<string, any>) => {
@@ -81,6 +82,7 @@ export const getArgs = async (opts: Record<string, any> = {}) => ({
   runtime: getRuntime(opts),
   strictConfig: getStrictConfig(opts),
   legacyConfig: getLegacyConfig(opts),
+  packageManager: await getPackageManager(),
   createEslintFile: getCreateEslintFile(opts),
   skipInstall: getSkipInstall(opts),
 });

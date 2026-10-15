@@ -291,13 +291,13 @@ const run = async (cliOpts: Record<string, any> = {}) => {
 
   if (args.skipInstall) {
     console.log(
-      `${pc.yellow('No Worries')}, you can install the packages yourself using your ${pc.blue('favourite')} package manager (pnpm, maybe?)`,
+      `${pc.yellow('No Worries')}, you can install the packages yourself using your ${pc.blue('favourite')} package manager (${args.packageManager}, maybe?)`,
     );
     console.log();
     console.log(pc.cyan('Command:'));
     console.log(pc.blue(command));
   } else {
-    console.log(pc.blue('Installing packages using pnpm, please wait...'));
+    console.log(pc.blue(`Installing packages using ${args.packageManager}, please wait...`));
 
     await installPackages(args);
     console.log();
