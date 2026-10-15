@@ -8,6 +8,7 @@ allowBuilds:
   unrs-resolver: true
 
 catalog:
+  '@changesets/cli': ^3.0.3
   '@vitest/coverage-istanbul': ^5.0.4
   '@vitest/ui': ^5.0.4
   eslint: ^9.39.4

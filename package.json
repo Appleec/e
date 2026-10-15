@@ -45,7 +45,7 @@
   },
   "homepage": "https://github.com/Appleec/e#readme",
   "devDependencies": {
-    "@changesets/cli": "2.29.3",
+    "@changesets/cli": "catalog:",
     "@elinzy/eslint-config": "workspace:*",
     "@elinzy/lint-staged-config": "workspace:*",
     "@elinzy/prettier-config": "workspace:*",
