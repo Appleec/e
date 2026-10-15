@@ -1,4 +1,7 @@
+import pc from 'ansis';
+
 import {
+  baseGithubUrl,
   configs,
   eslintConfigName,
   formatters,
@@ -39,5 +42,8 @@ export const getConfigUrl = (args: GetConfigUrlParams) => {
     .filter(Boolean)
     .join('/');
 
-  return { path };
+  return {
+    path,
+    url: pc.blue(`${baseGithubUrl}/${path}`),
+  };
 };

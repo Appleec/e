@@ -291,7 +291,7 @@ const run = async (cliOpts: Record<string, any> = {}) => {
 
   console.log();
   console.log(pc.cyan(args.createEslintFile ? 'Created Config:' : 'Config:'));
-  console.log(configUrl.path);
+  console.log(configUrl.url || configUrl.path);
 
   console.log();
 };
