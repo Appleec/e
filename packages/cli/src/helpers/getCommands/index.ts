@@ -19,9 +19,9 @@ export const getCommands = (args: GetCommandsParams = {}): string[] => {
     packageManager,
     pmInstallationCommand[packageManager] || 'install',
     '-D',
-    'eslint',
+    'eslint@^9',
     '@eslint/compat',
-    '@eslint/js',
+    '@eslint/js@^9',
     '@elinzy/eslint-config-extended',
   ];
 
