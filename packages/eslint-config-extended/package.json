@@ -53,6 +53,7 @@
   "homepage": "https://github.com/Appleec/e#readme",
   "devDependencies": {
     "tsdown": "catalog:",
+    "@elinzy/vitest-config": "workspace:*",
     "@types/confusing-browser-globals": "^1.0.3",
     "@types/eslint-plugin-jsx-a11y": "^6.10.1",
     "tsx": "catalog:",
