@@ -7,6 +7,7 @@ import fetch from 'node-fetch';
 
 import { baseGithubRawUrl, eslintConfigName } from '@/constants';
 import { getConfigUrl } from '@/helpers/getConfigUrl';
+import { rootPath } from '@/utils';
 
 /**
  * Resolve templates directory from the `@elinzy/build-templates` package.
@@ -33,7 +34,6 @@ const resolveTemplatesDir = (): string | null => {
 };
 
 const templatesDir = resolveTemplatesDir();
-const rootPath = path.resolve('.');
 
 export const createESLintConfigFile = async (args: {
   config: string;

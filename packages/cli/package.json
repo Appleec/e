@@ -3,13 +3,9 @@
   "version": "0.1.6",
   "description": "A collection of common scripts and commands for e",
   "type": "module",
-  "main": "./dist/index.cjs",
   "types": "./dist/index.d.cts",
   "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
+    ".": "./dist/index.mjs",
     "./package.json": "./package.json"
   },
   "files": [
@@ -62,6 +58,5 @@
   },
   "devDependencies": {
     "tsdown": "catalog:"
-  },
-  "module": "./dist/index.mjs"
+  }
 }

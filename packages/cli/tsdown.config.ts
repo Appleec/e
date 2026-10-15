@@ -5,7 +5,7 @@ export default defineConfig((options) => {
   return {
     entry: ['src/index.ts'],
     dts: true,
-    format: ['cjs', 'esm'],
+    format: 'esm',
     outDir: 'dist',
     platform: 'node',
     treeshake: !watch,
