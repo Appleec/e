@@ -54,7 +54,6 @@
   "devDependencies": {
     "tsdown": "catalog:",
     "eslint": "catalog:",
-    "mlly": "1.7.4",
     "typescript": "catalog:"
   },
   "dependencies": {
@@ -79,5 +78,8 @@
     "eslint": {
       "optional": false
     }
+  },
+  "engines": {
+    "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
   }
 }
