@@ -22,7 +22,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "cli": "./dist/index.mjs"
+    "e": "./dist/index.mjs",
+    "e-cli": "./dist/index.mjs"
   },
   "repository": {
     "type": "git",
