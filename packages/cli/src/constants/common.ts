@@ -48,3 +48,9 @@ export const subFolders = {
 } as const;
 
 export const eslintConfigName = 'eslint.config.mjs';
+
+// https://github.com/Appleec/e/tree/main/packages/build-templates/templates
+export const baseGithubUrl = 'https://github.com/Appleec/e/tree/main/packages/build-templates/templates';
+
+export const baseGithubRawUrl =
+  'https://raw.githubusercontent.com/Appleec/e/refs/heads/main/packages/build-templates/templates';
