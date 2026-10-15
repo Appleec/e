@@ -1,3 +1,4 @@
+import { Command, Option } from 'commander';
 import pc from 'ansis';
 import prompts from 'prompts';
 
@@ -22,7 +23,10 @@ process.on('SIGINT', handleSigTerm);
 process.on('SIGTERM', handleSigTerm);
 
 const run = async (cliOpts: Record<string, any> = {}) => {
+  console.log('=>', cliOpts);
   let args = await getArgs(cliOpts);
+
+  console.log('=>', args);
 
   if (args.config === null) {
     const { configBoolean } = await prompts(
@@ -315,7 +319,7 @@ const run = async (cliOpts: Record<string, any> = {}) => {
   console.log();
 };
 
-export const eslint = async (opts: Record<string, any> = {}) => {
+const eslint = async (opts: Record<string, any> = {}) => {
   try {
     await run(opts);
   } catch (error) {
@@ -327,4 +331,19 @@ export const eslint = async (opts: Record<string, any> = {}) => {
   }
 };
 
-export default eslint;
+export const register = (program: Command) => {
+  program
+    .command('eslint')
+    .description('Interactive ESLint config scaffold')
+    .option('--config <config>', 'Config type: extended | legacy')
+    .option('--lang, --language <lang>', 'Language: javascript | typescript')
+    .option('--formatter <formatter>', 'Formatter: prettier | none')
+    .option('--runtime <runtime>', 'Runtime: node | react | next')
+    .addOption(
+      new Option('--strict [config...]', 'Strict configs: import | react | typescript'),
+    )
+    .option('--legacy <config>', 'Legacy config: base | react | react-hooks')
+    .option('--create-eslint-file [bool]', 'Create eslint.config.mjs file')
+    .option('--skip-install [bool]', 'Skip package installation')
+    .action(eslint);
+};
