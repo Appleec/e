@@ -1,15 +1,23 @@
-import { formatters } from '@/constants';
+import { formatters, packageManagers } from '@/constants';
 
 interface GetCommandsParams {
   formatter?: string | null;
+  packageManager?: string;
 }
 
 export const getCommands = (args: GetCommandsParams = {}): string[] => {
-  const { formatter } = args;
+  const { formatter, packageManager = packageManagers.PNPM } = args;
+
+  const pmInstallationCommand: Record<string, string> = {
+    [packageManagers.NPM]: 'install',
+    [packageManagers.YARN]: 'add',
+    [packageManagers.PNPM]: 'install',
+    [packageManagers.BUN]: 'add',
+  };
 
   const commands = [
-    'pnpm',
-    'add',
+    packageManager,
+    pmInstallationCommand[packageManager] || 'install',
     '-D',
     'eslint',
     '@eslint/compat',
