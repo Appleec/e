@@ -4,6 +4,7 @@ import prompts from 'prompts';
 import {
   configs,
   defaults,
+  eslintConfigName,
   formatters,
   languages,
   legacyConfigs,
@@ -11,9 +12,9 @@ import {
   strictConfigs,
 } from '@/constants';
 import { createESLintConfigFile } from '@/helpers/createEslintConfigFile';
+import { getArgs } from '@/helpers/getArgs';
 import { getCommands } from '@/helpers/getCommands';
 import { getConfigUrl } from '@/helpers/getConfigUrl';
-import { getArgs } from '@/helpers/getArgs';
 import { installPackages } from '@/helpers/installPackages';
 import { exit, handleSigTerm, onCancel, onPromptState } from '@/utils/functions';
 
@@ -21,10 +22,9 @@ process.on('SIGINT', handleSigTerm);
 process.on('SIGTERM', handleSigTerm);
 
 const run = async (cliOpts: Record<string, any> = {}) => {
-  let args = { ...getArgs(cliOpts) };
+  let args = await getArgs(cliOpts);
 
-  // 1. Config type
-  if (args.config === null || args.config === undefined) {
+  if (args.config === null) {
     const { configBoolean } = await prompts(
       {
         type: 'toggle',
@@ -35,19 +35,26 @@ const run = async (cliOpts: Record<string, any> = {}) => {
         inactive: 'Legacy',
         onState: onPromptState,
       },
-      { onCancel },
+      {
+        onCancel,
+      },
     );
 
     const config = configBoolean ? configs.EXTENDED : configs.LEGACY;
     args = {
       ...args,
       config,
-      ...(config === configs.EXTENDED ? { legacyConfig: null } : { runtime: null }),
+      ...(config === configs.EXTENDED
+        ? {
+            legacyConfig: null,
+          }
+        : {
+            runtime: null,
+          }),
     };
   }
 
-  // 2. Language
-  if (args.language === null || args.language === undefined) {
+  if (args.language === null) {
     const { languageBoolean } = await prompts(
       {
         type: 'toggle',
@@ -58,16 +65,18 @@ const run = async (cliOpts: Record<string, any> = {}) => {
         inactive: 'No',
         onState: onPromptState,
       },
-      { onCancel },
+      {
+        onCancel,
+      },
     );
 
-    args = { ...args, language: languageBoolean ? languages.TYPESCRIPT : languages.JAVASCRIPT };
+    const language = languageBoolean ? languages.TYPESCRIPT : languages.JAVASCRIPT;
+    args = { ...args, language };
   }
 
-  // 3. Formatter
   if (args.formatter === formatters.NONE) {
     args = { ...args, formatter: null };
-  } else if (args.formatter === null || args.formatter === undefined) {
+  } else if (args.formatter === null) {
     const { formatterBoolean } = await prompts(
       {
         type: 'toggle',
@@ -78,13 +87,15 @@ const run = async (cliOpts: Record<string, any> = {}) => {
         inactive: 'No',
         onState: onPromptState,
       },
-      { onCancel },
+      {
+        onCancel,
+      },
     );
 
-    args = { ...args, formatter: formatterBoolean ? formatters.PRETTIER : null };
+    const formatter = formatterBoolean ? formatters.PRETTIER : null;
+    args = { ...args, formatter };
   }
 
-  // 4. Runtime (Extended only)
   if (args.config === configs.EXTENDED) {
     if (!args.runtime) {
       const { runtime } = await prompts(
@@ -111,13 +122,14 @@ const run = async (cliOpts: Record<string, any> = {}) => {
           ],
           onState: onPromptState,
         },
-        { onCancel },
+        {
+          onCancel,
+        },
       );
 
       args = { ...args, runtime };
     }
 
-    // 5. Strict configs (Extended only)
     if (args.strictConfig?.includes(strictConfigs.NONE)) {
       args = { ...args, strictConfig: null };
     } else if (!args.strictConfig) {
@@ -131,7 +143,9 @@ const run = async (cliOpts: Record<string, any> = {}) => {
           inactive: 'No',
           onState: onPromptState,
         },
-        { onCancel },
+        {
+          onCancel,
+        },
       );
 
       if (hasStrictConfig) {
@@ -147,16 +161,31 @@ const run = async (cliOpts: Record<string, any> = {}) => {
                 description: pc.yellow('Strict Import config'),
                 value: strictConfigs.IMPORT,
               },
-              ...(args.runtime && [runtimes.REACT, runtimes.NEXT].includes(args.runtime)
-                ? [{ title: 'React', description: pc.cyan('Strict React config'), value: strictConfigs.REACT }]
+              ...(args.runtime &&
+              ([runtimes.REACT, runtimes.NEXT] as string[]).includes(args.runtime)
+                ? [
+                    {
+                      title: 'React',
+                      description: pc.cyan('Strict React config'),
+                      value: strictConfigs.REACT,
+                    },
+                  ]
                 : []),
               ...(args.language === languages.TYPESCRIPT
-                ? [{ title: 'TypeScript', description: pc.blue('Strict TypeScript config'), value: strictConfigs.TYPESCRIPT }]
+                ? [
+                    {
+                      title: 'TypeScript',
+                      description: pc.blue('Strict TypeScript config'),
+                      value: strictConfigs.TYPESCRIPT,
+                    },
+                  ]
                 : []),
             ],
             onState: onPromptState,
           },
-          { onCancel },
+          {
+            onCancel,
+          },
         );
 
         args = { ...args, strictConfig };
@@ -166,7 +195,6 @@ const run = async (cliOpts: Record<string, any> = {}) => {
     }
   }
 
-  // 6. Legacy config (Legacy only)
   if (args.config === configs.LEGACY) {
     if (!args.legacyConfig) {
       const { legacyConfig } = await prompts(
@@ -188,7 +216,9 @@ const run = async (cliOpts: Record<string, any> = {}) => {
           ],
           onState: onPromptState,
         },
-        { onCancel },
+        {
+          onCancel,
+        },
       );
 
       args = { ...args, legacyConfig };
@@ -205,14 +235,16 @@ const run = async (cliOpts: Record<string, any> = {}) => {
           inactive: 'No',
           onState: onPromptState,
         },
-        { onCancel },
+        {
+          onCancel,
+        },
       );
 
-      args = { ...args, legacyConfig: reactHooks ? legacyConfigs.REACT_HOOKS : args.legacyConfig };
+      const legacyConfig = reactHooks ? legacyConfigs.REACT_HOOKS : args.legacyConfig;
+      args = { ...args, legacyConfig };
     }
   }
 
-  // 7. Create file
   if (args.createEslintFile === null) {
     const { createEslintFile } = await prompts(
       {
@@ -224,13 +256,14 @@ const run = async (cliOpts: Record<string, any> = {}) => {
         inactive: 'No',
         onState: onPromptState,
       },
-      { onCancel },
+      {
+        onCancel,
+      },
     );
 
     args = { ...args, createEslintFile };
   }
 
-  // 8. Skip install
   if (args.skipInstall === null) {
     const { skipInstall } = await prompts(
       {
@@ -242,13 +275,15 @@ const run = async (cliOpts: Record<string, any> = {}) => {
         inactive: 'No',
         onState: onPromptState,
       },
-      { onCancel },
+      {
+        onCancel,
+      },
     );
 
     args = { ...args, skipInstall };
   }
 
-  const commands = getCommands({ formatter: args.formatter });
+  const commands = getCommands(args);
   const command = commands.join(' ');
   console.log();
 
@@ -264,7 +299,7 @@ const run = async (cliOpts: Record<string, any> = {}) => {
   } else {
     console.log(pc.blue('Installing packages using pnpm, please wait...'));
 
-    await installPackages({ formatter: args.formatter });
+    await installPackages(args);
     console.log();
     console.log(pc.yellow('Installation Completed'));
     console.log();

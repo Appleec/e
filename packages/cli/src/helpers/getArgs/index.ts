@@ -74,7 +74,7 @@ const getSkipInstall = (opts: Record<string, any>) => {
 };
 
 // Get Args
-export const getArgs = (opts: Record<string, any> = {}) => ({
+export const getArgs = async (opts: Record<string, any> = {}) => ({
   config: getConfig(opts),
   language: getLanguage(opts),
   formatter: getFormatter(opts),

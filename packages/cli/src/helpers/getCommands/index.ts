@@ -1,10 +1,10 @@
 import { formatters } from '@/constants';
 
 interface GetCommandsParams {
-  formatter: string | null;
+  formatter?: string | null;
 }
 
-export const getCommands = (args: GetCommandsParams): string[] => {
+export const getCommands = (args: GetCommandsParams = {}): string[] => {
   const { formatter } = args;
 
   const commands = [

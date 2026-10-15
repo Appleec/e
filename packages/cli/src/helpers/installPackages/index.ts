@@ -3,8 +3,8 @@ import spawn from 'cross-spawn';
 import { getCommands } from '@/helpers/getCommands';
 
 export const installPackages = async (args: {
-  formatter: string | null;
-}): Promise<void> => {
+  formatter?: string | null;
+} = {}): Promise<void> => {
   const [packageManager, ...commands] = getCommands(args);
 
   return new Promise((resolve, reject) => {
