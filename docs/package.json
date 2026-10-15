@@ -1,13 +1,30 @@
 {
-    "name": "@elinzy/e-docs",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "docs:dev": "vitepress dev",
-        "docs:build": "vitepress build",
-        "docs:preview": "vitepress preview"
-    },
-    "dependencies": {
-        "vitepress": "^1.6.3"
-    }
+  "name": "@elinzy/e-docs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Documentation for @elinzy/e",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Appleec/e.git",
+    "directory": "docs"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "vitepress": "^1.6.3"
+  },
+  "engines": {
+    "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
+  }
 }
