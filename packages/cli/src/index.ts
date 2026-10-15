@@ -22,6 +22,8 @@ const eslintCmd = program
     new Option('--strict [config...]', 'Strict configs: import | react | typescript'),
   )
   .option('--legacy <config>', 'Legacy config: base | react | react-hooks')
+  .option('--create-eslint-file [bool]', 'Create eslint.config.mjs file')
+  .option('--skip-install [bool]', 'Skip package installation')
   .action(async (opts) => {
     try {
       await eslint(opts);

@@ -215,7 +215,7 @@ const run = async (cliOpts: Record<string, any> = {}) => {
   }
 
   // 7. Create file
-  if (args.createEslintFile === null || args.createEslintFile === undefined) {
+  if (args.createEslintFile === null) {
     const { createEslintFile } = await prompts(
       {
         type: 'toggle',
@@ -233,7 +233,7 @@ const run = async (cliOpts: Record<string, any> = {}) => {
   }
 
   // 8. Skip install
-  if (args.skipInstall === null || args.skipInstall === undefined) {
+  if (args.skipInstall === null) {
     const { skipInstall } = await prompts(
       {
         type: 'toggle',
