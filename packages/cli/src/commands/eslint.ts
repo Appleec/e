@@ -265,10 +265,7 @@ const run = async (cliOpts: Record<string, any> = {}) => {
 
   if (args.createEslintFile) {
     const outputPath = path.resolve(process.cwd(), eslintConfigName);
-    await createESLintConfigFile({
-      configPath: configUrl.path,
-      outputPath,
-    });
+    await createESLintConfigFile({ configPath: configUrl.path, outputPath });
   }
 
   if (args.skipInstall) {
@@ -291,8 +288,7 @@ const run = async (cliOpts: Record<string, any> = {}) => {
 
   console.log();
   console.log(pc.cyan(args.createEslintFile ? 'Created Config:' : 'Config:'));
-  console.log(configUrl.url || configUrl.path);
-
+  console.log(configUrl.url);
   console.log();
 };
 
