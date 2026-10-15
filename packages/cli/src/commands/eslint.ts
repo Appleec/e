@@ -1,11 +1,9 @@
 import pc from 'ansis';
-import path from 'node:path';
 import prompts from 'prompts';
 
 import {
   configs,
   defaults,
-  eslintConfigName,
   formatters,
   languages,
   legacyConfigs,
@@ -250,23 +248,11 @@ const run = async (cliOpts: Record<string, any> = {}) => {
     args = { ...args, skipInstall };
   }
 
-  const configUrl = getConfigUrl({
-    config: args.config,
-    language: args.language,
-    formatter: args.formatter,
-    runtime: args.runtime,
-    strictConfig: args.strictConfig,
-    legacyConfig: args.legacyConfig,
-  });
-
   const commands = getCommands({ formatter: args.formatter });
   const command = commands.join(' ');
   console.log();
 
-  if (args.createEslintFile) {
-    const outputPath = path.resolve(process.cwd(), eslintConfigName);
-    await createESLintConfigFile({ configPath: configUrl.path, outputPath });
-  }
+  if (args.createEslintFile) await createESLintConfigFile(args);
 
   if (args.skipInstall) {
     console.log(
@@ -288,7 +274,7 @@ const run = async (cliOpts: Record<string, any> = {}) => {
 
   console.log();
   console.log(pc.cyan(args.createEslintFile ? 'Created Config:' : 'Config:'));
-  console.log(configUrl.url);
+  console.log(getConfigUrl(args).url);
 
   console.log();
 };

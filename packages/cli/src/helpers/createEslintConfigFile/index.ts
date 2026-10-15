@@ -2,11 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { eslintConfigName } from '@/constants';
+import { getConfigUrl } from '@/helpers/getConfigUrl';
+
 /**
  * Resolve templates directory from the `@elinzy/build-templates` package.
  */
 const resolveTemplatesDir = (): string | null => {
-  // Try import.meta.resolve for installed packages (npm/pnpm)
   try {
     const pkgUrl = import.meta.resolve('@elinzy/build-templates/package.json');
     const pkgPath = fileURLToPath(pkgUrl);
@@ -16,15 +18,12 @@ const resolveTemplatesDir = (): string | null => {
     // Fall through to workspace paths
   }
 
-  // Workspace fallbacks
   const base = import.meta.dirname;
-  const resolvePaths = [
+  for (const p of [
     path.resolve(base, '..', '..', '..', 'build-templates', 'templates'),
     path.resolve(base, '..', '..', '..', '..', 'build-templates', 'templates'),
     path.resolve(process.cwd(), 'packages', 'build-templates', 'templates'),
-  ];
-
-  for (const p of resolvePaths) {
+  ]) {
     if (fs.existsSync(p)) return p;
   }
   return null;
@@ -32,32 +31,33 @@ const resolveTemplatesDir = (): string | null => {
 
 const templatesDir = resolveTemplatesDir();
 
-export const createESLintConfigFile = async (config: {
-  configPath: string;
-  outputPath: string;
-}): Promise<void> => {
-  const { configPath, outputPath } = config;
+interface ESLintConfigFileArgs {
+  config: string;
+  language: string;
+  formatter?: string | null;
+  runtime?: string | null;
+  strictConfig?: string[] | null;
+  legacyConfig?: string | null;
+}
 
+/**
+ * Create an ESLint config file from template.
+ * Accepts the full args object, internally resolves the template path.
+ */
+export const createESLintConfigFile = async (args: ESLintConfigFileArgs): Promise<void> => {
   if (!templatesDir) {
-    throw new Error(
-      'Cannot find @elinzy/build-templates package. Please ensure it is installed.',
-    );
+    throw new Error('Cannot find @elinzy/build-templates package. Please ensure it is installed.');
   }
 
-  const templateFile = path.join(templatesDir, configPath);
+  const configUrl = getConfigUrl(args);
+  const templateFile = path.join(templatesDir, configUrl.path);
 
   if (!fs.existsSync(templateFile)) {
-    console.warn(`Template not found: ${configPath}`);
-    console.warn(`Searched: ${templateFile}`);
+    console.warn(`Template not found: ${configUrl.path}`);
     return;
   }
 
   const content = fs.readFileSync(templateFile, 'utf8');
+  const outputPath = path.resolve(process.cwd(), eslintConfigName);
   fs.writeFileSync(outputPath, content, 'utf8');
-
-  console.log(`Created: ${outputPath}`);
-  console.log(`Template: ${baseGithubUrl}/${configPath}`);
 };
-
-export const baseGithubUrl =
-  'https://github.com/Appleec/e/tree/main/packages/build-templates/templates';
