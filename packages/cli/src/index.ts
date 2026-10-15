@@ -10,6 +10,7 @@ const program = new Command()
   .version(version, '-v, --version', 'Output the current version.')
   .helpOption('-h, --help', 'Display help message.');
 
+// eslint
 registerEslint(program);
 
 program.parse();

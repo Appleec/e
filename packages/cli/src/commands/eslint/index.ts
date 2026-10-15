@@ -1,3 +1,4 @@
+import pc from 'ansis';
 import prompts from 'prompts';
 
 import {
@@ -21,10 +22,7 @@ process.on('SIGINT', handleSigTerm);
 process.on('SIGTERM', handleSigTerm);
 
 const run = async (cliOpts: Record<string, any> = {}) => {
-  console.log('=>', cliOpts);
   let args = await getArgs(cliOpts);
-
-  console.log('=>', args);
 
   if (args.config === null) {
     const { configBoolean } = await prompts(

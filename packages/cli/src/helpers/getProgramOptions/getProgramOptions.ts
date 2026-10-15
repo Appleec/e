@@ -1,7 +1,6 @@
 // Imports
-import { Command, Option } from 'commander'
-
 // https://www.npmjs.com/package/commander
+import { Command, Option } from 'commander'
 
 import {
   configs,
