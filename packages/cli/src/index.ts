@@ -3,7 +3,7 @@
 // @ts-ignore
 import { name, version } from '../package.json';
 import { Command } from 'commander';
-import { register as registerEslint } from '@/commands/eslint';
+import { register as registerEslint } from '@/commands/eslint/register';
 
 const program = new Command()
   .name(name)

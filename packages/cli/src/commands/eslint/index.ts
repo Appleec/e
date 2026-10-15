@@ -1,5 +1,3 @@
-import { Command, Option } from 'commander';
-import pc from 'ansis';
 import prompts from 'prompts';
 
 import {
@@ -331,19 +329,14 @@ const eslint = async (opts: Record<string, any> = {}) => {
   }
 };
 
-export const register = (program: Command) => {
-  program
-    .command('eslint')
-    .description('Interactive ESLint config scaffold')
-    .option('--config <config>', 'Config type: extended | legacy')
-    .option('--lang, --language <lang>', 'Language: javascript | typescript')
-    .option('--formatter <formatter>', 'Formatter: prettier | none')
-    .option('--runtime <runtime>', 'Runtime: node | react | next')
-    .addOption(
-      new Option('--strict [config...]', 'Strict configs: import | react | typescript'),
-    )
-    .option('--legacy <config>', 'Legacy config: base | react | react-hooks')
-    .option('--create-eslint-file [bool]', 'Create eslint.config.mjs file')
-    .option('--skip-install [bool]', 'Skip package installation')
-    .action(eslint);
+export const eslint = async (opts: Record<string, any> = {}) => {
+  try {
+    await run(opts);
+  } catch (error) {
+    if (error instanceof Error) {
+      exit(error);
+    } else {
+      console.error(error);
+    }
+  }
 };
