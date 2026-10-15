@@ -54,6 +54,8 @@
   "devDependencies": {
     "tsdown": "catalog:",
     "eslint": "catalog:",
+    "@types/confusing-browser-globals": "^1.0.3",
+    "@types/eslint-plugin-jsx-a11y": "^6.10.1",
     "typescript": "catalog:"
   },
   "dependencies": {
