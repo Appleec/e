@@ -10,7 +10,6 @@ export default defineConfig((options) => {
     platform: 'node',
     treeshake: !watch,
     minify: false,
-    exports: true,
     nodeProtocol: true,
     unbundle: true
   };
