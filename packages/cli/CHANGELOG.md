@@ -1,5 +1,11 @@
 # @elinzy/cli
 
+## 0.1.8
+
+### Patch Changes
+
+- 1d945da: fix(cli): bugfix
+
 ## 0.1.7
 
 ### Patch Changes
