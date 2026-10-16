@@ -1,5 +1,11 @@
 # @elinzy/e-utils
 
+## 0.3.6
+
+### Patch Changes
+
+- c92edba: fix(utils): bugfix
+
 ## 0.3.5
 
 ### Patch Changes
