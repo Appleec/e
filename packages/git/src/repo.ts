@@ -4,16 +4,26 @@
 import {
   execSync,
   type ExecSyncResult,
-  type ExecResult,
 } from '@elinzy/core';
 
 /**
  * Get Git client version
+ *
+ * Returns `undefined` if Git is not installed or not available in PATH.
  */
 export function getGitVersion() {
-  const r = execSync('git', ['version']) as ExecResult;
-  const match = /git version (?<version>\d+\.\d+\.\d+).*/.exec(r.stdout as string);
+  // `throwOnError: false` keeps this a safe probe: missing Git resolves to `undefined`
+  const r = execSync('git', ['version'], { throwOnError: false, abbrev: true });
+  if (!r) return;
+  const match = /git version (?<version>\d+\.\d+\.\d+)/.exec(r);
   return match && match.groups && match.groups.version;
+}
+
+/**
+ * Check whether Git client is installed and available in PATH
+ */
+export function isGitInstalled() {
+  return !!getGitVersion();
 }
 
 /**
