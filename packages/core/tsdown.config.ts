@@ -1,13 +1,7 @@
-import { defineConfig } from 'tsdown';
+import { defineConfig } from 'tsdown/config';
+import { baseConfig } from '../../tsdown.config.ts';
 
 export default defineConfig({
+  ...baseConfig,
   entry: ['src/index.ts', 'src/child_process.ts'],
-  dts: true,
-  format: ['cjs', 'esm'],
-  outDir: 'dist',
-  platform: 'node',
-  clean: true,
-  deps: {
-    neverBundle: [/^[^./]/],
-  },
 });

@@ -3,52 +3,52 @@
   "version": "0.1.1",
   "description": "The collection of e modules",
   "private": true,
+	"homepage": "https://github.com/Appleec/e#readme",
+	"bugs": {
+		"url": "https://github.com/Appleec/e/issues"
+	},
+	"license": "MIT",
+	"author": "Appleec <771992522@qq.com>",
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/Appleec/e.git"
+	},
+	"keywords": [
+		"e",
+		"elinzy"
+	],
   "type": "module",
-  "packageManager": "pnpm@10.33.2",
-  "scripts": {
-    "dev": "pnpm -r --filter=./packages/* dev",
-    "build": "pnpm -r --filter=./packages/* build",
-    "test": "pnpm -r test",
-    "test:report": "vitest --ui --coverage",
-    "typecheck": "pnpm -r typecheck",
-    "lint": "pnpm root:lint && pnpm -r lint",
-    "lint:fix": "pnpm root:lint:fix && pnpm -r lint:fix",
-    "root:lint": "eslint .",
-    "root:lint:fix": "eslint . --fix",
-    "format": "pnpm root:format && pnpm -r format",
-    "format:fix": "pnpm root:format:fix && pnpm -r format:fix",
-    "root:format": "prettier . --check --log-level silent",
-    "root:format:fix": "prettier . --write --log-level silent",
-    "prepare": "husky || true",
-    "pkg:prepare": "pnpm changeset && pnpm changeset version",
-    "pkg:publish": "pnpm -r build && pnpm changeset publish",
-    "clean:dist": "pnpx rimraf dist && pnpm -r exec pnpx rimraf dist",
-    "clean:node_modules": "pnpx rimraf node_modules && pnpm -r exec pnpx rimraf node_modules",
-    "clean:all": "pnpm clean:node_modules && pnpm clean:dist",
-    "lint:inspector": "pnpx @eslint/config-inspector",
-    "docs:dev": "pnpm -C docs run docs:dev",
-    "docs:build": "pnpm -C docs run docs:build",
-    "docs:preview": "pnpm -C docs run docs:preview"
-  },
-  "keywords": [
-    "e",
-    "elinzy"
-  ],
-  "author": "Appleec <771992522@qq.com>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/Appleec/e.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Appleec/e/issues"
-  },
-  "homepage": "https://github.com/Appleec/e#readme",
+	"scripts": {
+		"dev": "pnpm -r --filter=./packages/* dev",
+		"build": "pnpm -r --filter=./packages/* build",
+		"test": "pnpm -r test",
+		"test:report": "vitest --ui --coverage",
+		"typecheck": "pnpm -r typecheck",
+		"lint": "pnpm root:lint && pnpm -r lint",
+		"lint:fix": "pnpm root:lint:fix && pnpm -r lint:fix",
+		"root:lint": "eslint .",
+		"root:lint:fix": "eslint . --fix",
+		"format": "pnpm root:format && pnpm -r format",
+		"format:fix": "pnpm root:format:fix && pnpm -r format:fix",
+		"root:format": "prettier . --check --log-level silent",
+		"root:format:fix": "prettier . --write --log-level silent",
+		"prepare": "husky || true",
+		"pkg:prepare": "pnpm changeset && pnpm changeset version",
+		"pkg:publish": "pnpm -r build && pnpm changeset publish",
+		"clean:dist": "pnpx rimraf dist && pnpm -r exec pnpx rimraf dist",
+		"clean:node_modules": "pnpx rimraf node_modules && pnpm -r exec pnpx rimraf node_modules",
+		"clean:all": "pnpm clean:node_modules && pnpm clean:dist",
+		"lint:inspector": "pnpx @eslint/config-inspector",
+		"docs:dev": "pnpm -C docs run docs:dev",
+		"docs:build": "pnpm -C docs run docs:build",
+		"docs:preview": "pnpm -C docs run docs:preview"
+	},
   "devDependencies": {
     "@changesets/cli": "catalog:",
     "@elinzy/eslint-config": "workspace:*",
     "@elinzy/lint-staged-config": "workspace:*",
     "@elinzy/prettier-config": "workspace:*",
+    "@elinzy/tsconfig": "workspace:*",
     "@types/node": "^22.13.10",
     "@vitest/coverage-istanbul": "catalog:",
     "@vitest/ui": "catalog:",
@@ -57,7 +57,9 @@
     "lint-staged": "^17.6.0",
     "prettier": "^3.5.3",
     "prettier-plugin-packagejson": "^3.0.2",
+    "publint": "catalog:",
     "tsc-files": "^1.1.4",
+    "tsdown": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
@@ -67,5 +69,6 @@
     "npm": "please-use-pnpm",
     "pnpm": ">=10.0.0",
     "yarn": "please-use-pnpm"
-  }
+  },
+	"packageManager": "pnpm@10.33.2"
 }

@@ -19,6 +19,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@elinzy/tsconfig": "workspace:*",
     "vitest": "catalog:"
   },
   "engines": {

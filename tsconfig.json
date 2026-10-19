@@ -1,9 +1,31 @@
 {
-  "extends": "./tsconfig.base.json",
-  "include": ["src/**/*", "tests/**/*"],
-//  "references": [
-//    {
-//      "path": "packages/eslint-config"
-//    }
-//  ]
+	"extends": "@elinzy/tsconfig/tsconfig.json",
+	"compilerOptions": {
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+
+		"composite": false,
+		"declaration": true,
+		"declarationMap": false,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"sourceMap": false,
+		"forceConsistentCasingInFileNames": true,
+		"useUnknownInCatchVariables": false,
+		"isolatedModules": true,
+
+		"strict": true,
+		"noUnusedLocals": true,
+		"noImplicitThis": true,
+		"noImplicitAny": false,
+		"noImplicitReturns": true,
+		"skipLibCheck": true,
+
+		"allowImportingTsExtensions": true,
+		"erasableSyntaxOnly": true,
+		"verbatimModuleSyntax": true
+	},
+
+	"include": ["**/*"],
+	"exclude": ["node_modules", "dist", "scripts"]
 }

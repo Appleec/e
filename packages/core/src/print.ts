@@ -56,8 +56,3 @@ export function printValues(
   console.log(prettified.join('\n'));
   if (!opts.compact) console.log();
 }
-
-console.time('print values');
-
-printValues([]);
-console.timeEnd('print values');

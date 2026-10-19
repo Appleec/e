@@ -1,5 +1,12 @@
 # @elinzy/cli
 
+## 0.1.9
+
+### Patch Changes
+
+- Updated dependencies
+  - @elinzy/core@0.2.0
+
 ## 0.1.8
 
 ### Patch Changes
