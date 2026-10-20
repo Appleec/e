@@ -1,8 +1,8 @@
 # @elinzy/utils
 
-[![NPM Version](https://img.shields.io/npm/v/@elinzy/e-utils.svg)](https://npmjs.org/package/@elinzy/e-utils)
-[![NPM Downloads](https://img.shields.io/npm/dm/@elinzy/e-utils.svg)](https://npmjs.org/package/@elinzy/e-utils)
-[![Node.js Version](https://img.shields.io/node/v/@elinzy/e-utils.svg)](https://nodejs.org/en/download/)
+[![NPM Version](https://img.shields.io/npm/v/@elinzy/utils.svg)](https://npmjs.org/package/@elinzy/utils)
+[![NPM Downloads](https://img.shields.io/npm/dm/@elinzy/utils.svg)](https://npmjs.org/package/@elinzy/utils)
+[![Node.js Version](https://img.shields.io/node/v/@elinzy/utils.svg)](https://nodejs.org/en/download/)
 
 ---
 
@@ -10,48 +10,60 @@
 
 ## 介绍
 
-e 工具类，常见 JavaScript / TypeScript 实用程序合集
+`e` 生态的 Lodash 风格工具库 —— 11 大分类、130+ 常用 JavaScript / TypeScript 实用函数。ESM 优先并支持 CJS，完全可 tree-shaking，零运行时依赖。
 
 ## 安装
 
 ```sh
-# devDependencies
-npm install -D @elinzy/utils
-
-# dependencies
-npm install -S @elinzy/utils
-```
-
-global:
-
-```sh
-npm install -g @elinzy/utils
+npm install @elinzy/utils
 ```
 
 ## 用法
 
-- ESM
+命名导入（推荐 —— tree-shaking 更彻底）：
+
+```js
+import { isNil, camelCase, kebabCase, debounce } from '@elinzy/utils';
+
+isNil(null); // => true
+camelCase('Foo Bar'); // => 'fooBar'
+kebabCase('fooBar'); // => 'foo-bar'
+```
+
+命名空间导入：
 
 ```js
 import * as _ from '@elinzy/utils';
 
-_.isNil();
-_.isNull();
-
+_.chunk(['a', 'b', 'c', 'd'], 2); // => [['a', 'b'], ['c', 'd']]
+_.get({ a: { b: 2 } }, 'a.b'); // => 2
 ```
 
-- CJS
+CJS：
 
 ```js
 const _ = require('@elinzy/utils');
-
-_.isNil();
-_.isNull();
 ```
+
+## API
+
+| 分类 | 数量 | 代表函数 |
+| ---- | ---- | -------- |
+| `lang` | 52 | `isNil`、`isNull`、`isArray`、`cloneDeep`、`eq`、`gt` |
+| `string` | 15 | `camelCase`、`kebabCase`、`capitalize`、`escape`、`parseInt` |
+| `util` | 14 | `addCommas`、`base64ToBlob`、`base64ToFile`、`byteSize` |
+| `dom` | 12 | `addClass`、`hasClass`、`setStyle`、`getStyle`、`download`、`smoothScrollTo` |
+| `math` | 11 | `add`、`subtract`、`multiply`、`divide`、`round`、`sum`、`maxBy` |
+| `object` | 9 | `get`、`has`、`keys`、`merge`、`at`、`findKey` |
+| `time` | 8 | `formatTime`、`parseTime`、`toDate`、`timestamp`、`isSameDay` |
+| `array` | 8 | `chunk`、`compact`、`first`、`last`、`filter`、`indexOf`、`slice` |
+| `collection` | 4 | `each`、`reduce`、`countBy`、`orderBy` |
+| `function` | 3 | `debounce`、`throttle`、`delay` |
+| `number` | 1 | `inRange` |
 
 ## 许可证
 
-[MIT](https://github.com/Appleec/e-utils/blob/master/LICENSE)
+[MIT](https://github.com/Appleec/e/blob/main/LICENSE)
 
 ## 支持
 
