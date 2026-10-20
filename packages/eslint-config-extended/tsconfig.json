@@ -1,14 +1,10 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "composite": true,
-    "outDir": "dist",
-    "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  },
-  "include": ["src"],
-  "exclude": ["node_modules", "**/__tests__/**"]
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"paths": {
+			"@/*": ["src/*"]
+		}
+	},
+	"include": ["**/*"],
+	"exclude": ["node_modules", "dist", "tests"]
 }

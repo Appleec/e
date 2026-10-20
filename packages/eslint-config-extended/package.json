@@ -2,62 +2,46 @@
   "name": "@elinzy/eslint-config-extended",
   "version": "1.0.2",
   "description": "Common ESLint configuration for e",
-  "main": "./dist/index.cjs",
-  "types": "./dist/index.d.mts",
-  "type": "module",
-  "scripts": {
-    "dev": "tsdown --watch",
-    "build": "tsdown",
-    "typecheck": "tsc --noEmit",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "exports": {
-    ".": {
-      "types": {
-        "import": "./dist/index.d.mts",
-        "require": "./dist/index.d.cts",
-        "default": "./dist/index.d.mts"
-      },
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
-    "./legacy": "./dist/legacy.mjs",
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "dist"
-  ],
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Appleec/e.git",
-    "directory": "packages/eslint-config-extended"
-  },
   "keywords": [
     "e",
     "eslint",
     "config",
     "eslint-config"
   ],
-  "author": {
-    "name": "Appleec",
-    "email": "771992522@qq.com"
+  "homepage": "https://github.com/Appleec/e#readme",
+	"bugs": "https://github.com/Appleec/e/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Appleec/e.git",
+    "directory": "packages/eslint-config-extended"
   },
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Appleec/e/issues"
+	"author": "Appleec <771992522@qq.com>",
+  "type": "module",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./legacy": "./dist/legacy.mjs",
+    "./package.json": "./package.json"
   },
-  "homepage": "https://github.com/Appleec/e#readme",
-  "devDependencies": {
-    "tsdown": "catalog:",
-    "@elinzy/vitest-config": "workspace:*",
-    "@types/confusing-browser-globals": "^1.0.3",
-    "@types/eslint-plugin-jsx-a11y": "^6.10.1",
-    "tsx": "catalog:",
-    "vitest": "catalog:"
+  "files": [
+    "dist"
+  ],
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
+  "scripts": {
+    "dev": "tsdown --watch",
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "^18.18.0 || ^20.9.0 || >=21.1.0",
+    "npm": ">=10.9.0",
+    "pnpm": ">=10.0.0",
+    "yarn": ">=4.5.2"
   },
   "dependencies": {
     "@next/eslint-plugin-next": "^16.3.8",
@@ -74,6 +58,14 @@
     "globals": "^16.0.0",
     "typescript-eslint": "^8.58.2"
   },
+  "devDependencies": {
+    "tsdown": "catalog:",
+    "@elinzy/vitest-config": "workspace:*",
+    "@types/confusing-browser-globals": "^1.0.3",
+    "@types/eslint-plugin-jsx-a11y": "^6.10.1",
+    "tsx": "catalog:",
+    "vitest": "catalog:"
+  },
   "peerDependencies": {
     "eslint": "^9.0.0"
   },
@@ -81,8 +73,5 @@
     "eslint": {
       "optional": false
     }
-  },
-  "engines": {
-    "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
   }
 }

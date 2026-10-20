@@ -3,22 +3,40 @@
   "version": "0.1.0",
   "private": true,
   "description": "Shared Prettier configuration for the e monorepo",
+	"keywords": [
+		"e",
+		"prettier",
+		"config",
+		"prettier-config"
+	],
+	"homepage": "https://github.com/Appleec/e#readme",
+	"bugs": {
+		"url": "https://github.com/Appleec/e/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Appleec/e.git",
+		"directory": "packages/prettier-config"
+	},
+	"license": "MIT",
+	"author": "Appleec <771992522@qq.com>",
   "type": "module",
   "exports": {
     "./base": "./src/prettier-base.config.js",
     "./package.json": "./package.json"
   },
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Appleec/e.git",
-    "directory": "packages/prettier-config"
-  },
-  "license": "MIT",
-  "engines": {
-    "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
-  }
+	"engines": {
+		"node": "^18.18.0 || ^20.9.0 || >=21.1.0",
+		"npm": ">=10.9.0",
+		"pnpm": ">=10.0.0",
+		"yarn": ">=4.5.2"
+	}
 }

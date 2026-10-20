@@ -15,6 +15,7 @@ export function getGitVersion() {
   // `throwOnError: false` keeps this a safe probe: missing Git resolves to `undefined`
   const r = execSync('git', ['version'], { throwOnError: false, abbrev: true });
   if (!r) return;
+  // @ts-ignore
   const match = /git version (?<version>\d+\.\d+\.\d+)/.exec(r);
   return match && match.groups && match.groups.version;
 }

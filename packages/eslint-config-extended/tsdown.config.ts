@@ -1,12 +1,16 @@
-import { defineConfig } from 'tsdown';
+import { defineConfig } from 'tsdown/config';
+import { baseConfig } from '../../tsdown.config.ts';
 
-export default defineConfig({
-  entry: ['src/index.ts', 'src/legacy.ts'],
-  dts: true,
-  format: ['cjs', 'esm'],
-  outDir: 'dist',
-  platform: 'node',
-  unbundle: true,
-  clean: true,
-  nodeProtocol: true,
+export default defineConfig((options) => {
+  const { watch } = options;
+  return {
+    ...baseConfig,
+    entry: ['src/index.ts', 'src/legacy.ts'],
+    format: 'esm',
+    treeshake: !watch,
+    minify: false,
+    exports: true,
+    nodeProtocol: true,
+    unbundle: true,
+  };
 });

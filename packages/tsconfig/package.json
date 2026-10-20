@@ -2,13 +2,21 @@
   "name": "@elinzy/tsconfig",
   "version": "1.0.0",
   "description": "TypeScript configuration for e",
+	"keywords": [
+		"e",
+		"tsconfig"
+	],
+	"homepage": "https://github.com/Appleec/e#readme",
+	"bugs": "https://github.com/Appleec/e/issues",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Appleec/e.git",
+		"directory": "packages/tsconfig"
+	},
+	"license": "MIT",
+	"author": "Appleec <771992522@qq.com>",
   "type": "module",
   "main": "tsconfig.json",
-  "scripts": {
-    "dev": "echo 'tsconfig: no build required'",
-    "build": "echo 'tsconfig: no build required'",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "files": [
     "*.json"
   ],
@@ -16,25 +24,11 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Appleec/e.git",
-    "directory": "packages/tsconfig"
-  },
-  "keywords": [
-    "e",
-    "elinzy",
-    "tsconfig"
-  ],
-  "author": {
-    "name": "Appleec",
-    "email": "771992522@qq.com"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Appleec/e/issues"
-  },
-  "homepage": "https://github.com/Appleec/e#readme",
+	"scripts": {
+		"dev": "echo 'tsconfig: no build required'",
+		"build": "echo 'tsconfig: no build required'",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
   "peerDependenciesMeta": {
     "typescript": {
       "optional": true

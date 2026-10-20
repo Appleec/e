@@ -1,58 +1,58 @@
 {
   "name": "@elinzy/utils",
   "version": "0.3.6",
+	"private": false,
   "description": "e Tools, a collection of common JavaScript / TypeScript utilities.",
+	"keywords": [
+		"e",
+		"utils"
+	],
+	"homepage": "https://github.com/Appleec/e#readme",
+	"bugs": "https://github.com/Appleec/e/issues",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Appleec/e.git",
+		"directory": "packages/utils"
+	},
+	"license": "MIT",
+	"author": "Appleec <771992522@qq.com>",
   "type": "module",
+	"sideEffects": false,
   "main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
   "types": "./dist/index.d.cts",
+	"exports": {
+		".": {
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs"
+		},
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"dist",
+		"package.json",
+		"README.md"
+	],
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
   "scripts": {
     "dev": "tsdown --watch",
     "build": "tsdown",
     "typecheck": "tsc --noEmit",
-    "clean": "rimraf ./dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "dist",
-    "package.json",
-    "README.md"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Appleec/e.git",
-    "directory": "packages/utils"
-  },
-  "keywords": [
-    "e",
-    "elinzy",
-    "utils"
-  ],
-  "author": "Appleec <771992522@qq.com>",
-  "license": "MIT",
-  "private": false,
-  "bugs": {
-    "url": "https://github.com/Appleec/e/issues"
-  },
-  "homepage": "https://github.com/Appleec/e#readme",
-  "engines": {
-    "node": ">=14.18.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
+	"engines": {
+		"node": "^18.18.0 || ^20.9.0 || >=21.1.0",
+		"npm": ">=10.9.0",
+		"pnpm": ">=10.0.0",
+		"yarn": ">=4.5.2"
+	},
   "devDependencies": {
     "tsdown": "catalog:"
-  },
-  "module": "./dist/index.mjs"
+  }
 }

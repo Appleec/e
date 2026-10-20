@@ -2,6 +2,7 @@ import { defineConfig } from 'tsdown/config';
 
 // const isCi = process.env.CI != null;
 const isSourcemap = false;
+const isWatch = process.argv.includes('--watch');
 
 export const baseConfig = defineConfig({
   entry: 'src/index.ts',
@@ -9,7 +10,8 @@ export const baseConfig = defineConfig({
   hash: false,
   exports: true,
   // useful for running `build --watch` and `test` concurrently
-  clean: !process.argv.includes('--watch'),
+  clean: !isWatch,
+  treeshake: !isWatch,
   deps: {
     onlyBundle: [], // require explicitly listing inlined dependencies
   },
