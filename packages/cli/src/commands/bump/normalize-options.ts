@@ -1,7 +1,9 @@
 import type { ReleaseType } from './version';
 import type { VersionBumpOptions } from './types';
+import { existsSync, readFileSync } from 'node:fs';
 import process from 'node:process';
 import { glob } from 'tinyglobby';
+import yaml from 'yaml';
 import { isReleaseType } from './version';
 
 /**
@@ -52,6 +54,10 @@ export interface NormalizedOptions {
   files: string[];
   cwd: string;
   ignoreScripts: boolean;
+  recursive?: boolean;
+  printCommits: boolean;
+  install: boolean;
+  execute?: string;
   currentVersion?: string;
 }
 
@@ -106,7 +112,7 @@ export async function normalizeOptions(raw: VersionBumpOptions): Promise<Normali
     commit = { all, noVerify, message: 'chore: release v' };
   }
 
-  const files = await glob(raw.files?.length ? raw.files : defaultFiles, {
+  const files = await glob(resolveFiles(raw, cwd), {
     cwd,
     onlyFiles: true,
     expandDirectories: false,
@@ -123,6 +129,57 @@ export async function normalizeOptions(raw: VersionBumpOptions): Promise<Normali
     files,
     cwd,
     ignoreScripts,
+    recursive: raw.recursive && !raw.files?.length,
+    printCommits: raw.printCommits ?? true,
+    install: Boolean(raw.install),
+    execute: raw.execute,
     currentVersion: raw.currentVersion,
   };
+}
+
+/**
+ * Resolves the files to update. When `recursive` is set and no explicit files
+ * are given, expands the default manifests with every workspace's
+ * package.json (from pnpm-workspace.yaml and the `workspaces` field).
+ */
+function resolveFiles(raw: VersionBumpOptions, cwd: string): string[] {
+  if (raw.files?.length) return raw.files;
+
+  const files = [...defaultFiles];
+
+  if (!raw.recursive) return files;
+
+  const workspaces: string[] = [];
+
+  // pnpm workspaces (pnpm-workspace.yaml)
+  const pnpmWorkspacePath = `${cwd}/pnpm-workspace.yaml`;
+  if (existsSync(pnpmWorkspacePath)) {
+    const pnpmWorkspace = yaml.parse(readFileSync(pnpmWorkspacePath, 'utf8')) as {
+      packages?: string[];
+    };
+    workspaces.push(...(pnpmWorkspace.packages ?? []));
+  }
+
+  // npm/bun workspaces (package.json `workspaces` field)
+  const packageJsonPath = `${cwd}/package.json`;
+  if (existsSync(packageJsonPath)) {
+    type PKGWorkspaces = string[] | { packages?: string[] };
+    const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8')) as {
+      workspaces?: PKGWorkspaces;
+    };
+    workspaces.push(
+      ...(Array.isArray(packageJson.workspaces)
+        ? packageJson.workspaces
+        : packageJson.workspaces && Array.isArray(packageJson.workspaces.packages)
+          ? packageJson.workspaces.packages
+          : []),
+    );
+  }
+
+  // Skip entries starting with `!` (exclusions) and ones already covered
+  const workspaceFiles = workspaces
+    .map((workspace) => `${workspace}/package.json`)
+    .filter((workspace) => !workspace.startsWith('!') && !files.includes(workspace));
+
+  return [...files, ...workspaceFiles];
 }

@@ -110,6 +110,32 @@ export interface VersionBumpOptions {
   ignoreScripts?: boolean;
 
   /**
+   * Bump the files recursively for monorepo. Only works without `files` option.
+   *
+   * Defaults to `false`.
+   */
+  recursive?: boolean;
+
+  /**
+   * Print recent commits since the last version.
+   *
+   * Defaults to `true`.
+   */
+  printCommits?: boolean;
+
+  /**
+   * Execute additional command after bumping and before committing.
+   */
+  execute?: string;
+
+  /**
+   * Run package manager install after bumping the version number.
+   *
+   * Defaults to `false`.
+   */
+  install?: boolean;
+
+  /**
    * A callback that provides information about the progress of the `versionBump()` function.
    */
   progress?: (progress: VersionBumpProgress) => void;

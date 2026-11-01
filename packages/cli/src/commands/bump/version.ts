@@ -15,21 +15,37 @@ export type SemverIncrementType =
 /**
  * The supported release types.
  *
- * `next` bumps the current version:
- * - to the next prerelease when already on a prerelease (e.g. `1.0.0-beta.1` → `1.0.0-beta.2`)
- * - to the next patch otherwise
+ * - `next` bumps the current version:
+ *   - to the next prerelease when already on a prerelease (e.g. `1.0.0-beta.1` → `1.0.0-beta.2`)
+ *   - to the next patch otherwise
+ * - `conventional` recommends a type from conventional commits since the last tag
+ *   (breaking → major, feat → minor, otherwise patch)
+ * - `conventional-prerelease` is the `conventional` type as a prerelease
  */
-export type ReleaseType = SemverIncrementType | 'next';
+export type ReleaseType = SemverIncrementType | 'next' | 'conventional' | 'conventional-prerelease';
 
 /**
  * The different types of pre-releases.
  */
-export const prereleaseTypes: ReleaseType[] = ['premajor', 'preminor', 'prepatch', 'prerelease'];
+export const prereleaseTypes: ReleaseType[] = [
+  'premajor',
+  'preminor',
+  'prepatch',
+  'prerelease',
+  'conventional-prerelease',
+];
 
 /**
  * All possible release types.
  */
-export const releaseTypes: ReleaseType[] = [...prereleaseTypes, 'major', 'minor', 'patch', 'next'];
+export const releaseTypes: ReleaseType[] = [
+  ...prereleaseTypes,
+  'major',
+  'minor',
+  'patch',
+  'next',
+  'conventional',
+];
 
 /**
  * Determines whether the specified value is a pre-release.

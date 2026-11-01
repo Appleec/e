@@ -1,4 +1,5 @@
 import { Command, Option } from 'commander';
+import pc from 'ansis';
 
 import { bump } from './index';
 
@@ -44,6 +45,19 @@ export const register = (program: Command) => {
     // All
     .option('-a, --all', 'Include all files in the commit')
 
+    // Recursive
+    .option('-r, --recursive', 'Bump package.json files recursively for monorepo')
+
+    // Print Commits
+    .option('--print-commits', 'Print recent commits since the last version', true)
+    .option('--no-print-commits', 'Do not print recent commits')
+
+    // Execute
+    .option('-x, --execute <command>', 'Commands to execute after version bumps')
+
+    // Install
+    .option('--install', "Run package manager's install command after bumping the version")
+
     // Confirm
     .option('-y, --yes', 'Skip confirmation')
 
@@ -69,6 +83,10 @@ export const register = (program: Command) => {
         if (firstArg === 'prompt' || isReleaseType(firstArg) || isValidVersion(firstArg)) {
           release = release ?? files.shift();
         }
+      }
+
+      if (options.recursive && files.length) {
+        console.log(pc.yellow('The --recursive option is ignored when files are specified'));
       }
 
       bump({
