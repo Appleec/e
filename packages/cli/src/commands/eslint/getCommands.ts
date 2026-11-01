@@ -1,4 +1,4 @@
-import { formatters, packageManagers } from '@/constants';
+import { formatters, packageManagers } from './constants';
 
 interface GetCommandsParams {
   formatter?: string | null;

@@ -5,8 +5,8 @@ import {
   legacyConfigs,
   runtimes,
   stringBooleans,
-} from '@/constants';
-import { getPackageManager } from '@/helpers/getPackageManager';
+} from './constants';
+import { getPackageManager } from './getPackageManager';
 
 // Get Config
 const getConfig = (opts: Record<string, any>) => {

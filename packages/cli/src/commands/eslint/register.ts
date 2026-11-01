@@ -12,7 +12,7 @@ import {
   runtimes,
   strictConfigs,
   stringBooleans,
-} from '@/constants/common';
+} from './constants';
 
 export const register = (program: Command) => {
   program

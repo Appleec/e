@@ -1,6 +1,6 @@
 import { detect } from 'package-manager-detector/detect';
 
-import { packageManagers } from '@/constants';
+import { packageManagers } from './constants';
 
 export const getPackageManager = async (): Promise<string> => {
   const pm = await detect();

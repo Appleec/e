@@ -7,14 +7,14 @@ import {
   formatters,
   languages,
   subFolders,
-} from '@/constants';
+} from './constants';
 
 interface GetConfigUrlParams {
-  config: string;
+  config: string | null;
   runtime?: string | null;
   legacyConfig?: string | null;
   formatter?: string | null;
-  language: string;
+  language: string | null;
   strictConfig?: string[] | null;
 }
 
